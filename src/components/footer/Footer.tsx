@@ -8,7 +8,7 @@ function Footer() {
     <footer className="footer">
       <div className="footer__nav">
         <a className="footer__link" href="https://rs.school/js/">
-          <img src={rsLogoSvg} alt="" />
+          <img className="footer__link-img" src={rsLogoSvg} alt="" />
         </a>
         <a className="footer__link" href="https://github.com/ldemyanov/">
           <img src={githubUserSvg} alt="" />
