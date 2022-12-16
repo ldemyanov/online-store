@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { Children } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AboutProduct from './pages/aboutProduct/AboutProduct';
 import Store from './pages/store/Store';
+import Wrapper from './wrapper/wrapper';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Store />} />
-      <Route path="/product" element={<AboutProduct />} />
-      <Route />
-    </Routes>
+    <Wrapper>
+      <Routes>
+        <Route path="/" element={<Store />} />
+        <Route path="/product" element={<AboutProduct />} />
+        <Route />
+      </Routes>
+    </Wrapper>
   );
 }
 
