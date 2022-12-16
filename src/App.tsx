@@ -1,4 +1,4 @@
-import React, { Children } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AboutProduct from './pages/aboutProduct/AboutProduct';
 import Store from './pages/store/Store';
