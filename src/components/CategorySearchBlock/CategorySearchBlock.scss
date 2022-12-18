@@ -1,0 +1,59 @@
+@import './../../styles/variables';
+@import url('https://fonts.googleapis.com/css2?family=Inder&family=Julius+Sans+One&display=swap');
+
+.categories-search-block {
+  position: absolute;
+  right: 0;
+  top: 400px;
+  width: 340px;
+  padding-left: 24px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fffdfd;
+  filter: drop-shadow(-10px 10px 10px rgba(0, 0, 0, 0.25));
+  border-radius: 2px;
+
+  &::before {
+    content: '';
+    height: 0px;
+    width: 50px;
+    background-color: transparent;
+    position: absolute;
+    left: 0;
+    z-index: -1;
+    border-right: 80px solid #fffdfd;
+    border-bottom: 400px solid transparent;
+    transform: translateX(-129px);
+  }
+
+  &__title {
+    font-size: 26px;
+    font-weight: 600;
+    font-family: 'Inder', sans-serif;
+  }
+
+  &__cat {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 18px;
+    cursor: pointer;
+    &:hover {
+      filter: drop-shadow(4px 4px 2px #2e2f5b67);
+    }
+  }
+}
+
+.categories-search-block__cat-img {
+  display: block;
+  width: 37px;
+  height: 37px;
+}
+
+.categories-search-block__cat-name {
+  margin: 0 0 0 20px;
+  font-family: 'Inder', sans-serif;
+  font-size: 18px;
+}
