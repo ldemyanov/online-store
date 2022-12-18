@@ -4,6 +4,7 @@ import SearchField from '../../components/seachField/SearchField';
 import SearchParams from '../../components/searchParams/SearchParams';
 import SearchViewParams from '../../components/searchViewParams/SearchViewParams';
 import SortViewBlock from '../../components/sortViewBlock/SortViewBlock';
+import SearchParams from '../../components/searchParams/SearchParams';
 import './store.scss';
 
 function Store() {
