@@ -1,5 +1,5 @@
 import React from 'react';
-import './CategorySearchBlock.scss';
+import './CatSearchBlock.scss';
 import catCards from './../../static/cat-cards.png';
 import catEconomy from './../../static/cat-economy.png';
 import catKids from './../../static/cat-kids.png';
@@ -11,7 +11,6 @@ function CategorySearchBlock() {
     <>
       <div className="categories-search-block">
         <p className="categories-search-block__title">Categories of Games</p>
-
         <div
           className="categories-search-block__cat"
           id="categories-search-block__cat-cards"
