@@ -1,0 +1,103 @@
+@import './../../styles/variables';
+@import url('https://fonts.googleapis.com/css2?family=Inder&family=Julius+Sans+One&display=swap');
+
+.game-card {
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  height: 370px;
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+
+.game-card__img {
+  width: 230px;
+  height: 230px;
+  margin: 15px auto 0 auto;
+  filter: drop-shadow(6px 6px 10px rgba(0, 0, 0, 0.25));
+}
+
+.game-dtls__name {
+  font-size: 20px;
+  margin: 5px auto 10px auto;
+  font-weight: 600;
+  font-family: 'Inder', sans-serif;
+}
+
+.game-dtls__ratcat {
+  display: flex;
+  flex-direction: row;
+}
+
+.game-dtls__ratcat__rating {
+  display: flex;
+  flex-direction: row;
+  margin-left: 15px;
+}
+
+.game-dtls__ratcat__rat-img {
+  height: 20px;
+  width: 15px;
+  margin-right: 2px;
+}
+
+.game-dtls__ratcat__categories {
+  display: flex;
+  flex-direction: row;
+  margin: 0 15px 0 auto;
+}
+
+.game-dtls__ratcat__cat-img {
+  width: 22px;
+  height: 22px;
+  margin-left: 2px;
+}
+
+.game-dtls__price-stock-btn {
+  display: flex;
+  flex-direction: row;
+}
+
+.game-dtls__price-stock {
+  display: flex;
+  flex-direction: column;
+}
+
+.game-dtls__price-stock__price {
+  font-family: 'Inder', sans-serif;
+  font-size: 14px;
+  margin: 10px auto 5px 15px;
+}
+
+.game-dtls__price-stock__stock {
+  font-family: 'Inder', sans-serif;
+  font-size: 14px;
+  margin: 0 auto 0 15px;
+}
+
+.game-dtls__instock-img {
+  width: 14px;
+  height: 14px;
+  transform: translate(3px, 2px);
+}
+
+.game-dtls__add-btn {
+  margin: auto 15px 5px auto;
+  border: none;
+  background-image: linear-gradient(to top, #161631, #2e2f5b);
+  font-size: 12px;
+  height: 24px;
+  width: 100px;
+  color: #ffffff;
+  box-shadow: 0px 10px 6px rgba(0, 0, 0, 0.25);
+  font-family: 'Inder', sans-serif;
+  cursor: pointer;
+
+  &:hover {
+    background-image: linear-gradient(to top, #272756, #414280);
+  }
+
+  &:active {
+    box-shadow: 0px 7px 6px rgba(0, 0, 0, 0.25);
+  }
+}
