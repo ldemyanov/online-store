@@ -4,6 +4,7 @@
 .search-field {
   height: 45px;
   width: 1200px;
+  max-width: 60%;
   margin: 10px 0 0 15px;
   border: none;
   background-color: rgb(255, 253, 253);
@@ -16,5 +17,12 @@
   &:focus {
     outline: none;
     border: 2px solid #e5e5ff;
+  }
+
+  @media (max-width: 1600px) {
+    width: 800px;
+    max-width: 55%;
+  }
+  @media (max-width: 1000px) {
   }
 }
