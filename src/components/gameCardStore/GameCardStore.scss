@@ -80,18 +80,6 @@
   }
 }
 
-.rc-categories {
-  display: flex;
-  flex-direction: row;
-  margin: 0 15px 0 auto;
-
-  &__img {
-    width: 22px;
-    height: 22px;
-    margin-left: 2px;
-  }
-}
-
 .price-stock {
   display: flex;
   flex-direction: column;
