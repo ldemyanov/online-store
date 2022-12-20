@@ -11,15 +11,15 @@ import cross from './../../static/cross.png';
 
 // const ratingBlock = <img className="rat-img" src={ratingIcon} />;
 
-type gameObjectType = {
-  name: string;
-  price: number;
-  rating: number;
-  numOfPlayers: number;
-  categories: string[];
-  inStock: number;
-  images: string[];
-};
+// type gameObjectType = {
+//   name: string;
+//   price: number;
+//   rating: number;
+//   numOfPlayers: number;
+//   categories: string[];
+//   inStock: number;
+//   images: string[];
+// };
 
 const gameObject = {
   name: 'Gloomhaven',
@@ -49,26 +49,22 @@ function GameCardStore() {
           className="game-card__img"
           style={renderGameImageRule(gameObject.images[0])}
         ></div> */}
-        <p className="game-dtls__name">{gameObject.name}</p>
+        <p className="game-card__name">{gameObject.name}</p>
         <div className="game-dtls">
-          <div className="game-dtls__ratcat">
-            <div className="game-dtls__ratcat__rating">
+          <div className="game-dtls__rc">
+            <div className="rc-rating">
               {[1, 2, 3, 4, 5].map((num) => (
-                <img
-                  className="game-dtls__ratcat__rat-img"
-                  src={ratingIcon}
-                  key={num}
-                />
+                <img className="rc-rating__img" src={ratingIcon} key={num} />
               ))}
             </div>
             {renderCategoriesBlock(gameObject.categories)}
           </div>
-          <div className="game-dtls__price-stock-btn">
-            <div className="game-dtls__price-stock">
-              <p className="game-dtls__price-stock__price">
+          <div className="game-dtls__psb">
+            <div className="price-stock">
+              <p className="price-stock__price">
                 Price: {gameObject.price.toString()}
               </p>
-              <p className="game-dtls__price-stock__stock">
+              <p className="price-stock__stock">
                 In stock: {checkStock(gameObject.inStock)}
               </p>
             </div>
@@ -101,25 +97,25 @@ function renderCategoriesBlock(categories: string[]) {
   const totalCategories = [];
   if (categories.includes('strategy'))
     totalCategories.push(
-      <img className="game-dtls__ratcat__cat-img" src={catStrategy} key={1} />
+      <img className="rc-categories__img" src={catStrategy} key={1} />
     );
   if (categories.includes('cards'))
     totalCategories.push(
-      <img className="game-dtls__ratcat__cat-img" src={catCards} key={2} />
+      <img className="rc-categories__img" src={catCards} key={2} />
     );
   if (categories.includes('quiz'))
     totalCategories.push(
-      <img className="game-dtls__ratcat__cat-img" src={catQuiz} key={3} />
+      <img className="rc-categories__img" src={catQuiz} key={3} />
     );
   if (categories.includes('economy'))
     totalCategories.push(
-      <img className="game-dtls__ratcat__cat-img" src={catEconomy} key={4} />
+      <img className="rc-categories__img" src={catEconomy} key={4} />
     );
   if (categories.includes('kids'))
     totalCategories.push(
-      <img className="game-dtls__ratcat__cat-img" src={catKids} key={5} />
+      <img className="rc-categories__img" src={catKids} key={5} />
     );
-  return <div className="game-dtls__ratcat__categories">{totalCategories}</div>;
+  return <div className="rc-categories">{totalCategories}</div>;
 }
 
 function checkStock(stockCount: number) {
