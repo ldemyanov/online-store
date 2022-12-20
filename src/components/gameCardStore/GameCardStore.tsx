@@ -5,23 +5,14 @@ import catEconomy from './../../static/cat-economy.png';
 import catKids from './../../static/cat-kids.png';
 import catQuiz from './../../static/cat-quiz.png';
 import catStrategy from './../../static/cat-strategy.png';
-import ratingIcon from './../../static/rating-icon.png';
 import tick from './../../static/tick.png';
 import cross from './../../static/cross.png';
+import RatingDisplay from '../ratingDisplay/RatingDisplay';
 
 // const ratingBlock = <img className="rat-img" src={ratingIcon} />;
 
-// type gameObjectType = {
-//   name: string;
-//   price: number;
-//   rating: number;
-//   numOfPlayers: number;
-//   categories: string[];
-//   inStock: number;
-//   images: string[];
-// };
-
 const gameObject = {
+  id: 23272845354,
   name: 'Gloomhaven',
   price: 120.99,
   rating: 5,
@@ -52,11 +43,7 @@ function GameCardStore() {
         <p className="game-card__name">{gameObject.name}</p>
         <div className="game-dtls">
           <div className="game-dtls__rc">
-            <div className="rc-rating">
-              {[1, 2, 3, 4, 5].map((num) => (
-                <img className="rc-rating__img" src={ratingIcon} key={num} />
-              ))}
-            </div>
+            <RatingDisplay {...gameObject} />
             {renderCategoriesBlock(gameObject.categories)}
           </div>
           <div className="game-dtls__psb">
