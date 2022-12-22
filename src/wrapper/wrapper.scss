@@ -1,6 +1,10 @@
 .wrapper {
+  height: inherit;
   display: flex;
-  flex: 1 0 auto;
-  width: 100%;
   flex-direction: column;
+  background: linear-gradient(257.8deg, #E5E5FF 5.53%, #8C8A9F 91.73%);
+}
+
+.wrapper__main {
+  flex: 1 0 auto;
 }
