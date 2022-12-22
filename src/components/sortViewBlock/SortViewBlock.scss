@@ -2,30 +2,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Inder&family=Julius+Sans+One&display=swap');
 
 .sort-view-block {
-  width: 340px;
-  height: 500px;
+  position: relative;
+  width: calc(100% - 50px);
   display: flex;
   flex-direction: column;
   background-color: #fffdfd;
   filter: drop-shadow(-10px 10px 10px rgba(0, 0, 0, 0.25));
   border-radius: 2px;
+  padding: 10px;
   margin-bottom: 15px;
 
   &::before {
-    content: '';
-    height: 0px;
-    width: 50px;
-    background-color: transparent;
     position: absolute;
-    left: 0;
-    z-index: -1;
-    border-right: 80px solid #fffdfd;
-    border-bottom: 500px solid transparent;
-    transform: translateX(-129px);
+    content: '';
+    width: 50px;
+    left: -50px;
+    top: 0;
+    bottom: 0;
+    background: #fffdfd;
+    clip-path: polygon(0% 0%, 0% 0%, 100% 100%, 100% 0%);
   }
 
   &__params {
-    margin-top: 25px;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -36,7 +34,7 @@
       &__btn {
         height: 36px;
         width: 140px;
-        margin-top: 18px;
+        margin-bottom: 10px;
         border: none;
         background-image: linear-gradient(to top, #161631, #2e2f5b);
         font-size: 17px;
@@ -90,11 +88,11 @@
   &__inputs {
     display: flex;
     flex-direction: column;
+    padding-right: 20px;
 
     &__input-block {
       height: fit-content;
       position: relative;
-      margin-top: 55px;
 
       &__info {
         display: flex;

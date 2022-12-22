@@ -41,8 +41,6 @@ function CardContainer() {
       <GameCard {...gameObject2} />
       <GameCard {...gameObject} />
       <GameCard {...gameObject2} />
-      {/* <GameCard {...gameObject} />
-      <GameCard {...gameObject2} /> */}
     </div>
   );
 }

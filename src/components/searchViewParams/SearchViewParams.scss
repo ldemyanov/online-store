@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inder&family=Julius+Sans+One&display=swap');
 
 .search-view-params-block {
-  width: 340px;
+  width: calc(100% - 50px);
   padding-left: 24px;
   height: 300px;
   display: flex;
@@ -13,17 +13,16 @@
   margin-bottom: 15px;
 
   &::before {
-    content: '';
-    height: 0px;
-    width: 50px;
-    background-color: transparent;
     position: absolute;
-    left: 0;
-    z-index: -1;
-    border-right: 80px solid #fffdfd;
-    border-bottom: 300px solid transparent;
-    transform: translateX(-129px);
+    content: '';
+    width: 50px;
+    left: -50px;
+    top: 0;
+    bottom: 0;
+    background: #fffdfd;
+    clip-path: polygon(0% 0%, 0% 0%, 100% 100%, 100% 0%);
   }
+
   &__games-found {
     font-size: 20px;
     margin: 25px auto 15px 30px;

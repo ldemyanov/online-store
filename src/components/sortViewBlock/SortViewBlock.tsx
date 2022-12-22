@@ -69,13 +69,10 @@ function SortViewBlock() {
                 Available in Stock
               </p>
             </div>
-            <input
-              className="sort-view-block__inputs__input-block__input input-min"
-              type="range"
-            />
-            <input
-              className="sort-view-block__inputs__input-block__input input-max"
-              type="range"
+            <DoubleRange
+              min={0}
+              max={5}
+              onChange={(min, max) => console.log(min, max)}
             />
           </div>
           <div className="sort-view-block__inputs__input-block">
@@ -89,13 +86,10 @@ function SortViewBlock() {
                 Price
               </p>
             </div>
-            <input
-              className="sort-view-block__inputs__input-block__input input-min"
-              type="range"
-            />
-            <input
-              className="sort-view-block__inputs__input-block__input input-max"
-              type="range"
+            <DoubleRange
+              min={0}
+              max={5}
+              onChange={(min, max) => console.log(min, max)}
             />
           </div>
         </div>
