@@ -5,6 +5,7 @@ import descending from './../../static/descending.png';
 import inStockImg from './../../static/in-stock-param.png';
 import numOfPlayersImg from './../../static/num-of-players-param.png';
 import priceImg from './../../static/price-param.png';
+import DoubleRange from '../doubleRange/DoubleRange';
 
 function SortViewBlock() {
   return (
@@ -51,13 +52,10 @@ function SortViewBlock() {
                 Number of Players
               </p>
             </div>
-            <input
-              className="sort-view-block__inputs__input-block__input input-min"
-              type="range"
-            />
-            <input
-              className="sort-view-block__inputs__input-block__input input-max"
-              type="range"
+            <DoubleRange
+              min={0}
+              max={5}
+              onChange={(min, max) => console.log(min, max)}
             />
           </div>
           <div className="sort-view-block__inputs__input-block">
