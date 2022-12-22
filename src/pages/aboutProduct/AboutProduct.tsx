@@ -3,11 +3,22 @@ import { useLocation } from 'react-router-dom';
 import './aboutProduct.scss';
 import booksIcon from './../../static/books-pile.png';
 import zoomIcon from './../../static/zoom-icon.png';
+import CategoriesProdPage from '../../components/categoriesProdPage/CategoriesProdPage';
+import RatingDisplay from '../../components/ratingDisplay/RatingDisplay';
 
 function useQuery() {
   const { search } = useLocation();
   return React.useMemo(() => new URLSearchParams(search), [search]);
 }
+
+// const cartObject = {
+//   totalQuantity: 3,
+//   totalPrice: 69.2,
+//   chosenGames: {
+//     name: 'Gloomhaven',
+//     id: 234234234,
+//   },
+// };
 
 const gameObject = {
   id: 23272845354,
@@ -33,7 +44,15 @@ function AboutProduct() {
   for (const [key, value] of params) {
     console.log(key, value);
   }
+
   return (
+    // <div className="temp-box">
+    //   <div className="cart-btn">
+    //     <div className="cart-block">
+    //       <p className="cart-block__ttl-games">Total quantity: </p>
+    //       <p className="cart-block__ttl-games"></p>
+    //     </div>
+    //   </div>
     <div className="pp-game">
       <h2 className="pp-game__name">{gameObject.name}</h2>
       <div className="pp-game__details">
@@ -48,10 +67,17 @@ function AboutProduct() {
           <img className="pp-img-box__img" src={gameObject.images[0]} alt="" />
         </div>
         <div className="pp-dtls-box">
-          <p className="pp-dtls-box__price">Price: {gameObject.price}</p>
+          <p className="pp-dtls-box__price">Price: {gameObject.price}$</p>
           <p className="pp-dtls-box__stock">In stock: {gameObject.inStock}</p>
-          <p className="pp-dtls-box__rating">Rating: {gameObject.rating}</p>
-          <div className="pp-categories"></div>
+          <div className="pp-dtls-box__rating">
+            <span className="pp-rating-name">Rating:</span>
+            <span className="pp-rating-box">
+              <RatingDisplay {...gameObject} />
+            </span>
+          </div>
+          <CategoriesProdPage
+            {...{ gameObject, values: [12, 23, 34, 45, 56, 67] }}
+          />
         </div>
       </div>
       <div className="pp-controls">
@@ -73,6 +99,7 @@ function AboutProduct() {
       <h3 className="pp-game__descr-head">Description:</h3>
       <p className="pp-game__description">{gameObject.description}</p>
     </div>
+    // </div>
   );
 }
 
