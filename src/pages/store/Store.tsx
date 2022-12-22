@@ -1,6 +1,6 @@
 import React from 'react';
+import CardContainer from '../../components/gameCardContainer/CardContainer';
 import CatSearchBlock from '../../components/catSearchBlock/CatSearchBlock';
-import GameCardStore from '../../components/gameCardStore/GameCardStore';
 import SearchField from '../../components/seachField/SearchField';
 import SearchParams from '../../components/searchParams/SearchParams';
 import SearchViewParams from '../../components/searchViewParams/SearchViewParams';
@@ -13,7 +13,7 @@ function Store() {
       <div className="store__left">
         <SearchParams />
         <SearchField />
-        <GameCardStore />
+        <CardContainer />
       </div>
       <div className="store__right">
         <SearchViewParams />

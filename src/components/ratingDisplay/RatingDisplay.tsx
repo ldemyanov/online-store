@@ -2,18 +2,11 @@ import React from 'react';
 import './RatingDisplay.scss';
 import ratingIcon from './../../static/rating-icon.png';
 
-type gameObjectType = {
-  id: number;
-  name: string;
-  price: number;
+type TPropsRatingDisplay = {
   rating: number;
-  numOfPlayers: number;
-  categories: string[];
-  inStock: number;
-  images: string[];
 };
 
-function RatingDisplay(props: gameObjectType) {
+function RatingDisplay({ ...props }: TPropsRatingDisplay) {
   const ratingBlock = [1, 2, 3, 4, 5].map((num) => (
     <img className="rc-rating__img" src={ratingIcon} key={num} />
   ));
