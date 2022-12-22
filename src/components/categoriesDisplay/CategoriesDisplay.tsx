@@ -6,18 +6,11 @@ import catKids from './../../static/cat-kids.png';
 import catQuiz from './../../static/cat-quiz.png';
 import catStrategy from './../../static/cat-strategy.png';
 
-type gameObjectType = {
-  id: number;
-  name: string;
-  price: number;
-  rating: number;
-  numOfPlayers: number;
+type TPropsCategoriesDisplay = {
   categories: string[];
-  inStock: number;
-  images: string[];
 };
 
-function CategoriesDisplay(props: gameObjectType) {
+function CategoriesDisplay(props: TPropsCategoriesDisplay) {
   const totalCategories = [];
   if (props.categories.includes('strategy'))
     totalCategories.push(
