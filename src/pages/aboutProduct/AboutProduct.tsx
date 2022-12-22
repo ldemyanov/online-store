@@ -72,7 +72,7 @@ function AboutProduct() {
           <div className="pp-dtls-box__rating">
             <span className="pp-rating-name">Rating:</span>
             <span className="pp-rating-box">
-              <RatingDisplay {...gameObject} />
+              <RatingDisplay rating={gameObject.rating} />
             </span>
           </div>
           <CategoriesProdPage

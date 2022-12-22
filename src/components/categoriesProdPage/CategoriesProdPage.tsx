@@ -25,60 +25,44 @@ function CategoriesProdPage(props: {
   const totalCategories = [];
   if (props.gameObject.categories.includes('strategy'))
     totalCategories.push(
-      <div className="pp-category">
-        <img
-          className="pp-category__img"
-          src={catStrategy}
-          key={props.values[0]}
-        />
+      <div className="pp-category" key={props.values[0]}>
+        <img className="pp-category__img" src={catStrategy} />
         <span className="pp-category__name">Strategy</span>
       </div>
     );
   if (props.gameObject.categories.includes('cards'))
     totalCategories.push(
-      <div className="pp-category">
-        <img
-          className="pp-category__img"
-          src={catCards}
-          key={props.values[1]}
-        />
+      <div className="pp-category" key={props.values[1]}>
+        <img className="pp-category__img" src={catCards} />
         <span className="pp-category__name">Cards</span>
       </div>
     );
   if (props.gameObject.categories.includes('quiz'))
     totalCategories.push(
-      <div className="pp-category">
-        <img className="pp-category__img" src={catQuiz} key={props.values[2]} />
+      <div className="pp-category" key={props.values[2]}>
+        <img className="pp-category__img" src={catQuiz} />
         <span className="pp-category__name">Quiz</span>
       </div>
     );
   if (props.gameObject.categories.includes('economy'))
     totalCategories.push(
-      <div className="pp-category">
-        <img
-          className="pp-category__img"
-          src={catEconomy}
-          key={props.values[3]}
-        />
+      <div className="pp-category" key={props.values[3]}>
+        <img className="pp-category__img" src={catEconomy} />
         <span className="pp-category__name">Economy</span>
       </div>
     );
   if (props.gameObject.categories.includes('kids'))
     totalCategories.push(
-      <div className="pp-category">
-        <img className="pp-category__img" src={catKids} key={props.values[4]} />
+      <div className="pp-category" key={props.values[4]}>
+        <img className="pp-category__img" src={catKids} />
         <span className="pp-category__name">For Kids</span>
       </div>
     );
   if (props.gameObject.categories.includes('role-play'))
     totalCategories.push(
-      <div className="pp-category">
-        <img
-          className="pp-category__img"
-          src={catRolePlay}
-          key={props.values[5]}
-        />
-        <span className="pp-category__name">Role Play</span>
+      <div className="pp-category" key={props.values[5]}>
+        <img className="pp-category__img" src={catRolePlay} />
+        <span className="pp-category__name">Role play</span>
       </div>
     );
   return (
