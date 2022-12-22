@@ -1,0 +1,39 @@
+@import './../../styles/variables';
+@import url('https://fonts.googleapis.com/css2?family=Inder&family=Julius+Sans+One&display=swap');
+
+.pp-categories {
+  display: flex;
+  flex-direction: column;
+
+  &__name {
+    margin: 0 auto 5px 0;
+  }
+}
+
+.pp-category {
+  display: flex;
+  flex-direction: row;
+  margin: 15px auto 0 0;
+
+  &__img {
+    width: 62px;
+    height: 62px;
+    margin-left: 2px;
+  }
+
+  &__name {
+    font-size: 22px;
+    margin: auto 0 auto 20px;
+  }
+}
+
+.pp-dtls-box__rating {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.pp-rating-box {
+  margin: 4px 0 0 5px;
+  transform: scale(1.2);
+}
