@@ -8,10 +8,11 @@
   height: 344px;
   width: 100%;
   background: linear-gradient(92.6deg, #2e2a40 5.1%, #0f0f1f 94.81%);
-  margin-top: auto;
+  flex: 0 0 344px;
 
   @media (max-width: 1600px) {
     height: 264px;
+    flex: 0 0 264px;
   }
 
   @media (max-width: 1000px) {
