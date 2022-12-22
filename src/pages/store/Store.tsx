@@ -9,31 +9,18 @@ import './store.scss';
 
 function Store() {
   return (
-    <>
-      <SearchParams />
-      <SearchField />
-      <SearchViewParams />
-      <SortViewBlock />
-      <CatSearchBlock />
-      <div className="main-content">
-        <GameCardStore />
-        <GameCardStore />
-        <GameCardStore />
-        <GameCardStore />
-        <GameCardStore />
-        <GameCardStore />
-        <GameCardStore />
-        <GameCardStore />
-        <GameCardStore />
-        <GameCardStore />
-        <GameCardStore />
-        <GameCardStore />
-        <GameCardStore />
-        <GameCardStore />
-        <GameCardStore />
+    <div className="store">
+      <div className="store__left">
+        <SearchParams />
+        <SearchField />
         <GameCardStore />
       </div>
-    </>
+      <div className="store__right">
+        <SearchViewParams />
+        <SortViewBlock />
+        <CatSearchBlock />
+      </div>
+    </div>
   );
 }
 
