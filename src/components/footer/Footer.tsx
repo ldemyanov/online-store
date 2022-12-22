@@ -11,11 +11,11 @@ function Footer() {
           <img className="footer__link-img" src={rsLogoSvg} alt="" />
         </a>
         <a className="footer__link" href="https://github.com/ldemyanov/">
-          <img src={githubUserSvg} alt="" />
+          <img className="github-octopus" src={githubUserSvg} alt="" />
           <span className="footer__link-text">Leonid Demyanov</span>
         </a>
         <a className="footer__link" href="https://github.com/DeevDevs/">
-          <img src={githubUserSvg} alt="" />
+          <img className="github-octopus" src={githubUserSvg} alt="" />
           <span className="footer__link-text">Dmitriy Vnuchkov</span>
         </a>
       </div>

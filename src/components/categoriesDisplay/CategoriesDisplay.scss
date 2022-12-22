@@ -1,0 +1,14 @@
+@import './../../styles/variables';
+@import url('https://fonts.googleapis.com/css2?family=Inder&family=Julius+Sans+One&display=swap');
+
+.rc-categories {
+  display: flex;
+  flex-direction: row;
+  margin: 0 15px 0 auto;
+
+  &__img {
+    width: 22px;
+    height: 22px;
+    margin-left: 2px;
+  }
+}
