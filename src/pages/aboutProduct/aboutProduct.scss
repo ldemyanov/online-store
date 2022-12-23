@@ -13,6 +13,14 @@
   margin: 40px auto 60px 25px;
   border-radius: 7px;
   font-family: 'Kaisei Tokumin', serif;
+
+  @media (max-width: 1600px) {
+    width: 1000px;
+  }
+
+  @media (max-width: 1200px) {
+    width: 800px;
+  }
 }
 
 .pp-game__name {
@@ -20,6 +28,13 @@
   font-size: 48px;
   font-weight: 500;
   margin: 25px auto 22px 44px;
+  @media (max-width: 1600px) {
+    font-size: 40px;
+  }
+
+  @media (max-width: 1200px) {
+    font-size: 32px;
+  }
 }
 
 .pp-game__details {
@@ -40,6 +55,13 @@
   border-radius: 10px;
   width: 690px;
   border: 1px solid transparent;
+  @media (max-width: 1600px) {
+    width: 450px;
+  }
+
+  @media (max-width: 1200px) {
+    width: 380px;
+  }
 }
 
 .pp-zoom-btn {
@@ -56,15 +78,36 @@
     transform: scale(1.05);
     filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.425));
   }
+
+  @media (max-width: 1200px) {
+    right: 10px;
+    top: 10px;
+  }
 }
 
 .pp-zoom-btn__img {
   height: 35px;
+  @media (max-width: 1600px) {
+    height: 25px;
+  }
+
+  @media (max-width: 1200px) {
+    height: 20px;
+  }
 }
 
 .pp-dtls-box {
   margin-left: 55px;
   font-size: 28px;
+  @media (max-width: 1600px) {
+    margin-left: 30px;
+    font-size: 20px;
+  }
+
+  @media (max-width: 1200px) {
+    margin-left: 20px;
+    font-size: 16px;
+  }
 }
 
 .pp-dtls-box__price {
@@ -93,6 +136,16 @@
   &:hover {
     border-color: #2e2f5b;
   }
+
+  @media (max-width: 1600px) {
+    height: 70px;
+    margin-right: 14px;
+  }
+
+  @media (max-width: 1200px) {
+    height: 60px;
+    margin-right: 10px;
+  }
 }
 
 .pp-controls__btn {
@@ -113,6 +166,19 @@
   &:active {
     box-shadow: 0px 7px 6px rgba(0, 0, 0, 0.25);
   }
+
+  @media (max-width: 1600px) {
+    width: 200px;
+    height: 50px;
+    font-size: 24px;
+  }
+
+  @media (max-width: 1200px) {
+    margin: 8px 120px 0 0;
+    width: 160px;
+    height: 40px;
+    font-size: 20px;
+  }
 }
 
 .pp-game__split-line {
@@ -127,12 +193,27 @@
 .pp-game__descr-head {
   margin: 0 auto 10px 44px;
   font-size: 30px;
+  @media (max-width: 1600px) {
+    font-size: 24px;
+  }
+
+  @media (max-width: 1200px) {
+    font-size: 20px;
+  }
 }
 
 .pp-game__description {
   margin: 0 380px 100px 44px;
   font-size: 20px;
   min-height: 200px;
+  @media (max-width: 1600px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 1200px) {
+    font-size: 16px;
+    margin: 0 240px 40px 44px;
+  }
 }
 
 .pp-game__decor {
@@ -140,4 +221,15 @@
   position: absolute;
   right: -36px;
   top: 40px;
+  @media (max-width: 1600px) {
+    height: 240px;
+    right: -16px;
+    top: 50px;
+  }
+
+  @media (max-width: 1200px) {
+    height: 180px;
+    right: -16px;
+    top: 50px;
+  }
 }
