@@ -44,7 +44,32 @@ function HeaderCart() {
               quantity: 1,
             }}
           />
+          <GameInCartCard
+            {...{
+              gameObj: cartState.games[0],
+              quantity: 1,
+            }}
+          />
+          <GameInCartCard
+            {...{
+              gameObj: cartState.games[0],
+              quantity: 1,
+            }}
+          />
+          <GameInCartCard
+            {...{
+              gameObj: cartState.games[0],
+              quantity: 1,
+            }}
+          />
+          <GameInCartCard
+            {...{
+              gameObj: cartState.games[0],
+              quantity: 1,
+            }}
+          />
         </div>
+        <button className="cart-content__btn">Open my cart</button>
       </div>
     </div>
   );
