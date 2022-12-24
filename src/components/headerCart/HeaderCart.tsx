@@ -2,6 +2,7 @@ import React from 'react';
 import './HeaderCart.scss';
 import cartIcon from './../../static/cart-icon.png';
 import GameInCartCard from '../gameInCartCard/GameInCartCard';
+import toggleElementDisplay from '../../helperFunctions/displayToggler';
 
 const cartState = {
   totalPrice: 134.5,
@@ -32,7 +33,7 @@ function HeaderCart() {
           className="hd-btn__img"
           src={cartIcon}
           alt="cart button"
-          onClick={toggleCartDisplay}
+          onClick={() => toggleElementDisplay('.cart-content')}
         />
       </div>
       <div className="cart-content dissolved hidden">
@@ -78,22 +79,6 @@ function HeaderCart() {
       </div>
     </div>
   );
-}
-
-function toggleCartDisplay() {
-  const headerCart = document.querySelector('.cart-content');
-  if (!headerCart) return;
-  if (headerCart.classList.contains('hidden')) {
-    headerCart.classList.remove('hidden');
-    setTimeout(() => {
-      headerCart.classList.remove('dissolved');
-    }, 20);
-  } else {
-    headerCart.classList.add('dissolved');
-    setTimeout(() => {
-      headerCart.classList.add('hidden');
-    }, 200);
-  }
 }
 
 export default HeaderCart;
