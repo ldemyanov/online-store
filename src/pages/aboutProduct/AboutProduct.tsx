@@ -46,13 +46,6 @@ function AboutProduct() {
   }
 
   return (
-    // <div className="temp-box">
-    //   <div className="cart-btn">
-    //     <div className="cart-block">
-    //       <p className="cart-block__ttl-games">Total quantity: </p>
-    //       <p className="cart-block__ttl-games"></p>
-    //     </div>
-    //   </div>
     <div className="pp-game">
       <h2 className="pp-game__name">{gameObject.name}</h2>
       <div className="pp-game__details">
@@ -102,7 +95,6 @@ function AboutProduct() {
       <h3 className="pp-game__descr-head">Description:</h3>
       <p className="pp-game__description">{gameObject.description}</p>
     </div>
-    // </div>
   );
 }
 

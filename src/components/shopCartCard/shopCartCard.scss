@@ -1,0 +1,114 @@
+@import './../../styles/variables';
+@import url('https://fonts.googleapis.com/css2?family=Inder&family=Julius+Sans+One&family=Kaisei+Tokumin:wght@400;500;700;800&display=swap');
+
+.sc-game-card {
+  display: flex;
+  flex-direction: row;
+  margin: 30px 15px 0 15px;
+  height: 210px;
+  border-radius: 8px;
+  background-color: #ebebeb;
+  box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+
+  &__img {
+    display: block;
+    height: 150px;
+    margin: 30px;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.25);
+  }
+
+  @media (max-width: 1300px) {
+    height: 160px;
+    &__img {
+      height: 120px;
+      margin: 20px;
+    }
+  }
+}
+
+.sc-game-card-dtls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 60%;
+
+  &__name {
+    margin: 30px 0 0 0;
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 28px;
+  }
+
+  &__price {
+    margin: 10px 0 0 auto;
+    font-family: 'Inder', sans-serif;
+    font-size: 22px;
+  }
+
+  &__categories {
+    transform: scale(1.5);
+    margin: 15px 0 15px 20px;
+  }
+  @media (max-width: 1300px) {
+    &__name {
+      margin: 20px 0 0 0;
+      font-family: 'Kaisei Tokumin', serif;
+      font-size: 24px;
+    }
+
+    &__price {
+      margin: 5px 0 0 auto;
+      font-family: 'Inder', sans-serif;
+      font-size: 18px;
+    }
+
+    &__categories {
+      transform: scale(1.2);
+      margin: 10px 0 10px 5px;
+    }
+  }
+}
+
+.sc-game-quantity {
+  display: flex;
+  flex-direction: row;
+  width: max-content;
+  margin: 0;
+
+  &__line {
+    margin-right: 10px;
+    font-family: 'Inder', sans-serif;
+    font-size: 24px;
+
+    @media (max-width: 1300px) {
+      margin-right: 10px;
+      font-size: 20px;
+    }
+  }
+}
+
+.sc-game-quantity-panel {
+  display: flex;
+  flex-direction: row;
+
+  &__num {
+    font-size: 24px;
+    margin: 0 10px;
+  }
+
+  &__btn {
+    border: none;
+    border-radius: 5px;
+    width: 30px;
+    background-color: rgb(194, 188, 188);
+    cursor: pointer;
+    &:hover {
+      box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
+    }
+
+    &:active {
+      box-shadow: 2px 2px 3px inset rgba(0, 0, 0, 0.25);
+    }
+  }
+}
