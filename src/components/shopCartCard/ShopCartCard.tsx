@@ -3,8 +3,20 @@ import CategoriesDisplay from '../categoriesDisplay/CategoriesDisplay';
 import RatingDisplay from '../ratingDisplay/RatingDisplay';
 import './shopCartCard.scss';
 import { TCartGame } from '../../store/reducer/cartGames';
+import { useAppDispatch } from '../../store';
+import { gameActions } from '../../store/reducer/cartGamesReducer';
 
 function ShopCartCard({ game, quantity }: TCartGame) {
+  const dispatch = useAppDispatch();
+  const id = game.id;
+
+  const incQuantity = (id: number) => {
+    dispatch(gameActions.incQuantity({ id }));
+  };
+  const decQuantity = (id: number) => {
+    dispatch(gameActions.decQuantity({ id }));
+  };
+
   return (
     <div className="sc-game-card">
       <div className="sc-game-data">
@@ -26,11 +38,17 @@ function ShopCartCard({ game, quantity }: TCartGame) {
           <div className="sc-game-quantity">
             <span className="sc-game-quantity__line">Quantity:</span>
             <div className="sc-game-quantity-panel">
-              <button className="sc-game-quantity-panel__btn sc-quantity-btn-less">
+              <button
+                className="sc-game-quantity-panel__btn sc-quantity-btn-less"
+                onClick={() => decQuantity(id)}
+              >
                 -
               </button>
               <span className="sc-game-quantity-panel__num">{quantity}</span>
-              <button className="sc-game-quantity-panel__btn sc-quantity-btn-more">
+              <button
+                className="sc-game-quantity-panel__btn sc-quantity-btn-more"
+                onClick={() => incQuantity(id)}
+              >
                 +
               </button>
             </div>
@@ -42,7 +60,7 @@ function ShopCartCard({ game, quantity }: TCartGame) {
         <p className="sc-game-description__text">{game.description}</p>
       </div>
       <div className="sc-game-card__price">
-        <p> Price: {game.price * quantity} $</p>
+        <p> Price: {Math.round(game.price * quantity * 100) / 100} $</p>
       </div>
     </div>
   );
