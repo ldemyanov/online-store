@@ -46,13 +46,6 @@ function AboutProduct() {
   }
 
   return (
-    // <div className="temp-box">
-    //   <div className="cart-btn">
-    //     <div className="cart-block">
-    //       <p className="cart-block__ttl-games">Total quantity: </p>
-    //       <p className="cart-block__ttl-games"></p>
-    //     </div>
-    //   </div>
     <div className="pp-game">
       <h2 className="pp-game__name">{gameObject.name}</h2>
       <div className="pp-game__details">
@@ -90,7 +83,10 @@ function AboutProduct() {
           <img className="pp-img-panel__img" src={gameObject.images[2]} />
           <img className="pp-img-panel__img" src={gameObject.images[3]} />
         </div>
-        <button className="pp-controls__btn">Send to cart</button>
+        <button className="pp-controls__btn btn-send-to-cart">
+          Send to cart
+        </button>
+        <button className="pp-controls__btn btn-buy-now">Buy now</button>
       </div>
       <div className="pp-game__split-line">
         <img
@@ -102,7 +98,6 @@ function AboutProduct() {
       <h3 className="pp-game__descr-head">Description:</h3>
       <p className="pp-game__description">{gameObject.description}</p>
     </div>
-    // </div>
   );
 }
 
