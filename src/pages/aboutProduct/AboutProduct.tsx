@@ -83,7 +83,10 @@ function AboutProduct() {
           <img className="pp-img-panel__img" src={gameObject.images[2]} />
           <img className="pp-img-panel__img" src={gameObject.images[3]} />
         </div>
-        <button className="pp-controls__btn">Send to cart</button>
+        <button className="pp-controls__btn btn-send-to-cart">
+          Send to cart
+        </button>
+        <button className="pp-controls__btn btn-buy-now">Buy now</button>
       </div>
       <div className="pp-game__split-line">
         <img

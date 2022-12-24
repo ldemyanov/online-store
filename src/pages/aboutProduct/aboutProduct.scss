@@ -149,14 +149,13 @@
 }
 
 .pp-controls__btn {
-  width: 260px;
+  width: 220px;
   height: 80px;
   font-size: 30px;
   background-image: linear-gradient(to top, #161631, #2e2f5b);
   color: #ffffff;
   box-shadow: 0px 10px 6px rgba(0, 0, 0, 0.25);
   font-family: 'Inder', sans-serif;
-  margin: 12px 120px 0 0;
   cursor: pointer;
 
   &:hover {
@@ -179,6 +178,14 @@
     height: 40px;
     font-size: 20px;
   }
+}
+
+.btn-send-to-cart {
+  margin: 10px 0 0 50px;
+}
+
+.btn-buy-now {
+  margin: 10px 20px 0 10px;
 }
 
 .pp-game__split-line {
