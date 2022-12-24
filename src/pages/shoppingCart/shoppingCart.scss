@@ -30,9 +30,8 @@
 }
 
 .sc-content {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: auto;
+  display: flex;
+  flex-direction: column;
   min-height: 400px;
   max-height: 900px;
   padding-bottom: 30px;

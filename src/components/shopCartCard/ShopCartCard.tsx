@@ -41,6 +41,9 @@ function ShopCartCard(props: { gameObj: gameObjectType; quantity: number }) {
           Price: {props.gameObj.price * props.quantity} $
         </p>
       </div>
+      <div className="sc-game-card__description">
+        <p></p>
+      </div>
     </div>
   );
 }
