@@ -6,8 +6,16 @@ import inStockImg from './../../static/in-stock-param.png';
 import numOfPlayersImg from './../../static/num-of-players-param.png';
 import priceImg from './../../static/price-param.png';
 import DoubleRange from '../doubleRange/DoubleRange';
+import { useAppDispatch } from '../../store';
+import { gameActions } from '../../store/reducer/gamesReducer';
 
 function SortViewBlock() {
+  const dispatch = useAppDispatch();
+
+  const onChangeNumOfPlayers = (min: number, max: number) => {
+    dispatch(gameActions.setNumOfPlayers({ min, max }));
+  };
+
   return (
     <>
       <div className="sort-view-block">
@@ -55,7 +63,7 @@ function SortViewBlock() {
             <DoubleRange
               min={0}
               max={5}
-              onChange={(min, max) => console.log(min, max)}
+              onChange={(min, max) => onChangeNumOfPlayers(min, max)}
             />
           </div>
           <div className="sort-view-block__inputs__input-block">
