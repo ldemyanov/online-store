@@ -28,9 +28,14 @@ function HeaderCart() {
   return (
     <div className="hd-cart">
       <div className="hd-btn">
-        <img className="hd-btn__img" src={cartIcon} alt="cart button" />
+        <img
+          className="hd-btn__img"
+          src={cartIcon}
+          alt="cart button"
+          onClick={toggleCartDisplay}
+        />
       </div>
-      <div className="cart-content">
+      <div className="cart-content dissolved hidden">
         <p className="cart-content__ttl-num">
           Total games: {cartState.games.length}
         </p>
@@ -73,6 +78,22 @@ function HeaderCart() {
       </div>
     </div>
   );
+}
+
+function toggleCartDisplay() {
+  const headerCart = document.querySelector('.cart-content');
+  if (!headerCart) return;
+  if (headerCart.classList.contains('hidden')) {
+    headerCart.classList.remove('hidden');
+    setTimeout(() => {
+      headerCart.classList.remove('dissolved');
+    }, 20);
+  } else {
+    headerCart.classList.add('dissolved');
+    setTimeout(() => {
+      headerCart.classList.add('hidden');
+    }, 200);
+  }
 }
 
 export default HeaderCart;

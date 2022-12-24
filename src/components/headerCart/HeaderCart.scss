@@ -25,6 +25,14 @@
   &:active {
     box-shadow: 0px 7px 6px rgba(0, 0, 0, 0.25);
   }
+
+  @media (max-width: 1600px) {
+    height: 35px;
+    width: 35px;
+  }
+
+  @media (max-width: 1200px) {
+  }
 }
 
 .hd-btn__img {
@@ -32,6 +40,14 @@
   height: 36px;
   width: 36px;
   margin: 3px auto auto auto;
+
+  @media (max-width: 1600px) {
+    height: 30px;
+    width: 30px;
+  }
+
+  @media (max-width: 1200px) {
+  }
 }
 
 .cart-content {
@@ -42,6 +58,15 @@
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0px 10px 6px rgba(0, 0, 0, 0.25);
+  transition: opacity 0.2s linear;
+  @media (max-width: 1600px) {
+    transform: scale(0.9);
+    top: -15px;
+    right: 5px;
+  }
+
+  @media (max-width: 1200px) {
+  }
 }
 
 .cart-content__ttl-num {
@@ -92,4 +117,12 @@
     border-radius: 8px;
     height: 30px;
   }
+}
+
+.hidden {
+  display: none;
+}
+
+.dissolved {
+  opacity: 0;
 }
