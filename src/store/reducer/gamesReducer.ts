@@ -19,9 +19,9 @@ const gameSlice = createSlice({
   initialState,
   reducers: {
     setNumOfPlayers(state, action: PayloadAction<TRange>) {
-      state.games = state.games.filter((game) => {
+      state.games = initialState.games.filter((game) => {
         const { min, max } = action.payload;
-        return game.numOfPlayers > min && game.numOfPlayers < max;
+        return game.numOfPlayers >= min && game.numOfPlayers <= max;
       });
     },
   },
