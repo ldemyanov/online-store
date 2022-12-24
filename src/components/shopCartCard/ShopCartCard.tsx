@@ -2,38 +2,26 @@ import React from 'react';
 import CategoriesDisplay from '../categoriesDisplay/CategoriesDisplay';
 import RatingDisplay from '../ratingDisplay/RatingDisplay';
 import './shopCartCard.scss';
-// import './HeaderCart.scss';
+import { TCartGame } from '../../store/reducer/cartGames';
 
-type gameObjectType = {
-  id: number;
-  name: string;
-  price: number;
-  rating: number;
-  numOfPlayers: number;
-  categories: string[];
-  inStock: number;
-  images: string[];
-  description: string;
-};
-
-function ShopCartCard(props: { gameObj: gameObjectType; quantity: number }) {
+function ShopCartCard({ game, quantity }: TCartGame) {
   return (
     <div className="sc-game-card">
       <div className="sc-game-data">
-        <img
+        <div
           className="sc-game-data__img"
-          src={props.gameObj.images[0]}
-          alt=""
-        />
+          style={{ backgroundImage: `url(${game.images[0]})` }}
+        ></div>
+        {/* <img className="sc-game-data__img" src={game.images[0]} alt="" /> */}
         <div className="sc-game-card-dtls">
-          <p className="sc-game-card-dtls__name">{props.gameObj.name}</p>
+          <p className="sc-game-card-dtls__name">{game.name}</p>
           <div className="sc-game-card-dtls__categories">
             <p>Categories:</p>
-            <CategoriesDisplay categories={props.gameObj.categories} />
+            <CategoriesDisplay categories={game.categories} />
           </div>
           <div className="sc-game-card-dtls__rating">
             <p>Rating:</p>
-            <RatingDisplay rating={props.gameObj.rating} />
+            <RatingDisplay rating={game.rating} />
           </div>
           <div className="sc-game-quantity">
             <span className="sc-game-quantity__line">Quantity:</span>
@@ -41,9 +29,7 @@ function ShopCartCard(props: { gameObj: gameObjectType; quantity: number }) {
               <button className="sc-game-quantity-panel__btn sc-quantity-btn-less">
                 -
               </button>
-              <span className="sc-game-quantity-panel__num">
-                {props.quantity}
-              </span>
+              <span className="sc-game-quantity-panel__num">{quantity}</span>
               <button className="sc-game-quantity-panel__btn sc-quantity-btn-more">
                 +
               </button>
@@ -53,10 +39,10 @@ function ShopCartCard(props: { gameObj: gameObjectType; quantity: number }) {
       </div>
       <div className="sc-game-description">
         <p className="sc-game-description__head">Description:</p>
-        <p className="sc-game-description__text">{props.gameObj.description}</p>
+        <p className="sc-game-description__text">{game.description}</p>
       </div>
       <div className="sc-game-card__price">
-        <p> Price: {props.gameObj.price * props.quantity} $</p>
+        <p> Price: {game.price * quantity} $</p>
       </div>
     </div>
   );
