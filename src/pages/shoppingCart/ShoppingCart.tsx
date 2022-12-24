@@ -14,7 +14,7 @@ const gameObject = {
   price: 120.99,
   rating: 5,
   numOfPlayers: 5,
-  categories: ['strategy', 'cards', 'quiz'],
+  categories: ['strategy', 'cards', 'quiz', 'economy', 'kids'],
   inStock: 13,
   images: [
     'https://live.staticflickr.com/65535/52573820618_ce5b98a77c_m.jpg',
