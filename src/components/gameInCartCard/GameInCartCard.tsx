@@ -1,36 +1,42 @@
 import React from 'react';
 import './GameInCartCard.scss';
+import { TCartGame } from '../../store/reducer/cartGames';
+import { useAppDispatch } from '../../store';
+import { gameActions } from '../../store/reducer/cartGamesReducer';
 
-type gameObjectType = {
-  id: number;
-  name: string;
-  price: number;
-  rating: number;
-  numOfPlayers: number;
-  categories: string[];
-  inStock: number;
-  images: string[];
-};
+function GameInCartCard({ game, quantity }: TCartGame) {
+  const dispatch = useAppDispatch();
+  const id = game.id;
 
-function GameInCartCard(props: { gameObj: gameObjectType; quantity: number }) {
+  const incQuantity = (id: number) => {
+    dispatch(gameActions.incQuantity({ id }));
+  };
+  const decQuantity = (id: number) => {
+    dispatch(gameActions.decQuantity({ id }));
+  };
+
   return (
     <div className="hd-game-card">
-      <img className="hd-game-card__img" src={props.gameObj.images[0]} alt="" />
+      <img className="hd-game-card__img" src={game.images[0]} alt="" />
       <div className="hd-game-card-dtls">
-        <p className="hd-game-card-dtls__name">{props.gameObj.name}</p>
+        <p className="hd-game-card-dtls__name">{game.name}</p>
         <p className="hd-game-card-dtls__price">
-          Price: {props.gameObj.price * props.quantity} $
+          Price: {Math.round(game.price * quantity * 100) / 100} $
         </p>
         <div className="hd-game-quantity">
           <span className="hd-game-quantity__line">Quantity:</span>
           <div className="hd-game-quantity-panel">
-            <button className="hd-game-quantity-panel__btn hd-quantity-btn-less">
+            <button
+              className="hd-game-quantity-panel__btn hd-quantity-btn-less"
+              onClick={() => decQuantity(id)}
+            >
               -
             </button>
-            <span className="hd-game-quantity-panel__num">
-              {props.quantity}
-            </span>
-            <button className="hd-game-quantity-panel__btn hd-quantity-btn-more">
+            <span className="hd-game-quantity-panel__num">{quantity}</span>
+            <button
+              className="hd-game-quantity-panel__btn hd-quantity-btn-more"
+              onClick={() => incQuantity(id)}
+            >
               +
             </button>
           </div>

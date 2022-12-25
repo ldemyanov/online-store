@@ -52,4 +52,44 @@ export const cartGames: TCartGame[] = [
     },
     quantity: 1,
   },
+  {
+    game: {
+      id: 232728354,
+      name: 'Gloomhaven',
+      price: 120.99,
+      rating: 5,
+      numOfPlayers: 5,
+      categories: ['strategy', 'cards', 'quiz'],
+      inStock: 13,
+      images: [
+        'https://live.staticflickr.com/65535/52573820618_ce5b98a77c_m.jpg',
+        'https://live.staticflickr.com/65535/52563442461_eb68758353_b.jpg',
+        'https://live.staticflickr.com/65535/52563902775_d0d2bfaeaa_c.jpg',
+        'https://live.staticflickr.com/65535/52562985637_bd01cf5acf_b.jpg',
+      ],
+      description:
+        'Gloomhaven is a game of Euro-inspired tactical combat in a persistent world of shifting motives. Players will take on the role of a wandering adventurer with their own special set of skills and their own reasons for traveling to this dark corner of the world. Also, players will take on the role of a wandering adventurer with their own special set of skills and their own reasons for traveling to this dark corner of the world.',
+    },
+    quantity: 1,
+  },
+  {
+    game: {
+      id: 23275354,
+      name: 'Gloomhaven',
+      price: 120.99,
+      rating: 5,
+      numOfPlayers: 5,
+      categories: ['strategy', 'cards', 'quiz'],
+      inStock: 13,
+      images: [
+        'https://live.staticflickr.com/65535/52573820618_ce5b98a77c_m.jpg',
+        'https://live.staticflickr.com/65535/52563442461_eb68758353_b.jpg',
+        'https://live.staticflickr.com/65535/52563902775_d0d2bfaeaa_c.jpg',
+        'https://live.staticflickr.com/65535/52562985637_bd01cf5acf_b.jpg',
+      ],
+      description:
+        'Gloomhaven is a game of Euro-inspired tactical combat in a persistent world of shifting motives. Players will take on the role of a wandering adventurer with their own special set of skills and their own reasons for traveling to this dark corner of the world. Also, players will take on the role of a wandering adventurer with their own special set of skills and their own reasons for traveling to this dark corner of the world.',
+    },
+    quantity: 1,
+  },
 ];
