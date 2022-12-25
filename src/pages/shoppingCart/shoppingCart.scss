@@ -29,6 +29,17 @@
   }
 }
 
+.sc-control-panel {
+  display: flex;
+  margin-left: 30px;
+  font-family: 'Kaisei Tokumin', serif;
+  &__pagination {
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+  }
+}
+
 .sc-content {
   display: flex;
   flex-direction: column;
