@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import './SortViewBlock.scss';
 import ascending from './../../static/ascending.png';
 import descending from './../../static/descending.png';
@@ -13,14 +13,24 @@ import { useSearchParams } from 'react-router-dom';
 function SortViewBlock() {
   const dispatch = useAppDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
+  const memoize = useCallback(
+    (min: number, max: number) => {
+      dispatch(gameActions.setNumOfPlayers({ min, max }));
+      setSearchParams({
+        min: min.toString(),
+        max: max.toString(),
+      });
+    },
+    [setSearchParams]
+  );
 
-  const onChangeNumOfPlayers = (min: number, max: number) => {
-    dispatch(gameActions.setNumOfPlayers({ min, max }));
-    // setSearchParams({
-    //   min: min.toString(),
-    //   max: max.toString(),
-    // });
-  };
+  // const onChangeNumOfPlayers = (min: number, max: number) => {
+  //   dispatch(gameActions.setNumOfPlayers({ min, max }));
+  //   setSearchParams({
+  //     min: min.toString(),
+  //     max: max.toString(),
+  //   });
+  // };
 
   return (
     <>
@@ -71,7 +81,7 @@ function SortViewBlock() {
               max={25}
               newMin={0}
               newMax={5}
-              onChange={(min, max) => onChangeNumOfPlayers(min, max)}
+              onChange={memoize}
             />
           </div>
           <div className="sort-view-block__inputs__input-block">
