@@ -5,24 +5,49 @@
   display: flex;
   flex-direction: row;
   margin: 30px 15px 0 15px;
-  height: 210px;
+  min-height: 240px;
   border-radius: 8px;
   background-color: #ebebeb;
   box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
 
+  &__price {
+    min-width: 200px;
+    min-height: 200px;
+    margin: auto 25px;
+    font-family: 'Inder', sans-serif;
+    font-size: 22px;
+    border-left: 1px solid black;
+    display: flex;
+
+    & p {
+      display: block;
+      margin: auto;
+    }
+  }
+}
+
+.sc-game-data {
+  display: flex;
+  flex-direction: row;
+
   &__img {
     display: block;
-    height: 150px;
-    margin: 30px;
+    height: 180px;
+    width: 180px;
+    margin: auto 30px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.25);
   }
-
   @media (max-width: 1300px) {
-    height: 160px;
+    flex-direction: column;
+
     &__img {
-      height: 120px;
-      margin: 20px;
+      height: 180px;
+      width: 180px;
+      margin: 30px 30px 0 30px;
     }
   }
 }
@@ -32,40 +57,55 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  width: 60%;
+  margin: auto 30px;
 
   &__name {
-    margin: 30px 0 0 0;
+    margin: 0;
     font-family: 'Kaisei Tokumin', serif;
     font-size: 28px;
   }
 
-  &__price {
-    margin: 10px 0 0 0;
-    font-family: 'Inder', sans-serif;
+  &__categories {
+    display: flex;
+    align-items: center;
+    margin: 8px 0 0 0;
+    font-family: 'Kaisei Tokumin', serif;
     font-size: 22px;
+    & p {
+      margin: 0;
+    }
   }
 
-  &__categories {
-    transform: scale(1.5);
-    margin: 15px 0 15px 20px;
+  &__rating {
+    display: flex;
+    align-items: center;
+    margin: 8px 0 0 0;
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 22px;
+    & p {
+      margin: 0 auto 0 0;
+    }
   }
+
   @media (max-width: 1300px) {
+    width: calc(100% - 60px);
+    margin: 0 0 30px 30px;
     &__name {
-      margin: 20px 0 0 0;
+      width: 100%;
       font-family: 'Kaisei Tokumin', serif;
       font-size: 24px;
-    }
-
-    &__price {
-      margin: 5px 0 0 0;
-      font-family: 'Inder', sans-serif;
-      font-size: 18px;
+      display: block;
+      text-align: center;
     }
 
     &__categories {
-      transform: scale(1.2);
-      margin: 10px 0 10px 5px;
+      margin: 5px 0 0 0;
+      font-size: 18px;
+    }
+
+    &__rating {
+      margin: 5px 0 0 0;
+      font-size: 18px;
     }
   }
 }
@@ -73,17 +113,17 @@
 .sc-game-quantity {
   display: flex;
   flex-direction: row;
-  width: max-content;
-  margin: 0;
+  // width: max-content;
+  margin: 8px 0 0 0;
 
   &__line {
     margin-right: 10px;
-    font-family: 'Inder', sans-serif;
-    font-size: 24px;
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 22px;
 
     @media (max-width: 1300px) {
       margin-right: 10px;
-      font-size: 20px;
+      font-size: 18px;
     }
   }
 }
@@ -110,5 +150,37 @@
     &:active {
       box-shadow: 2px 2px 3px inset rgba(0, 0, 0, 0.25);
     }
+  }
+
+  @media (max-width: 1300px) {
+    &__num {
+      font-size: 18px;
+      margin: 0 8px;
+    }
+
+    &__btn {
+      border: none;
+      border-radius: 5px;
+      width: 25px;
+      height: 25px;
+    }
+  }
+}
+
+.sc-game-description {
+  margin: 15px 0 auto 20px;
+
+  &__head {
+    font-size: 20px;
+    font-family: 'Kaisei Tokumin', serif;
+    margin-bottom: 0;
+  }
+
+  &__text {
+    font-family: 'Kaisei Tokumin', serif;
+    padding-bottom: 30px;
+  }
+
+  @media (max-width: 1300px) {
   }
 }

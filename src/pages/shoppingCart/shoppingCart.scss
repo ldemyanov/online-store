@@ -6,7 +6,7 @@
 // font-family: 'Kaisei Tokumin', serif;
 
 .sc-box {
-  width: 94%;
+  width: 90%;
   max-width: 1800px;
   margin: 40px auto 20px auto;
   background-color: #ffffff;
@@ -29,24 +29,22 @@
   }
 }
 
+.sc-control-panel {
+  display: flex;
+  margin-left: 30px;
+  font-family: 'Kaisei Tokumin', serif;
+  &__pagination {
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+  }
+}
+
 .sc-content {
   display: flex;
   flex-direction: column;
   min-height: 400px;
-  max-height: 900px;
   padding-bottom: 30px;
-  overflow-y: scroll;
-  &::-webkit-scrollbar {
-    outline: none;
-    width: 4px;
-    background-color: #ffffff;
-    border-radius: 8px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: rgb(194, 188, 188);
-    border-radius: 8px;
-    height: 30px;
-  }
 }
 
 .sc-button-checkout {

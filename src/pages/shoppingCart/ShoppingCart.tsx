@@ -1,30 +1,15 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import ShopCartCard from '../../components/shopCartCard/ShopCartCard';
+import SCCardContainer from '../../components/scCardsContainer/SCCardContainer';
 import './shoppingCart.scss';
+import { useAppSelector } from '../../store';
+import { useAppDispatch } from '../../store';
+import { gameActions } from '../../store/reducer/cartGamesReducer';
 
 function useQuery() {
   const { search } = useLocation();
   return React.useMemo(() => new URLSearchParams(search), [search]);
 }
-
-const gameObject = {
-  id: 23272845354,
-  name: 'Gloomhaven',
-  price: 120.99,
-  rating: 5,
-  numOfPlayers: 5,
-  categories: ['strategy', 'cards', 'quiz'],
-  inStock: 13,
-  images: [
-    'https://live.staticflickr.com/65535/52573820618_ce5b98a77c_m.jpg',
-    'https://live.staticflickr.com/65535/52563442461_eb68758353_b.jpg',
-    'https://live.staticflickr.com/65535/52563902775_d0d2bfaeaa_c.jpg',
-    'https://live.staticflickr.com/65535/52562985637_bd01cf5acf_b.jpg',
-  ],
-  description:
-    'Gloomhaven is a game of Euro-inspired tactical combat in a persistent world of shifting motives. Players will take on the role of a wandering adventurer with their own special set of skills and their own reasons for traveling to this dark corner of the world. Also, players will take on the role of a wandering adventurer with their own special set of skills and their own reasons for traveling to this dark corner of the world.',
-};
 
 function ShoppingCart() {
   const query = useQuery();
@@ -32,55 +17,62 @@ function ShoppingCart() {
   for (const [key, value] of params) {
     console.log(key, value);
   }
+  const { totalPrice, currentPage } = useAppSelector(
+    (state) => state.cartGameReducer
+  );
+  const dispatch = useAppDispatch();
+  const setItemsPerPage = (limit: number) => {
+    dispatch(gameActions.setItemsPerPage(limit));
+  };
+  const goToNextPage = () => {
+    dispatch(gameActions.goToNextPage());
+  };
+  const goToPrevPage = () => {
+    dispatch(gameActions.goToPrevPage());
+  };
 
   return (
     <div className="sc-box">
-      <h2 className="sc-box__name">Your Cart</h2>
-      <div className="sc-content">
-        <ShopCartCard
-          {...{
-            gameObj: gameObject,
-            quantity: 1,
-          }}
-        />
-        <ShopCartCard
-          {...{
-            gameObj: gameObject,
-            quantity: 1,
-          }}
-        />
-        <ShopCartCard
-          {...{
-            gameObj: gameObject,
-            quantity: 1,
-          }}
-        />
-        <ShopCartCard
-          {...{
-            gameObj: gameObject,
-            quantity: 1,
-          }}
-        />
-        <ShopCartCard
-          {...{
-            gameObj: gameObject,
-            quantity: 1,
-          }}
-        />
-        {/* <ShopCartCard
-          {...{
-            gameObj: gameObject,
-            quantity: 1,
-          }}
-        />
-        <ShopCartCard
-          {...{
-            gameObj: gameObject,
-            quantity: 1,
-          }}
-        /> */}
+      <div className="sc-control-panel">
+        <h2 className="sc-control-panel__name">Your Cart</h2>
+        <div className="sc-control-panel__pagination">
+          <button
+            className="sc-pages__btn btn-prev"
+            onClick={() => goToPrevPage()}
+          >
+            Prev
+          </button>
+          <p>{currentPage}</p>
+          <button
+            className="sc-pages__btn btn-next"
+            onClick={() => goToNextPage()}
+          >
+            Next
+          </button>
+          <div className="sc-pages__options">
+            <label htmlFor="items">Games per page:</label>
+            <select
+              name="items"
+              id="sc-items-page"
+              defaultValue="8"
+              onChange={(val) => setItemsPerPage(+val.target.value)}
+            >
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+            </select>
+          </div>
+        </div>
       </div>
-      <p className="sc-box__price">Total price: 246.90 $</p>
+      <SCCardContainer />
+      <p className="sc-box__price">
+        Total price: {Math.round(totalPrice * 100) / 100} $
+      </p>
       <button className="sc-button-checkout">Proceed to checkout</button>
     </div>
   );

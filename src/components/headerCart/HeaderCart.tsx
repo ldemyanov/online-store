@@ -1,31 +1,15 @@
 import React from 'react';
 import './HeaderCart.scss';
 import cartIcon from './../../static/cart-icon.png';
-import GameInCartCard from '../gameInCartCard/GameInCartCard';
 import toggleElementDisplay from '../../helperFunctions/displayToggler';
-
-const cartState = {
-  totalPrice: 134.5,
-  games: [
-    {
-      id: 23272845354,
-      name: 'Gloomhaven',
-      price: 120.99,
-      rating: 5,
-      numOfPlayers: 5,
-      categories: ['strategy', 'cards', 'quiz'],
-      inStock: 13,
-      images: [
-        'https://live.staticflickr.com/65535/52573820618_ce5b98a77c_m.jpg',
-        'https://live.staticflickr.com/65535/52563442461_eb68758353_b.jpg',
-        'https://live.staticflickr.com/65535/52563902775_d0d2bfaeaa_c.jpg',
-        'https://live.staticflickr.com/65535/52562985637_bd01cf5acf_b.jpg',
-      ],
-    },
-  ],
-};
+import HeaderCardsContainer from '../headerCardsContainer/HeaderCardsContainer';
+import { useAppSelector } from '../../store';
 
 function HeaderCart() {
+  const { cartGames, totalPrice } = useAppSelector(
+    (state) => state.cartGameReducer
+  );
+
   return (
     <div className="hd-cart">
       <div className="hd-btn">
@@ -37,44 +21,11 @@ function HeaderCart() {
         />
       </div>
       <div className="cart-content dissolved hidden">
-        <p className="cart-content__ttl-num">
-          Total games: {cartState.games.length}
-        </p>
+        <p className="cart-content__ttl-num">Total games: {cartGames.length}</p>
         <p className="cart-content__ttl-price">
-          Total price: {cartState.totalPrice} $
+          Total price: {Math.round(totalPrice * 100) / 100} $
         </p>
-        <div className="cart-games">
-          <GameInCartCard
-            {...{
-              gameObj: cartState.games[0],
-              quantity: 1,
-            }}
-          />
-          <GameInCartCard
-            {...{
-              gameObj: cartState.games[0],
-              quantity: 1,
-            }}
-          />
-          <GameInCartCard
-            {...{
-              gameObj: cartState.games[0],
-              quantity: 1,
-            }}
-          />
-          <GameInCartCard
-            {...{
-              gameObj: cartState.games[0],
-              quantity: 1,
-            }}
-          />
-          <GameInCartCard
-            {...{
-              gameObj: cartState.games[0],
-              quantity: 1,
-            }}
-          />
-        </div>
+        <HeaderCardsContainer />
         <button className="cart-content__btn">Open my cart</button>
       </div>
     </div>
