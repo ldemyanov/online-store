@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './SortViewBlock.scss';
 import ascending from './../../static/ascending.png';
 import descending from './../../static/descending.png';
@@ -8,12 +8,18 @@ import priceImg from './../../static/price-param.png';
 import DoubleRange from '../doubleRange/DoubleRange';
 import { useAppDispatch } from '../../store';
 import { gameActions } from '../../store/reducer/gamesReducer';
+import { useSearchParams } from 'react-router-dom';
 
 function SortViewBlock() {
   const dispatch = useAppDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const onChangeNumOfPlayers = (min: number, max: number) => {
     dispatch(gameActions.setNumOfPlayers({ min, max }));
+    // setSearchParams({
+    //   min: min.toString(),
+    //   max: max.toString(),
+    // });
   };
 
   return (
@@ -62,7 +68,9 @@ function SortViewBlock() {
             </div>
             <DoubleRange
               min={0}
-              max={5}
+              max={25}
+              newMin={0}
+              newMax={5}
               onChange={(min, max) => onChangeNumOfPlayers(min, max)}
             />
           </div>
