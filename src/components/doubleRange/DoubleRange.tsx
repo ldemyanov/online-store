@@ -9,15 +9,20 @@ type TDoubleRangeProps = {
   onChange: (min: number, max: number) => void;
 };
 
-function DoubleRange({ min, max, onChange }: TDoubleRangeProps) {
+function DoubleRange({ min, max, left, right, onChange }: TDoubleRangeProps) {
   const [minValue, setMin] = useState(left);
   const [maxValue, setMax] = useState(right);
   const filling = useRef(null);
 
   useEffect(() => {
+    setMax(right);
+    setMin(left);
+  }, [left, right]);
+
+  useEffect(() => {
     onChange(minValue, maxValue);
     setFill();
-  }, [minValue, maxValue, onChange]);
+  }, [minValue, maxValue]);
 
   const onChangeMax = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = Math.max(Number(e.target.value), minValue + 1);

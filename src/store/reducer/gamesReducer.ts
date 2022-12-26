@@ -21,18 +21,18 @@ const initialState: TPageStoreState = {
 };
 
 // To use only in reducers
-function filterGames(state: TPageStoreState): TPageStoreState {
+function filterGames(state: TPageStoreState): TGame[] {
   console.log('Фильтрую');
-  state.games = state.games.filter(
+  state.games = games.filter(
     (game) =>
       game.numOfPlayers > state.filterPlayers.min &&
-      game.numOfPlayers < state.filterPlayers.max // &&
-    // game.inStock > state.filterCountInStock.min &&
-    // game.inStock < state.filterCountInStock.max &&
-    // game.price > state.filterPrice.min &&
-    // game.price < state.filterPrice.max
+      game.numOfPlayers < state.filterPlayers.max &&
+      game.inStock > state.filterCountInStock.min &&
+      game.inStock < state.filterCountInStock.max &&
+      game.price > state.filterPrice.min &&
+      game.price < state.filterPrice.max
   );
-  return state;
+  return state.games;
 }
 
 const gameSlice = createSlice({
@@ -41,15 +41,15 @@ const gameSlice = createSlice({
   reducers: {
     setNumOfPlayers(state, action: PayloadAction<TRange>) {
       state.filterPlayers = action.payload;
-      state = filterGames(state);
+      state.games = filterGames(state);
     },
     setCountInStock(state, action: PayloadAction<TRange>) {
       state.filterCountInStock = action.payload;
-      state = filterGames(state);
+      state.games = filterGames(state);
     },
     setPrice(state, action: PayloadAction<TRange>) {
       state.filterPrice = action.payload;
-      state = filterGames(state);
+      state.games = filterGames(state);
     },
   },
 });
