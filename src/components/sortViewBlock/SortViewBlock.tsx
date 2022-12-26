@@ -6,12 +6,17 @@ import inStockImg from './../../static/in-stock-param.png';
 import numOfPlayersImg from './../../static/num-of-players-param.png';
 import priceImg from './../../static/price-param.png';
 import DoubleRange from '../doubleRange/DoubleRange';
-import { useAppDispatch } from '../../store';
+import { useAppDispatch, useAppSelector } from '../../store';
 import { gameActions } from '../../store/reducer/gamesReducer';
 import { useSearchParams } from 'react-router-dom';
 
 function SortViewBlock() {
   const dispatch = useAppDispatch();
+
+  const { filterCountInStock, filterPlayers, filterPrice } = useAppSelector(
+    (state) => state.gameReducer
+  );
+
   const [searchParams, setSearchParams] = useSearchParams();
   const memoize = useCallback(
     (min: number, max: number) => {
@@ -70,10 +75,8 @@ function SortViewBlock() {
             </div>
             <DoubleRange
               min={0}
-              max={25}
-              newMin={0}
-              newMax={5}
-              onChange={memoize}
+              max={5}
+              onChange={(min, max) => onChangeNumOfPlayers(min, max)}
             />
           </div>
           <div className="sort-view-block__inputs__input-block">
@@ -88,8 +91,10 @@ function SortViewBlock() {
               </p>
             </div>
             <DoubleRange
+              left={filterCountInStock.min}
+              right={filterCountInStock.max}
               min={0}
-              max={5}
+              max={100}
               onChange={(min, max) => console.log(min, max)}
             />
           </div>
@@ -105,8 +110,10 @@ function SortViewBlock() {
               </p>
             </div>
             <DoubleRange
-              min={0}
-              max={5}
+              left={filterPrice.min}
+              right={filterPrice.max}
+              min={1}
+              max={1000}
               onChange={(min, max) => console.log(min, max)}
             />
           </div>

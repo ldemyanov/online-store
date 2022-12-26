@@ -4,20 +4,14 @@ import './doubleRange.scss';
 type TDoubleRangeProps = {
   min: number;
   max: number;
-  newMin?: number;
-  newMax?: number;
+  left: number;
+  right: number;
   onChange: (min: number, max: number) => void;
 };
 
-function DoubleRange({
-  min,
-  max,
-  newMin = min,
-  newMax = max,
-  onChange,
-}: TDoubleRangeProps) {
-  const [minValue, setMin] = useState(newMin);
-  const [maxValue, setMax] = useState(newMax);
+function DoubleRange({ min, max, onChange }: TDoubleRangeProps) {
+  const [minValue, setMin] = useState(left);
+  const [maxValue, setMax] = useState(right);
   const filling = useRef(null);
 
   useEffect(() => {
