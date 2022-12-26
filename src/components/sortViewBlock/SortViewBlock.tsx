@@ -24,14 +24,6 @@ function SortViewBlock() {
     [setSearchParams]
   );
 
-  // const onChangeNumOfPlayers = (min: number, max: number) => {
-  //   dispatch(gameActions.setNumOfPlayers({ min, max }));
-  //   setSearchParams({
-  //     min: min.toString(),
-  //     max: max.toString(),
-  //   });
-  // };
-
   return (
     <>
       <div className="sort-view-block">
