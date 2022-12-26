@@ -1,9 +1,11 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
 import { gameReducer } from './reducer/gamesReducer';
+import { cartGameReducer } from './reducer/cartGamesReducer';
 
 const appReducer = combineReducers({
   gameReducer,
+  cartGameReducer,
 });
 
 export const appStore = () => {
