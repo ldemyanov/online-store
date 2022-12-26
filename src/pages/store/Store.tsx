@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Profiler } from 'react';
 import CardContainer from '../../components/gameCardContainer/CardContainer';
 import CatSearchBlock from '../../components/catSearchBlock/CatSearchBlock';
 import SearchField from '../../components/seachField/SearchField';
@@ -17,7 +17,12 @@ function Store() {
       </div>
       <div className="store__right">
         <SearchViewParams />
-        <SortViewBlock />
+        <Profiler
+          id="SortViewBlock"
+          onRender={() => console.log('Render in Profiler')}
+        >
+          <SortViewBlock />
+        </Profiler>
         <CatSearchBlock />
       </div>
     </div>
