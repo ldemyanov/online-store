@@ -3,14 +3,33 @@ import './SortBlock.scss';
 // eslint-disable-next-line prettier/prettier
 import { ESortParam, ESortTrend, gameActions } from '../../store/reducer/gamesReducer';
 import { useDispatch } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 
 function SortBlock() {
   const [param, setParam] = useState(ESortParam.rating);
   const [trend, setTrend] = useState(ESortTrend.descending);
   const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    const oldParam = searchParams.get('param') || '';
+    const oldTrend = searchParams.get('trend') || '';
+
+    if (oldParam in ESortParam && oldTrend in ESortTrend) {
+      dispatch(
+        gameActions.sort({
+          param: oldParam as ESortParam,
+          trend: oldTrend as ESortTrend,
+        })
+      );
+    }
+  }, []);
 
   useEffect(() => {
     dispatch(gameActions.sort({ param, trend }));
+    searchParams.set('param', param);
+    searchParams.set('trend', trend);
+    setSearchParams(searchParams);
   }, [param, trend]);
 
   const getClassParam = (btnParam: ESortParam) => {
