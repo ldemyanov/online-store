@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TCartGame, cartGames } from './cartGames';
 
-type TGameState = {
+type TCartPageState = {
   cartGames: TCartGame[];
   totalPrice: number;
   itemsPerPage: number;
@@ -15,7 +15,7 @@ type curGameID = {
   id: number;
 };
 
-const initialState: TGameState = {
+const initialState: TCartPageState = {
   cartGames,
   totalPrice: 0,
   itemsPerPage: 8,
@@ -51,11 +51,12 @@ const gameSlice = createSlice({
       });
       if (isZero) {
         removeGameFromCart(state, action);
+        updatePosition(state);
+        updatePages(state);
+        assignGamesToRender(state);
         isZero = false;
       }
       state.totalPrice = countTotalPrice(state);
-      updatePages(state);
-      assignGamesToRender(state);
     },
     setItemsPerPage(state, action: PayloadAction<number>) {
       state.itemsPerPage = action.payload;
@@ -70,16 +71,31 @@ const gameSlice = createSlice({
       assignGamesToRender(state);
     },
     goToPrevPage(state) {
-      state.currentPage =
-        state.currentPage > 1 ? state.currentPage - 1 : state.currentPage;
+      state.currentPage = state.currentPage > 1 ? state.currentPage - 1 : 1;
       assignGamesToRender(state);
+    },
+    goToPage(state, action: PayloadAction<number>) {
+      state.currentPage = action.payload;
+      assignGamesToRender(state);
+    },
+    initialData(state) {
+      state.totalPrice = countTotalPrice(state);
+      updatePosition(state);
     },
   },
 });
 
 ////////////////helperFunctions
 
-function countTotalPrice(state: TGameState) {
+function updatePosition(state: TCartPageState) {
+  state.cartGames = state.cartGames.map((game, index) => {
+    const thisGame = { ...game };
+    thisGame.position = index + 1;
+    return thisGame;
+  });
+}
+
+function countTotalPrice(state: TCartPageState) {
   return state.cartGames.reduce(
     (total: number, game: TCartGame) =>
       (total += game.game.price * game.quantity),
@@ -88,7 +104,7 @@ function countTotalPrice(state: TGameState) {
 }
 
 function removeGameFromCart(
-  state: TGameState,
+  state: TCartPageState,
   action: PayloadAction<curGameID>
 ) {
   state.cartGames = state.cartGames.filter(
@@ -102,16 +118,17 @@ function countTotalPages(totalItems: number, itemsPerPage: number) {
     : Math.floor(totalItems / itemsPerPage) + 1;
 }
 
-function updatePages(state: TGameState) {
+function updatePages(state: TCartPageState) {
   state.totalPages = countTotalPages(
     state.cartGames.length,
     state.itemsPerPage
   );
-  if (state.totalPages < state.currentPage)
+  if (state.totalPages < state.currentPage && state.totalPages > 0)
     state.currentPage = state.totalPages;
+  if (state.totalPages === 0) state.currentPage = 1;
 }
 
-function assignGamesToRender(state: TGameState) {
+function assignGamesToRender(state: TCartPageState) {
   state.firstIndex =
     state.itemsPerPage * state.currentPage - state.itemsPerPage;
   state.lastIndex = state.firstIndex + state.itemsPerPage - 1;

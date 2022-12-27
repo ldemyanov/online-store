@@ -13,6 +13,7 @@ function HeaderCardsContainer() {
           key={game.game.id}
           game={game.game}
           quantity={game.quantity}
+          position={game.position}
         />
       ))}
     </div>

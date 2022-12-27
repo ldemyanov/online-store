@@ -1,35 +1,65 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useRef, useCallback, useEffect } from 'react';
 import SCCardContainer from '../../components/scCardsContainer/SCCardContainer';
 import './shoppingCart.scss';
 import { useAppSelector } from '../../store';
 import { useAppDispatch } from '../../store';
+import { useSearchParams } from 'react-router-dom';
 import { gameActions } from '../../store/reducer/cartGamesReducer';
 
-function useQuery() {
-  const { search } = useLocation();
-  return React.useMemo(() => new URLSearchParams(search), [search]);
+// http://localhost:3000/cart?itemsPerPage=3&currentPage=6
+enum ECartViewParams {
+  itemsPerPage = 'itemsPerPage',
+  currentPage = 'currentPage',
 }
 
 function ShoppingCart() {
-  const query = useQuery();
-  const params = query.entries();
-  for (const [key, value] of params) {
-    console.log(key, value);
-  }
-  const { totalPrice, currentPage } = useAppSelector(
+  const isFirstRenderRef = useRef(true);
+  const dispatch = useAppDispatch();
+  const { totalPrice, currentPage, itemsPerPage } = useAppSelector(
     (state) => state.cartGameReducer
   );
-  const dispatch = useAppDispatch();
-  const setItemsPerPage = (limit: number) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const callbackSetItemsPerPage = useCallback((limit: number) => {
     dispatch(gameActions.setItemsPerPage(limit));
-  };
-  const goToNextPage = () => {
+  }, []);
+
+  const callbackGoToNextPage = useCallback(() => {
     dispatch(gameActions.goToNextPage());
-  };
-  const goToPrevPage = () => {
+  }, []);
+
+  const callbackGoToPrevPage = useCallback(() => {
     dispatch(gameActions.goToPrevPage());
-  };
+  }, []);
+
+  useEffect(() => {
+    const itemsPerPage = searchParams.get(ECartViewParams.itemsPerPage);
+    const currentPage = searchParams.get(ECartViewParams.currentPage);
+
+    if (itemsPerPage) {
+      const limit = +itemsPerPage;
+      dispatch(gameActions.setItemsPerPage(limit));
+    }
+
+    if (currentPage) {
+      const curPage = +currentPage;
+      dispatch(gameActions.goToPage(curPage));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isFirstRenderRef.current) {
+      setSearchParams({
+        [ECartViewParams.itemsPerPage]: itemsPerPage.toString(),
+        [ECartViewParams.currentPage]: currentPage.toString(),
+      });
+    }
+    isFirstRenderRef.current = false;
+  }, [itemsPerPage, currentPage]);
+
+  useEffect(() => {
+    dispatch(gameActions.initialData());
+  }, []);
 
   return (
     <div className="sc-box">
@@ -38,14 +68,14 @@ function ShoppingCart() {
         <div className="sc-control-panel__pagination">
           <button
             className="sc-pages__btn btn-prev"
-            onClick={() => goToPrevPage()}
+            onClick={() => callbackGoToPrevPage()}
           >
             Prev
           </button>
           <p>{currentPage}</p>
           <button
             className="sc-pages__btn btn-next"
-            onClick={() => goToNextPage()}
+            onClick={() => callbackGoToNextPage()}
           >
             Next
           </button>
@@ -54,8 +84,8 @@ function ShoppingCart() {
             <select
               name="items"
               id="sc-items-page"
-              defaultValue="8"
-              onChange={(val) => setItemsPerPage(+val.target.value)}
+              value={itemsPerPage}
+              onChange={(val) => callbackSetItemsPerPage(+val.target.value)}
             >
               <option value="1">1</option>
               <option value="2">2</option>
