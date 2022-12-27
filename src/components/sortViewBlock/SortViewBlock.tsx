@@ -66,14 +66,13 @@ function SortViewBlock() {
 
   useEffect(() => {
     if (!isFirstRenderRef.current) {
-      setSearchParams({
-        [ESearchParams.minPrice]: filterPrice.min.toString(),
-        [ESearchParams.maxPrice]: filterPrice.max.toString(),
-        [ESearchParams.minInStock]: filterCountInStock.min.toString(),
-        [ESearchParams.maxInStock]: filterCountInStock.max.toString(),
-        [ESearchParams.minPlayers]: filterPlayers.min.toString(),
-        [ESearchParams.maxPlayers]: filterPlayers.max.toString(),
-      });
+      searchParams.set(ESearchParams.minPrice, filterPrice.min.toString());
+      searchParams.set(ESearchParams.maxPrice, filterPrice.max.toString());
+      searchParams.set(ESearchParams.minInStock, filterCountInStock.min.toString()); // eslint-disable-line
+      searchParams.set(ESearchParams.maxInStock, filterCountInStock.max.toString()); // eslint-disable-line
+      searchParams.set(ESearchParams.minPlayers, filterPlayers.min.toString());
+      searchParams.set(ESearchParams.maxPlayers, filterPlayers.max.toString());
+      setSearchParams(searchParams);
     }
     isFirstRenderRef.current = false;
   }, [filterCountInStock, filterPlayers, filterPrice]);
