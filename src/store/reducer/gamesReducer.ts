@@ -6,11 +6,27 @@ type TRange = {
   max: number;
 };
 
+export enum ESortParam {
+  rating = 'rating',
+  price = 'price',
+}
+
+export enum ESortTrend {
+  ascending = 'ascending',
+  descending = 'descending',
+}
+
+type TSort = {
+  param: ESortParam;
+  trend: ESortTrend;
+};
+
 type TPageStoreState = {
   games: TGame[];
   filterPlayers: TRange;
   filterCountInStock: TRange;
   filterPrice: TRange;
+  sort: TSort;
 };
 
 const initialState: TPageStoreState = {
@@ -18,6 +34,7 @@ const initialState: TPageStoreState = {
   filterPlayers: { min: 0, max: 25 },
   filterCountInStock: { min: 0, max: 100 },
   filterPrice: { min: 0, max: 1000 },
+  sort: { param: ESortParam.rating, trend: ESortTrend.descending },
 };
 
 // To use only in reducers
@@ -50,6 +67,17 @@ const gameSlice = createSlice({
     setPrice(state, action: PayloadAction<TRange>) {
       state.filterPrice = action.payload;
       state.games = filterGames(state);
+    },
+    sort(state, action: PayloadAction<TSort>) {
+      console.log('ACTION PAYLOAD: ', action.payload);
+      state.sort = action.payload;
+      state.games = state.games.sort((game1, game2) => {
+        if (action.payload.trend === ESortTrend.ascending) {
+          return game1[action.payload.param] - game2[action.payload.param];
+        } else {
+          return game2[action.payload.param] - game1[action.payload.param];
+        }
+      });
     },
   },
 });
