@@ -16,6 +16,15 @@ export enum ESortTrend {
   descending = 'descending',
 }
 
+export enum ECategory {
+  strategy = 'strategy',
+  cards = 'cards',
+  quiz = 'quiz',
+  economy = 'economy',
+  kids = 'kids',
+  role = 'role',
+}
+
 type TSort = {
   param: ESortParam;
   trend: ESortTrend;
@@ -27,6 +36,7 @@ type TPageStoreState = {
   filterCountInStock: TRange;
   filterPrice: TRange;
   sort: TSort;
+  categories: ECategory[];
 };
 
 const initialState: TPageStoreState = {
@@ -35,6 +45,7 @@ const initialState: TPageStoreState = {
   filterCountInStock: { min: 0, max: 100 },
   filterPrice: { min: 0, max: 1000 },
   sort: { param: ESortParam.rating, trend: ESortTrend.descending },
+  categories: [],
 };
 
 // To use only in reducers
@@ -47,8 +58,10 @@ function filterGames(state: TPageStoreState): TGame[] {
       game.inStock > state.filterCountInStock.min &&
       game.inStock < state.filterCountInStock.max &&
       game.price > state.filterPrice.min &&
-      game.price < state.filterPrice.max
+      game.price < state.filterPrice.max &&
+      state.categories.every((cat) => game.categories.includes(cat))
   );
+
   return state.games;
 }
 
@@ -69,7 +82,6 @@ const gameSlice = createSlice({
       state.games = filterGames(state);
     },
     sort(state, action: PayloadAction<TSort>) {
-      console.log('ACTION PAYLOAD: ', action.payload);
       state.sort = action.payload;
       state.games = state.games.sort((game1, game2) => {
         if (action.payload.trend === ESortTrend.ascending) {
@@ -78,6 +90,16 @@ const gameSlice = createSlice({
           return game2[action.payload.param] - game1[action.payload.param];
         }
       });
+    },
+    toggleCategory(state, action: PayloadAction<ECategory>) {
+      state.categories = state.categories.includes(action.payload)
+        ? state.categories.filter((cat) => cat !== action.payload)
+        : [...state.categories, action.payload];
+      state.games = filterGames(state);
+    },
+    setCategories(state, action: PayloadAction<ECategory[]>) {
+      state.categories = action.payload;
+      state.games = filterGames(state);
     },
   },
 });
