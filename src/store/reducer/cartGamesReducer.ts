@@ -9,6 +9,8 @@ type TCartPageState = {
   currentPage: number;
   firstIndex: number;
   lastIndex: number;
+  promoCodes: string[];
+  discount: number;
 };
 
 type curGameID = {
@@ -23,6 +25,8 @@ const initialState: TCartPageState = {
   currentPage: 1,
   firstIndex: 0,
   lastIndex: 8,
+  promoCodes: [],
+  discount: 0,
 };
 
 const gameSlice = createSlice({
@@ -38,7 +42,8 @@ const gameSlice = createSlice({
         return thisGame;
       });
       state.totalPrice = countTotalPrice(state);
-      assignGamesToRender(state);
+      state.firstIndex = updateFirstIndex(state);
+      state.lastIndex = updateLastIndex(state);
     },
     decQuantity(state, action: PayloadAction<curGameID>) {
       let isZero = false;
@@ -50,45 +55,74 @@ const gameSlice = createSlice({
         return thisGame;
       });
       if (isZero) {
-        removeGameFromCart(state, action);
-        updatePosition(state);
-        updatePages(state);
-        assignGamesToRender(state);
-        isZero = false;
+        state.cartGames = removeGameFromCart(state, action);
+        state.cartGames = updatePosition(state);
+        state.totalPages = countTotalPages(
+          state.cartGames.length,
+          state.itemsPerPage
+        );
+        state.currentPage = updateCurrentPage(state);
+        state.firstIndex = updateFirstIndex(state);
+        state.lastIndex = updateLastIndex(state);
       }
       state.totalPrice = countTotalPrice(state);
     },
     setItemsPerPage(state, action: PayloadAction<number>) {
       state.itemsPerPage = action.payload;
-      updatePages(state);
-      assignGamesToRender(state);
+      state.totalPages = countTotalPages(
+        state.cartGames.length,
+        state.itemsPerPage
+      );
+      state.currentPage = updateCurrentPage(state);
+      state.firstIndex = updateFirstIndex(state);
+      state.lastIndex = updateLastIndex(state);
     },
     goToNextPage(state) {
       state.currentPage =
         state.currentPage < state.totalPages
           ? state.currentPage + 1
           : state.currentPage;
-      assignGamesToRender(state);
+      state.firstIndex = updateFirstIndex(state);
+      state.lastIndex = updateLastIndex(state);
     },
     goToPrevPage(state) {
       state.currentPage = state.currentPage > 1 ? state.currentPage - 1 : 1;
-      assignGamesToRender(state);
+      state.firstIndex = updateFirstIndex(state);
+      state.lastIndex = updateLastIndex(state);
     },
     goToPage(state, action: PayloadAction<number>) {
       state.currentPage = action.payload;
-      assignGamesToRender(state);
+      state.firstIndex = updateFirstIndex(state);
+      state.lastIndex = updateLastIndex(state);
     },
     initialData(state) {
       state.totalPrice = countTotalPrice(state);
-      updatePosition(state);
+      state.cartGames = updatePosition(state);
+    },
+    addPromo(state, action: PayloadAction<string>) {
+      state.promoCodes = [action.payload, ...state.promoCodes];
+      state.discount = updateDiscount(state.promoCodes);
+    },
+    removePromo(state, action: PayloadAction<number>) {
+      state.promoCodes.splice(action.payload, 1);
+      state.discount = updateDiscount(state.promoCodes);
     },
   },
 });
 
 ////////////////helperFunctions
 
+const allPromoCodes = ['ZEUS', 'MAFIA', 'ENTROPY', 'SLAANESH'];
+const allDiscounts = [3, 5, 10, 20];
+
+function updateDiscount(arr: string[]) {
+  return arr
+    .map((code) => allDiscounts[allPromoCodes.indexOf(code)])
+    .reduce((ttl: number, val: number) => (ttl += val), 0);
+}
+
 function updatePosition(state: TCartPageState) {
-  state.cartGames = state.cartGames.map((game, index) => {
+  return state.cartGames.map((game, index) => {
     const thisGame = { ...game };
     thisGame.position = index + 1;
     return thisGame;
@@ -107,7 +141,7 @@ function removeGameFromCart(
   state: TCartPageState,
   action: PayloadAction<curGameID>
 ) {
-  state.cartGames = state.cartGames.filter(
+  return state.cartGames.filter(
     (game: TCartGame) => game.game.id !== action.payload.id
   );
 }
@@ -118,20 +152,19 @@ function countTotalPages(totalItems: number, itemsPerPage: number) {
     : Math.floor(totalItems / itemsPerPage) + 1;
 }
 
-function updatePages(state: TCartPageState) {
-  state.totalPages = countTotalPages(
-    state.cartGames.length,
-    state.itemsPerPage
-  );
+function updateCurrentPage(state: TCartPageState) {
   if (state.totalPages < state.currentPage && state.totalPages > 0)
-    state.currentPage = state.totalPages;
-  if (state.totalPages === 0) state.currentPage = 1;
+    return state.totalPages;
+  if (state.totalPages === 0) return 1;
+  return state.currentPage;
 }
 
-function assignGamesToRender(state: TCartPageState) {
-  state.firstIndex =
-    state.itemsPerPage * state.currentPage - state.itemsPerPage;
-  state.lastIndex = state.firstIndex + state.itemsPerPage - 1;
+function updateFirstIndex(state: TCartPageState) {
+  return state.itemsPerPage * state.currentPage - state.itemsPerPage;
+}
+
+function updateLastIndex(state: TCartPageState) {
+  return state.firstIndex + state.itemsPerPage - 1;
 }
 
 export const cartGameReducer = gameSlice.reducer;

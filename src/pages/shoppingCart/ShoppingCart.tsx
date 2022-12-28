@@ -5,6 +5,7 @@ import { useAppSelector } from '../../store';
 import { useAppDispatch } from '../../store';
 import { useSearchParams } from 'react-router-dom';
 import { gameActions } from '../../store/reducer/cartGamesReducer';
+import PromoBlock from '../../components/promoBlock/PromoBlock';
 
 // http://localhost:3000/cart?itemsPerPage=3&currentPage=6
 enum ECartViewParams {
@@ -15,7 +16,7 @@ enum ECartViewParams {
 function ShoppingCart() {
   const isFirstRenderRef = useRef(true);
   const dispatch = useAppDispatch();
-  const { totalPrice, currentPage, itemsPerPage } = useAppSelector(
+  const { totalPrice, currentPage, itemsPerPage, discount } = useAppSelector(
     (state) => state.cartGameReducer
   );
   const [searchParams, setSearchParams] = useSearchParams();
@@ -65,6 +66,7 @@ function ShoppingCart() {
     <div className="sc-box">
       <div className="sc-control-panel">
         <h2 className="sc-control-panel__name">Your Cart</h2>
+        <PromoBlock />
         <div className="sc-control-panel__pagination">
           <button
             className="sc-pages__btn btn-prev"
@@ -101,7 +103,11 @@ function ShoppingCart() {
       </div>
       <SCCardContainer />
       <p className="sc-box__price">
-        Total price: {Math.round(totalPrice * 100) / 100} $
+        Total price:{' '}
+        {discount < 100
+          ? Math.round((totalPrice - (totalPrice * discount) / 100) * 100) / 100
+          : 0}{' '}
+        $
       </p>
       <button className="sc-button-checkout">Proceed to checkout</button>
     </div>
