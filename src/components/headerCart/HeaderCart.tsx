@@ -24,6 +24,9 @@ function HeaderCart() {
         <p className="cart-content__ttl-num">Total games: {cartGames.length}</p>
         <p className="cart-content__ttl-price">
           Total price:{' '}
+          <span className="cart-old-price">
+            {discount > 0 ? Math.round(totalPrice * 100) / 100 : ''}
+          </span>{' '}
           {discount < 100
             ? Math.round((totalPrice - (totalPrice * discount) / 100) * 100) /
               100

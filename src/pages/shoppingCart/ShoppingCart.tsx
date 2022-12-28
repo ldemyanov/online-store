@@ -67,21 +67,23 @@ function ShoppingCart() {
       <div className="sc-control-panel">
         <h2 className="sc-control-panel__name">Your Cart</h2>
         <PromoBlock />
-        <div className="sc-control-panel__pagination">
-          <button
-            className="sc-pages__btn btn-prev"
-            onClick={() => callbackGoToPrevPage()}
-          >
-            Prev
-          </button>
-          <p>{currentPage}</p>
-          <button
-            className="sc-pages__btn btn-next"
-            onClick={() => callbackGoToNextPage()}
-          >
-            Next
-          </button>
-          <div className="sc-pages__options">
+        <div className="pagination-panel">
+          <div className="pages-slider">
+            <button
+              className="pages-slider__btn btn-prev"
+              onClick={() => callbackGoToPrevPage()}
+            >
+              Prev
+            </button>
+            <p className="pages-slider__page">{currentPage}</p>
+            <button
+              className="pages-slider__btn btn-next"
+              onClick={() => callbackGoToNextPage()}
+            >
+              Next
+            </button>
+          </div>
+          <div className="pagination-panel__options">
             <label htmlFor="items">Games per page:</label>
             <select
               name="items"
@@ -104,6 +106,9 @@ function ShoppingCart() {
       <SCCardContainer />
       <p className="sc-box__price">
         Total price:{' '}
+        <span className="sc-old-price">
+          {discount > 0 ? Math.round(totalPrice * 100) / 100 : ''}
+        </span>{' '}
         {discount < 100
           ? Math.round((totalPrice - (totalPrice * discount) / 100) * 100) / 100
           : 0}{' '}

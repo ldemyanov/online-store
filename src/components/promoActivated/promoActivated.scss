@@ -3,14 +3,12 @@
 
 .promo-code {
   width: 146px;
-
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   margin: 2px;
   padding: 5px;
-  // background-color: #ebebeb;
 
   &:hover {
     background-color: #e5e5ff;
@@ -41,6 +39,27 @@
 
     &:active {
       box-shadow: 2px 2px 3px inset rgba(0, 0, 0, 0.248);
+    }
+
+    @media (max-width: 1200px) {
+      width: 20px;
+      height: 100%;
+      padding: 2px;
+
+      & img {
+        width: 15px;
+        margin: 0;
+      }
+    }
+  }
+
+  @media (max-width: 1200px) {
+    padding: 0;
+    margin: 1px;
+    width: 95px;
+    font-size: 11px;
+    &__name {
+      margin: auto;
     }
   }
 }

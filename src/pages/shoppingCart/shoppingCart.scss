@@ -33,10 +33,34 @@
   display: flex;
   margin-left: 30px;
   font-family: 'Kaisei Tokumin', serif;
-  &__pagination {
-    display: flex;
-    margin-left: auto;
-    align-items: center;
+}
+
+.pagination-panel {
+  display: flex;
+  flex-direction: column-reverse;
+  margin: auto 20px auto auto;
+  align-items: center;
+
+  &__options {
+    margin-bottom: 20px;
+  }
+}
+
+.pages-slider {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &__btn {
+    height: 30px;
+  }
+
+  &__page {
+    display: block;
+    width: 60px;
+    margin: auto;
+    text-align: center;
+    font-size: 22px;
   }
 }
 
@@ -74,4 +98,9 @@
     height: 60px;
     font-size: 24px;
   }
+}
+
+.sc-old-price {
+  color: rgb(236, 78, 78);
+  text-decoration: line-through;
 }
