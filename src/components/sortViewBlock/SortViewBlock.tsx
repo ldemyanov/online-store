@@ -1,7 +1,5 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import './SortViewBlock.scss';
-import ascending from './../../static/ascending.png';
-import descending from './../../static/descending.png';
 import inStockImg from './../../static/in-stock-param.png';
 import numOfPlayersImg from './../../static/num-of-players-param.png';
 import priceImg from './../../static/price-param.png';
@@ -10,7 +8,6 @@ import { useAppDispatch, useAppSelector } from '../../store';
 import { gameActions } from '../../store/reducer/gamesReducer';
 import { useSearchParams } from 'react-router-dom';
 
-// http://localhost:3000/?minPrice=0&maxPrice=1000&minInStock=0&maxInStock=100&minPlayers=2&maxPlayers=25
 enum ESearchParams {
   minPrice = 'minPrice',
   maxPrice = 'maxPrice',
@@ -69,14 +66,13 @@ function SortViewBlock() {
 
   useEffect(() => {
     if (!isFirstRenderRef.current) {
-      setSearchParams({
-        [ESearchParams.minPrice]: filterPrice.min.toString(),
-        [ESearchParams.maxPrice]: filterPrice.max.toString(),
-        [ESearchParams.minInStock]: filterCountInStock.min.toString(),
-        [ESearchParams.maxInStock]: filterCountInStock.max.toString(),
-        [ESearchParams.minPlayers]: filterPlayers.min.toString(),
-        [ESearchParams.maxPlayers]: filterPlayers.max.toString(),
-      });
+      searchParams.set(ESearchParams.minPrice, filterPrice.min.toString());
+      searchParams.set(ESearchParams.maxPrice, filterPrice.max.toString());
+      searchParams.set(ESearchParams.minInStock, filterCountInStock.min.toString()); // eslint-disable-line
+      searchParams.set(ESearchParams.maxInStock, filterCountInStock.max.toString()); // eslint-disable-line
+      searchParams.set(ESearchParams.minPlayers, filterPlayers.min.toString());
+      searchParams.set(ESearchParams.maxPlayers, filterPlayers.max.toString());
+      setSearchParams(searchParams);
     }
     isFirstRenderRef.current = false;
   }, [filterCountInStock, filterPlayers, filterPrice]);
@@ -84,35 +80,6 @@ function SortViewBlock() {
   return (
     <>
       <div className="sort-view-block">
-        <div className="sort-view-block__params">
-          <div className="sort-view-block__params__btns">
-            <button className="sort-view-block__params__btns__btn">
-              Sort By Rating
-            </button>
-            <button className="sort-view-block__params__btns__btn">
-              Sort By Price
-            </button>
-          </div>
-          <div className="sort-view-block__params__settings">
-            <div className="sort-view-block__params__settings__btns">
-              <img
-                className="sort-view-block__params__settings__btns__btn"
-                id="sort-descending-btn"
-                src={descending}
-                alt="descending sort button image"
-              />
-              <img
-                className="sort-view-block__params__settings__btns__btn"
-                id="sort-ascending-btn"
-                src={ascending}
-                alt="ascending sort button image"
-              />
-            </div>
-            <p className="sort-view-block__params__settings__name">
-              Descending
-            </p>
-          </div>
-        </div>
         <div className="sort-view-block__inputs">
           <div className="sort-view-block__inputs__input-block">
             <div className="sort-view-block__inputs__input-block__info">
