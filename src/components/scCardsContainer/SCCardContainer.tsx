@@ -43,20 +43,7 @@ function ScCardContainer() {
     );
   }
 
-  return (
-    <div className="sc-content">
-      {/* {cartGames
-        .filter((game, index) => index >= firstIndex && index <= lastIndex)
-        .map((game) => (
-          <ShopCartCard
-            key={game.game.id}
-            game={game.game}
-            quantity={game.quantity}
-          />
-        ))} */}
-      {blockContent}
-    </div>
-  );
+  return <div className="sc-content">{blockContent}</div>;
 }
 
 export default ScCardContainer;
