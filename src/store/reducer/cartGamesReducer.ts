@@ -98,6 +98,11 @@ const gameSlice = createSlice({
     initialData(state) {
       state.totalPrice = countTotalPrice(state);
       state.cartGames = updatePosition(state);
+      state.totalPages = countTotalPages(
+        state.cartGames.length,
+        state.itemsPerPage
+      );
+      state.currentPage = updateCurrentPage(state);
     },
     addPromo(state, action: PayloadAction<string>) {
       state.promoCodes = [action.payload, ...state.promoCodes];

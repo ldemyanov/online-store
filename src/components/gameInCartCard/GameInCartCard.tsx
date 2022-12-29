@@ -17,7 +17,11 @@ function GameInCartCard({ game, quantity }: TCartGame) {
 
   return (
     <div className="hd-game-card">
-      <img className="hd-game-card__img" src={game.images[0]} alt="" />
+      <div
+        className="hd-game-card__img"
+        style={{ backgroundImage: `url(${game.images[0]})` }}
+      ></div>
+      {/* <img className="hd-game-card__img" src={game.images[0]} alt="" /> */}
       <div className="hd-game-card-dtls">
         <p className="hd-game-card-dtls__name">{game.name}</p>
         <p className="hd-game-card-dtls__price">

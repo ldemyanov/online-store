@@ -72,33 +72,48 @@ function ShoppingCart() {
             <button
               className="pages-slider__btn btn-prev"
               onClick={() => callbackGoToPrevPage()}
-            >
-              Prev
-            </button>
+            ></button>
             <p className="pages-slider__page">{currentPage}</p>
             <button
               className="pages-slider__btn btn-next"
               onClick={() => callbackGoToNextPage()}
-            >
-              Next
-            </button>
+            ></button>
           </div>
           <div className="pagination-panel__options">
-            <label htmlFor="items">Games per page:</label>
+            <label className="page-number__label" htmlFor="items">
+              Games per page:
+            </label>
             <select
+              className="page-number__number"
               name="items"
               id="sc-items-page"
               value={itemsPerPage}
               onChange={(val) => callbackSetItemsPerPage(+val.target.value)}
             >
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
+              <option className="page-number__option" value="1">
+                1
+              </option>
+              <option className="page-number__option" value="2">
+                2
+              </option>
+              <option className="page-number__option" value="3">
+                3
+              </option>
+              <option className="page-number__option" value="4">
+                4
+              </option>
+              <option className="page-number_option" value="5">
+                5
+              </option>
+              <option className="page-number_option" value="6">
+                6
+              </option>
+              <option className="page-number__option" value="7">
+                7
+              </option>
+              <option className="page-number_option" value="8">
+                8
+              </option>
             </select>
           </div>
         </div>
