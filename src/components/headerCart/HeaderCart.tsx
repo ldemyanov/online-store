@@ -6,7 +6,7 @@ import HeaderCardsContainer from '../headerCardsContainer/HeaderCardsContainer';
 import { useAppSelector } from '../../store';
 
 function HeaderCart() {
-  const { cartGames, totalPrice } = useAppSelector(
+  const { totalPrice, discount, totalQuantity } = useAppSelector(
     (state) => state.cartGameReducer
   );
 
@@ -21,9 +21,17 @@ function HeaderCart() {
         />
       </div>
       <div className="cart-content dissolved hidden">
-        <p className="cart-content__ttl-num">Total games: {cartGames.length}</p>
+        <p className="cart-content__ttl-num">Total quantity: {totalQuantity}</p>
         <p className="cart-content__ttl-price">
-          Total price: {Math.round(totalPrice * 100) / 100} $
+          Total price:{' '}
+          <span className="cart-old-price">
+            {discount > 0 ? Math.round(totalPrice * 100) / 100 : ''}
+          </span>{' '}
+          {discount < 100
+            ? Math.round((totalPrice - (totalPrice * discount) / 100) * 100) /
+              100
+            : 0}{' '}
+          $
         </p>
         <HeaderCardsContainer />
         <button className="cart-content__btn">Open my cart</button>

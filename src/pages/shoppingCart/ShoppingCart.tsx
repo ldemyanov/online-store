@@ -1,79 +1,138 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useRef, useCallback, useEffect } from 'react';
 import SCCardContainer from '../../components/scCardsContainer/SCCardContainer';
 import './shoppingCart.scss';
 import { useAppSelector } from '../../store';
 import { useAppDispatch } from '../../store';
+import { useSearchParams } from 'react-router-dom';
 import { gameActions } from '../../store/reducer/cartGamesReducer';
+import PromoBlock from '../../components/promoBlock/PromoBlock';
 
-function useQuery() {
-  const { search } = useLocation();
-  return React.useMemo(() => new URLSearchParams(search), [search]);
+// http://localhost:3000/cart?itemsPerPage=3&currentPage=6
+enum ECartViewParams {
+  itemsPerPage = 'itemsPerPage',
+  currentPage = 'currentPage',
 }
 
 function ShoppingCart() {
-  const query = useQuery();
-  const params = query.entries();
-  for (const [key, value] of params) {
-    console.log(key, value);
-  }
-  const { totalPrice, currentPage } = useAppSelector(
-    (state) => state.cartGameReducer
-  );
+  const isFirstRenderRef = useRef(true);
   const dispatch = useAppDispatch();
-  const setItemsPerPage = (limit: number) => {
+  const { totalPrice, currentPage, itemsPerPage, discount, totalQuantity } =
+    useAppSelector((state) => state.cartGameReducer);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const callbackSetItemsPerPage = useCallback((limit: number) => {
     dispatch(gameActions.setItemsPerPage(limit));
-  };
-  const goToNextPage = () => {
+  }, []);
+
+  const callbackGoToNextPage = useCallback(() => {
     dispatch(gameActions.goToNextPage());
-  };
-  const goToPrevPage = () => {
+  }, []);
+
+  const callbackGoToPrevPage = useCallback(() => {
     dispatch(gameActions.goToPrevPage());
-  };
+  }, []);
+
+  useEffect(() => {
+    const itemsPerPage = searchParams.get(ECartViewParams.itemsPerPage);
+    const currentPage = searchParams.get(ECartViewParams.currentPage);
+
+    if (itemsPerPage) {
+      const limit = +itemsPerPage;
+      dispatch(gameActions.setItemsPerPage(limit));
+    }
+
+    if (currentPage) {
+      const curPage = +currentPage;
+      dispatch(gameActions.goToPage(curPage));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isFirstRenderRef.current) {
+      setSearchParams({
+        [ECartViewParams.itemsPerPage]: itemsPerPage.toString(),
+        [ECartViewParams.currentPage]: currentPage.toString(),
+      });
+    }
+    isFirstRenderRef.current = false;
+  }, [itemsPerPage, currentPage]);
+
+  useEffect(() => {
+    dispatch(gameActions.initialData());
+  }, []);
 
   return (
     <div className="sc-box">
       <div className="sc-control-panel">
         <h2 className="sc-control-panel__name">Your Cart</h2>
-        <div className="sc-control-panel__pagination">
-          <button
-            className="sc-pages__btn btn-prev"
-            onClick={() => goToPrevPage()}
-          >
-            Prev
-          </button>
-          <p>{currentPage}</p>
-          <button
-            className="sc-pages__btn btn-next"
-            onClick={() => goToNextPage()}
-          >
-            Next
-          </button>
-          <div className="sc-pages__options">
-            <label htmlFor="items">Games per page:</label>
+        <PromoBlock />
+        <div className="pagination-panel">
+          <div className="pages-slider">
+            <button
+              className="pages-slider__btn btn-prev"
+              onClick={() => callbackGoToPrevPage()}
+            ></button>
+            <p className="pages-slider__page">{currentPage}</p>
+            <button
+              className="pages-slider__btn btn-next"
+              onClick={() => callbackGoToNextPage()}
+            ></button>
+          </div>
+          <div className="pagination-panel__options">
+            <label className="page-number__label" htmlFor="items">
+              Games per page:
+            </label>
             <select
+              className="page-number__number"
               name="items"
               id="sc-items-page"
-              defaultValue="8"
-              onChange={(val) => setItemsPerPage(+val.target.value)}
+              value={itemsPerPage}
+              onChange={(val) => callbackSetItemsPerPage(+val.target.value)}
             >
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
+              <option className="page-number__option" value="1">
+                1
+              </option>
+              <option className="page-number__option" value="2">
+                2
+              </option>
+              <option className="page-number__option" value="3">
+                3
+              </option>
+              <option className="page-number__option" value="4">
+                4
+              </option>
+              <option className="page-number_option" value="5">
+                5
+              </option>
+              <option className="page-number_option" value="6">
+                6
+              </option>
+              <option className="page-number__option" value="7">
+                7
+              </option>
+              <option className="page-number_option" value="8">
+                8
+              </option>
             </select>
           </div>
         </div>
       </div>
       <SCCardContainer />
-      <p className="sc-box__price">
-        Total price: {Math.round(totalPrice * 100) / 100} $
-      </p>
-      <button className="sc-button-checkout">Proceed to checkout</button>
+      <div className="sc-totals">
+        <button className="sc-totals__checkout">Proceed to checkout</button>
+        <p className="sc-totals__quantity">Total quantity: {totalQuantity}</p>
+        <p className="sc-totals__price">
+          Total price:{' '}
+          <span className="sc-old-price">
+            {discount > 0 ? Math.round(totalPrice * 100) / 100 : ''}
+          </span>{' '}
+          {discount < 100
+            ? Math.round((totalPrice - (totalPrice * discount) / 100) * 100) /
+              100
+            : 0}{' '}
+          $
+        </p>
+      </div>
     </div>
   );
 }
