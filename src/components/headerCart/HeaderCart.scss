@@ -61,7 +61,7 @@
   transition: opacity 0.2s linear;
   @media (max-width: 1600px) {
     transform: scale(0.9);
-    top: -15px;
+    top: -5px;
     right: 5px;
   }
 
@@ -75,8 +75,14 @@
   font-size: 16px;
 }
 
+.cart-content__ttl-disc {
+  margin: 10px 0 10px 15px;
+  font-family: 'Inder', sans-serif;
+  font-size: 16px;
+}
+
 .cart-content__ttl-price {
-  margin: 5px 0 10px 15px;
+  margin: 10px 0 10px 15px;
   font-family: 'Inder', sans-serif;
   font-size: 16px;
 }

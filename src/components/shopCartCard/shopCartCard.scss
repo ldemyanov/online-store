@@ -149,8 +149,10 @@
   flex-direction: row;
 
   &__num {
+    width: 25px;
     font-size: 24px;
     margin: 0 10px;
+    text-align: center;
   }
 
   &__btn {

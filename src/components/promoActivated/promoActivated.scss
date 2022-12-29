@@ -2,11 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inder&family=Julius+Sans+One&display=swap');
 
 .promo-code {
-  width: 146px;
+  width: 200px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
   margin: 2px;
   padding: 5px;
 
@@ -15,7 +14,14 @@
   }
 
   &__name {
-    margin: auto auto auto 5px;
+    margin: auto 0 auto 5px;
+    font-size: 14px;
+  }
+
+  &__value {
+    margin: auto auto auto 10px;
+    width: 40px;
+    font-size: 14px;
   }
 
   &__deactivate {
@@ -54,12 +60,9 @@
   }
 
   @media (max-width: 1200px) {
-    padding: 0;
-    margin: 1px;
-    width: 95px;
+    // padding: 0;
+    // margin: 1px;
+    width: 165px;
     font-size: 11px;
-    &__name {
-      margin: auto;
-    }
   }
 }

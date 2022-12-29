@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TCartGame, cartGames } from './cartGames';
 
+export type discountObj = { code: string; discount: number };
+
 type TCartPageState = {
   cartGames: TCartGame[];
   totalPrice: number;
@@ -9,8 +11,8 @@ type TCartPageState = {
   currentPage: number;
   firstIndex: number;
   lastIndex: number;
-  promoCodes: string[];
-  discount: number;
+  promoCodes: discountObj[];
+  discountTotal: number;
   totalQuantity: number;
 };
 
@@ -27,7 +29,7 @@ const initialState: TCartPageState = {
   firstIndex: 0,
   lastIndex: 8,
   promoCodes: [],
-  discount: 0,
+  discountTotal: 0,
   totalQuantity: 0,
 };
 
@@ -110,12 +112,20 @@ const gameSlice = createSlice({
       state.totalQuantity = updateTotalQuantity(state);
     },
     addPromo(state, action: PayloadAction<string>) {
-      state.promoCodes = [action.payload, ...state.promoCodes];
-      state.discount = updateDiscount(state.promoCodes);
+      if (
+        state.promoCodes
+          .map((promoCode) => promoCode.code)
+          .includes(action.payload)
+      ) {
+        state.promoCodes = state.promoCodes;
+        return;
+      }
+      state.promoCodes = udpatePromoCodes(state, action.payload);
+      state.discountTotal = updateDiscountTotal(state.promoCodes);
     },
     removePromo(state, action: PayloadAction<number>) {
       state.promoCodes.splice(action.payload, 1);
-      state.discount = updateDiscount(state.promoCodes);
+      state.discountTotal = updateDiscountTotal(state.promoCodes);
     },
   },
 });
@@ -123,11 +133,19 @@ const gameSlice = createSlice({
 ////////////////helperFunctions
 
 const allPromoCodes = ['ZEUS', 'MAFIA', 'ENTROPY', 'SLAANESH'];
-const allDiscounts = [3, 5, 10, 20];
+const allDiscounts = [5, 5, 10, 20];
 
-function updateDiscount(arr: string[]) {
-  return arr
-    .map((code) => allDiscounts[allPromoCodes.indexOf(code)])
+function udpatePromoCodes(state: TCartPageState, promoCode: string) {
+  const newPromo = {
+    code: promoCode,
+    discount: allDiscounts[allPromoCodes.indexOf(promoCode)],
+  };
+  return [newPromo, ...state.promoCodes];
+}
+
+function updateDiscountTotal(allPromoCodes: discountObj[]) {
+  return allPromoCodes
+    .map((promoCode) => promoCode.discount)
     .reduce((ttl: number, val: number) => (ttl += val), 0);
 }
 
