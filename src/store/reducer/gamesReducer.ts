@@ -25,6 +25,11 @@ export enum ECategory {
   role = 'role',
 }
 
+export enum ELayout {
+  list = 'list',
+  cards = 'cards',
+}
+
 type TSort = {
   param: ESortParam;
   trend: ESortTrend;
@@ -37,6 +42,7 @@ type TPageStoreState = {
   filterPrice: TRange;
   sort: TSort;
   categories: ECategory[];
+  layout: ELayout;
 };
 
 const initialState: TPageStoreState = {
@@ -46,6 +52,7 @@ const initialState: TPageStoreState = {
   filterPrice: { min: 0, max: 1000 },
   sort: { param: ESortParam.rating, trend: ESortTrend.descending },
   categories: [],
+  layout: ELayout.cards,
 };
 
 // To use only in reducers
