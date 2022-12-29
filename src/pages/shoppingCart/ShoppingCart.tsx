@@ -6,6 +6,8 @@ import { useAppDispatch } from '../../store';
 import { useSearchParams } from 'react-router-dom';
 import { gameActions } from '../../store/reducer/cartGamesReducer';
 import PromoBlock from '../../components/promoBlock/PromoBlock';
+import PurchaseFormModule from '../../components/purchaseFormModule/PurchaseFormModule';
+import toggleElementDisplay from '../../helperFunctions/displayToggler';
 
 // http://localhost:3000/cart?itemsPerPage=3&currentPage=6
 enum ECartViewParams {
@@ -124,7 +126,12 @@ function ShoppingCart() {
       </div>
       <SCCardContainer />
       <div className="sc-totals">
-        <button className="sc-totals__checkout">Proceed to checkout</button>
+        <button
+          className="sc-totals__checkout"
+          onClick={() => toggleElementDisplay('.pchs-module-overlay')}
+        >
+          Proceed to checkout
+        </button>
         <div className="sc-totals__data">
           <p className="sc-totals__quantity">Total quantity: {totalQuantity}</p>
           <p
@@ -152,6 +159,7 @@ function ShoppingCart() {
           </p>
         </div>
       </div>
+      <PurchaseFormModule />
     </div>
   );
 }

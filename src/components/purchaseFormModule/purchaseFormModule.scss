@@ -1,0 +1,68 @@
+@import '../../styles/variables';
+@import url('https://fonts.googleapis.com/css2?family=Inder&family=Julius+Sans+One&family=Kaisei+Tokumin:wght@400;500;700;800&display=swap');
+
+// font-family: 'Inder', sans-serif;
+// font-family: 'Julius Sans One', sans-serif;
+// font-family: 'Kaisei Tokumin', serif;
+
+.pchs-module-overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.116);
+  top: 0;
+  left: 0;
+  z-index: 10;
+  transition: opacity 0.2s linear;
+}
+
+.pchs-module {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.249);
+  height: 850px;
+  width: 700px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  @media (max-width: 1200px) {
+    width: 800px;
+    min-width: 630px;
+    height: 30px;
+    max-width: 55%;
+    font-size: 20px;
+    padding-left: 20px;
+  }
+
+  &__close-btn {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    height: 40px;
+    width: 40px;
+    border: none;
+    background-color: white;
+    background-image: url('./../../static/cross-icon.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &:hover {
+      filter: drop-shadow(2px 2px 2px black);
+    }
+
+    &:active {
+      filter: drop-shadow(0 0 0 white);
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.dissolved {
+  opacity: 0;
+}
