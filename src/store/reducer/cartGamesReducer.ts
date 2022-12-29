@@ -11,6 +11,7 @@ type TCartPageState = {
   lastIndex: number;
   promoCodes: string[];
   discount: number;
+  totalQuantity: number;
 };
 
 type curGameID = {
@@ -27,6 +28,7 @@ const initialState: TCartPageState = {
   lastIndex: 8,
   promoCodes: [],
   discount: 0,
+  totalQuantity: 0,
 };
 
 const gameSlice = createSlice({
@@ -44,6 +46,7 @@ const gameSlice = createSlice({
       state.totalPrice = countTotalPrice(state);
       state.firstIndex = updateFirstIndex(state);
       state.lastIndex = updateLastIndex(state);
+      state.totalQuantity = updateTotalQuantity(state);
     },
     decQuantity(state, action: PayloadAction<curGameID>) {
       let isZero = false;
@@ -66,6 +69,7 @@ const gameSlice = createSlice({
         state.lastIndex = updateLastIndex(state);
       }
       state.totalPrice = countTotalPrice(state);
+      state.totalQuantity = updateTotalQuantity(state);
     },
     setItemsPerPage(state, action: PayloadAction<number>) {
       state.itemsPerPage = action.payload;
@@ -103,6 +107,7 @@ const gameSlice = createSlice({
         state.itemsPerPage
       );
       state.currentPage = updateCurrentPage(state);
+      state.totalQuantity = updateTotalQuantity(state);
     },
     addPromo(state, action: PayloadAction<string>) {
       state.promoCodes = [action.payload, ...state.promoCodes];
@@ -124,6 +129,13 @@ function updateDiscount(arr: string[]) {
   return arr
     .map((code) => allDiscounts[allPromoCodes.indexOf(code)])
     .reduce((ttl: number, val: number) => (ttl += val), 0);
+}
+
+function updateTotalQuantity(state: TCartPageState) {
+  return state.cartGames.reduce(
+    (ttl: number, game: TCartGame) => (ttl += game.quantity),
+    0
+  );
 }
 
 function updatePosition(state: TCartPageState) {

@@ -16,9 +16,8 @@ enum ECartViewParams {
 function ShoppingCart() {
   const isFirstRenderRef = useRef(true);
   const dispatch = useAppDispatch();
-  const { totalPrice, currentPage, itemsPerPage, discount } = useAppSelector(
-    (state) => state.cartGameReducer
-  );
+  const { totalPrice, currentPage, itemsPerPage, discount, totalQuantity } =
+    useAppSelector((state) => state.cartGameReducer);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const callbackSetItemsPerPage = useCallback((limit: number) => {
@@ -119,17 +118,21 @@ function ShoppingCart() {
         </div>
       </div>
       <SCCardContainer />
-      <p className="sc-box__price">
-        Total price:{' '}
-        <span className="sc-old-price">
-          {discount > 0 ? Math.round(totalPrice * 100) / 100 : ''}
-        </span>{' '}
-        {discount < 100
-          ? Math.round((totalPrice - (totalPrice * discount) / 100) * 100) / 100
-          : 0}{' '}
-        $
-      </p>
-      <button className="sc-button-checkout">Proceed to checkout</button>
+      <div className="sc-totals">
+        <button className="sc-totals__checkout">Proceed to checkout</button>
+        <p className="sc-totals__quantity">Total quantity: {totalQuantity}</p>
+        <p className="sc-totals__price">
+          Total price:{' '}
+          <span className="sc-old-price">
+            {discount > 0 ? Math.round(totalPrice * 100) / 100 : ''}
+          </span>{' '}
+          {discount < 100
+            ? Math.round((totalPrice - (totalPrice * discount) / 100) * 100) /
+              100
+            : 0}{' '}
+          $
+        </p>
+      </div>
     </div>
   );
 }
