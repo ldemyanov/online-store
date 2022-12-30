@@ -128,7 +128,10 @@ function ShoppingCart() {
       <div className="sc-totals">
         <button
           className="sc-totals__checkout"
-          onClick={() => toggleElementDisplay('.pchs-module-overlay')}
+          onClick={() => {
+            document.body.style.overflow = 'hidden';
+            toggleElementDisplay('.pchs-module-overlay');
+          }}
         >
           Proceed to checkout
         </button>
