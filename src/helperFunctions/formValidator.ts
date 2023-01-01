@@ -7,6 +7,7 @@ export function cardNumberInitialValidator(
   event: React.ChangeEvent<HTMLInputElement>
 ) {
   const number: string = filterNumbersLettersOnly(event, integersRegExp);
+  highlightChosenCardSystem(number.slice(0, 1));
   if (number.length === 16) {
     event.target.value = addSpaces(number);
   } else event.target.value = number;
@@ -15,6 +16,24 @@ export function cardNumberInitialValidator(
 function addSpaces(strng: string) {
   //prettier-ignore
   return ( strng.slice(0, 4) + ' ' + strng.slice(4, 8) + ' ' + strng.slice(8, 12) + ' ' + strng.slice(12, 16));
+}
+
+function highlightChosenCardSystem(num: string) {
+  document.querySelectorAll('.bank-system__sys-img').forEach((image) => {
+    const imageElement = image as HTMLElement;
+    if (num.length === 0) {
+      imageElement.style.opacity = '1';
+      imageElement.style.border = 'none';
+      return;
+    }
+    if (imageElement.dataset.num === num) {
+      imageElement.style.opacity = '1';
+      imageElement.style.border = '1px solid black';
+    } else {
+      imageElement.style.border = 'none';
+      imageElement.style.opacity = '0.3';
+    }
+  });
 }
 
 export function dateInitialValidator(
@@ -52,25 +71,33 @@ function filterNumbersLettersOnly(
 }
 
 export function validateForm() {
-  // let dataIsValid = true;
   const fullName = document.getElementById('customer-name') as HTMLInputElement;
-  colorFieldDisplayMessage(fullName, isNameValid);
+  const ifNameValid = colorFieldDisplayMessage(fullName, isNameValid);
   const phoneNum = document.getElementById(
     'customer-number'
   ) as HTMLInputElement;
-  colorFieldDisplayMessage(phoneNum, isNumberValid);
+  const ifPhoneValid = colorFieldDisplayMessage(phoneNum, isNumberValid);
   const address = document.getElementById(
     'customer-address'
   ) as HTMLInputElement;
-  colorFieldDisplayMessage(address, isAddressValid);
+  const ifAddressValid = colorFieldDisplayMessage(address, isAddressValid);
   const email = document.getElementById('customer-email') as HTMLInputElement;
-  colorFieldDisplayMessage(email, isEmailValid);
+  const ifEmailValid = colorFieldDisplayMessage(email, isEmailValid);
   const cardNum = document.getElementById('customer-card') as HTMLInputElement;
-  colorFieldDisplayMessage(cardNum, isCardValid);
+  const ifCardValid = colorFieldDisplayMessage(cardNum, isCardValid);
   const expiration = document.getElementById('expiry-date') as HTMLInputElement;
-  colorFieldDisplayMessage(expiration, isDateValid);
+  const ifExpiryDateValid = colorFieldDisplayMessage(expiration, isDateValid);
   const cvv = document.getElementById('card-cvv') as HTMLInputElement;
-  colorFieldDisplayMessage(cvv, isCvvValid);
+  const ifCvvValid = colorFieldDisplayMessage(cvv, isCvvValid);
+  return (
+    ifNameValid &&
+    ifPhoneValid &&
+    ifAddressValid &&
+    ifEmailValid &&
+    ifCardValid &&
+    ifExpiryDateValid &&
+    ifCvvValid
+  );
 }
 
 function colorFieldDisplayMessage(
@@ -85,9 +112,11 @@ function colorFieldDisplayMessage(
   if (!validator(field.value)) {
     thisFieldErrorMsg.classList.remove('hidden');
     field.style.borderColor = 'red';
+    return false;
   } else {
     field.style.borderColor = 'green';
     thisFieldErrorMsg.classList.add('hidden');
+    return true;
   }
 }
 

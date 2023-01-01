@@ -3,14 +3,26 @@
 
 .sc-game-card {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   position: relative;
   margin: 30px 15px 0 15px;
-  min-height: 240px;
+  min-height: 300px;
   border-radius: 8px;
   background-color: #ebebeb;
   box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
+
+  &__name {
+    margin: 0 auto 0 30px;
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 28px;
+    transform: translateY(20px);
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: row;
+  }
 
   &__price {
     min-width: 200px;
@@ -75,12 +87,6 @@
   justify-content: flex-start;
   margin: auto 30px;
 
-  &__name {
-    margin: 0;
-    font-family: 'Kaisei Tokumin', serif;
-    font-size: 28px;
-  }
-
   &__categories {
     display: flex;
     align-items: center;
@@ -105,7 +111,7 @@
 
   @media (max-width: 1300px) {
     width: calc(100% - 60px);
-    margin: 0 0 30px 30px;
+    margin: 15px 0 30px 30px;
     &__name {
       width: 100%;
       font-family: 'Kaisei Tokumin', serif;
@@ -186,7 +192,7 @@
 }
 
 .sc-game-description {
-  margin: 15px 0 auto 20px;
+  margin: 0 0 auto 20px;
 
   &__head {
     font-size: 20px;
@@ -197,6 +203,7 @@
   &__text {
     font-family: 'Kaisei Tokumin', serif;
     padding-bottom: 30px;
+    min-height: 160px;
   }
 
   @media (max-width: 1300px) {

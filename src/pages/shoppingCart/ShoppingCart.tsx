@@ -6,7 +6,7 @@ import { useAppDispatch } from '../../store';
 import { useSearchParams } from 'react-router-dom';
 import { gameActions } from '../../store/reducer/cartGamesReducer';
 import PromoBlock from '../../components/promoBlock/PromoBlock';
-import PurchaseFormModule from '../../components/purchaseFormModule/PurchaseFormModule';
+import PrchsModuleContainer from '../../components/prchsModuleContainer/PrchsModuleContainer';
 import toggleElementDisplay from '../../helperFunctions/displayToggler';
 
 // http://localhost:3000/cart?itemsPerPage=3&currentPage=6
@@ -129,8 +129,9 @@ function ShoppingCart() {
         <button
           className="sc-totals__checkout"
           onClick={() => {
-            document.body.style.overflow = 'hidden';
+            toggleElementDisplay('.pchs-module');
             toggleElementDisplay('.pchs-module-overlay');
+            document.body.style.overflow = 'hidden';
           }}
         >
           Proceed to checkout
@@ -162,7 +163,7 @@ function ShoppingCart() {
           </p>
         </div>
       </div>
-      <PurchaseFormModule />
+      <PrchsModuleContainer />
     </div>
   );
 }
