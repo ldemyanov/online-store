@@ -4,8 +4,12 @@ import cartIcon from './../../static/cart-icon.png';
 import toggleElementDisplay from '../../helperFunctions/displayToggler';
 import HeaderCardsContainer from '../headerCardsContainer/HeaderCardsContainer';
 import { useAppSelector } from '../../store';
+import { useNavigate, useMatch } from 'react-router-dom';
 
 function HeaderCart() {
+  const match = useMatch('/cart');
+  const navigate = useNavigate();
+
   const { totalPrice, discountTotal, totalQuantity } = useAppSelector(
     (state) => state.cartGameReducer
   );
@@ -46,7 +50,15 @@ function HeaderCart() {
           $
         </p>
         <HeaderCardsContainer />
-        <button className="cart-content__btn">Open my cart</button>
+        <button
+          className="cart-content__btn"
+          onClick={() => {
+            if (!match) navigate('/cart');
+            toggleElementDisplay('.cart-content');
+          }}
+        >
+          Open my cart
+        </button>
       </div>
     </div>
   );

@@ -21,6 +21,7 @@ function ShopCartCard({ game, quantity, position }: TCartGame) {
     <div className="sc-game-card">
       <p className="sc-game-card__position">{position}</p>
       <p className="sc-game-card__name">{game.name}</p>
+      <p className="sc-game-card__produced"> by: {game.produced}</p>
       <div className="sc-game-card__content">
         <div className="sc-game-data">
           <div
