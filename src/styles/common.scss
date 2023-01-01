@@ -12,6 +12,10 @@ body {
   background: linear-gradient(257.8deg, #e5e5ff 5.53%, #b8b6c7 91.73%);
   background-position: center;
   background-size: cover;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 a {
@@ -25,3 +29,4 @@ a:visited {
 #root {
   height: 100%;
 }
+
