@@ -21,21 +21,24 @@ function useQuery() {
 // };
 
 const gameObject = {
-  id: 23272845354,
-  name: 'Gloomhaven',
-  price: 120.99,
+  id: 212023017,
+  name: '1846: The Race for the Midwest',
+  price: 59.16,
+  inStock: 91,
   rating: 5,
-  numOfPlayers: 5,
-  categories: ['strategy', 'cards', 'quiz'],
-  inStock: 13,
-  images: [
-    'https://live.staticflickr.com/65535/52573820618_ce5b98a77c_m.jpg',
-    'https://live.staticflickr.com/65535/52563442461_eb68758353_b.jpg',
-    'https://live.staticflickr.com/65535/52563902775_d0d2bfaeaa_c.jpg',
-    'https://live.staticflickr.com/65535/52562985637_bd01cf5acf_b.jpg',
-  ],
   description:
-    'Gloomhaven is a game of Euro-inspired tactical combat in a persistent world of shifting motives. Players will take on the role of a wandering adventurer with their own special set of skills and their own reasons for traveling to this dark corner of the world. Also, players will take on the role of a wandering adventurer with their own special set of skills and their own reasons for traveling to this dark corner of the world.',
+    '1846 is an 18XX game that traces the westward expansion of railways across the Midwestern United States. As in other 18XX games, the winner is the player with the greatest combined wealth (cash on hand + value of stock held + value of private companies owned) at the end of the game. Play proceeds in a series of stock rounds, each followed by a pair of operating rounds. In stock rounds, players act as investors buying and selling stock in corporations. During operating rounds, corporations will lay track, build stations, run trains for revenue to be paid out as dividends or withheld, and buy trains. The majority shareholder of each corporation acts at its president, making all decisions during operating rounds. Players will continue operating companies, collecting dividends, and reinvesting until the bank breaks.',
+  numOfPlayers: 6,
+  categories: ['strategy', 'economy'],
+  images: [
+    'https://live.staticflickr.com/65535/52602799073_0fef2d80e1_c.jpg',
+    'https://live.staticflickr.com/65535/52602799098_0ec8b99e2f_c.jpg',
+    'https://live.staticflickr.com/65535/52602716035_2477a02449_c.jpg',
+    'https://live.staticflickr.com/65535/52602547359_ed3beb6d5e_c.jpg',
+  ],
+  previewImg:
+    'https://live.staticflickr.com/65535/52602547369_e42ecf217d_z.jpg',
+  produced: 'GMT Games',
 };
 
 function AboutProduct() {
@@ -57,9 +60,14 @@ function AboutProduct() {
               alt="zoom button"
             />
           </div>
-          <img className="pp-img-box__img" src={gameObject.images[0]} alt="" />
+          <div
+            className="pp-img-box__img"
+            style={{ backgroundImage: `url(${gameObject.images[0]})` }}
+            data-url={gameObject.images[0]}
+          ></div>
         </div>
         <div className="pp-dtls-box">
+          <p className="pp-dtls-box__price">By: {gameObject.produced}</p>
           <p className="pp-dtls-box__price">Price: {gameObject.price}$</p>
           <p className="pp-dtls-box__stock">In stock: {gameObject.inStock}</p>
           <div className="pp-dtls-box__rating">
@@ -77,7 +85,7 @@ function AboutProduct() {
         </div>
       </div>
       <div className="pp-controls">
-        <div className="pp-img-panel">
+        <div className="pp-img-panel" onClick={(e) => displayImg(e)}>
           <img className="pp-img-panel__img" src={gameObject.images[0]} />
           <img className="pp-img-panel__img" src={gameObject.images[1]} />
           <img className="pp-img-panel__img" src={gameObject.images[2]} />
@@ -99,6 +107,18 @@ function AboutProduct() {
       <p className="pp-game__description">{gameObject.description}</p>
     </div>
   );
+}
+
+function displayImg(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+  if (!(e.target as Element).closest('.pp-img-panel__img')) return;
+  const chosenImage = (e.target as Element).closest(
+    '.pp-img-panel__img'
+  ) as HTMLImageElement;
+  const mainImgBlock = document.querySelector(
+    '.pp-img-box__img'
+  ) as HTMLElement;
+  mainImgBlock.style.backgroundImage = `url(${chosenImage.src})`;
+  mainImgBlock.dataset.url = chosenImage.src;
 }
 
 export default AboutProduct;

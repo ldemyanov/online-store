@@ -27,7 +27,7 @@ const initialState: TCartPageState = {
   totalPages: 0,
   currentPage: 1,
   firstIndex: 0,
-  lastIndex: 8,
+  lastIndex: 7,
   promoCodes: [],
   discountTotal: 0,
   totalQuantity: 0,

@@ -252,7 +252,175 @@ export const cartGames: TCartGame[] = [
       ],
       previewImg:
         'https://live.staticflickr.com/65535/52599119922_ca21f10357_n.jpg',
-      produced: 'Hans im Glück',
+      produced: 'Hans im Gluck',
+    },
+    quantity: 1,
+    position: 0,
+  },
+  {
+    game: {
+      id: 212023001,
+      name: 'Russian Railroads',
+      price: 46.63,
+      inStock: 124,
+      rating: 4,
+      description:
+        'In Russian Railroads, players compete in an exciting race to build the largest and most advanced railway network. In order to do so, the players appoint their workers to various important tasks. The development of simple tracks will quickly bring the players to important places, while the modernization of their railway network will improve the efficiency of their machinery. Newer locomotives cover greater distances and factories churn out improved technology. Engineers, when used effectively, can be the extra boost that an empire needs to race past the competition.',
+      numOfPlayers: 4,
+      categories: ['strategy', 'cards', 'quiz'],
+      images: [
+        'https://live.staticflickr.com/65535/52602420904_8e39f2a664_c.jpg',
+        'https://live.staticflickr.com/65535/52602674028_5912074b09_b.jpg',
+        'https://live.staticflickr.com/65535/52601669267_a4973f3673_z.jpg',
+        'https://live.staticflickr.com/65535/52602674033_5382fc821f_c.jpg',
+      ],
+      previewImg:
+        'https://live.staticflickr.com/65535/52602674938_6260eb6289_z.jpg',
+      produced: 'Hans im Gluck',
+    },
+    quantity: 1,
+    position: 0,
+  },
+  {
+    game: {
+      id: 212023002,
+      name: 'Tigris & Euphrates',
+      price: 90.99,
+      inStock: 57,
+      rating: 4,
+      description:
+        "Regarded by many as Reiner Knizia's masterpiece, Tigris & Euphrates is set in the ancient fertile crescent with players building civilizations through tile placement. Players are given four different leaders: farming, trading, religion, and government. The leaders are used to collect victory points in these same categories. However, your score at the end of the game is the number of points in your weakest category, which encourages players not to get overly specialized. Conflict arises when civilizations connect on the board, i.e., external conflicts, with only one leader of each type surviving such a conflict. Leaders can also be replaced within a civilization through internal conflicts.",
+      numOfPlayers: 4,
+      categories: ['strategy', 'economy', 'quiz'],
+      images: [
+        'https://live.staticflickr.com/65535/52601681112_c557b0273a_z.jpg',
+        'https://live.staticflickr.com/65535/52602432914_9e0bf5746d_z.jpg',
+        'https://live.staticflickr.com/65535/52602685958_3110f82ae7_c.jpg',
+        'https://live.staticflickr.com/65535/52602432889_dabc85ce7b_c.jpg',
+      ],
+      previewImg:
+        'https://live.staticflickr.com/65535/52601681112_c557b0273a_z.jpg',
+      produced: 'Hans im Gluck',
+    },
+    quantity: 1,
+    position: 0,
+  },
+  {
+    game: {
+      id: 212023003,
+      name: 'The Voyages of Marco Polo',
+      price: 21.99,
+      inStock: 7,
+      rating: 4,
+      description:
+        'In The Voyages of Marco Polo, players recreate this journey, with each player having a different character from history with a special power in the game. The game is played over five rounds. Each round, the players roll their five personal dice and can perform one action each turn with them. Each action requires the use of one or more dice, and can be collecting resources or money, acquiring contracts or traveling on the board. When traveling, each player begins at Venice and can decide between several routes eastward, all the way to Beijing. When a player stops at a city, they place a trading post there, giving them access to extra actions or resources for the rest of the game. The higher the value of the dice used for an action, the better the options that may be chosen, but also the more money the player must pay if an opponent has already chosen the same action',
+      numOfPlayers: 4,
+      categories: ['strategy', 'economy'],
+      images: [
+        'https://live.staticflickr.com/65535/52602443289_15d98fbb04_z.jpg',
+        'https://live.staticflickr.com/65535/52601691607_8175e700e8_c.jpg',
+        'https://live.staticflickr.com/65535/52602611635_24fe452e48_c.jpg',
+        'https://live.staticflickr.com/65535/52601691587_b441bf4918_c.jpg',
+      ],
+      previewImg:
+        'https://live.staticflickr.com/65535/52602443269_966fd34417_n.jpg',
+      produced: 'Hans im Gluck',
+    },
+    quantity: 1,
+    position: 0,
+  },
+  {
+    game: {
+      id: 212023014,
+      name: 'Dominion',
+      price: 43.99,
+      inStock: 33,
+      rating: 3,
+      description:
+        "You are a monarch, like your parents before you, a ruler of a small pleasant kingdom of rivers and evergreens. Unlike your parents, however, you have hopes and dreams! You want a bigger and more pleasant kingdom, with more rivers and a wider variety of trees. You want a Dominion! In all directions lie fiefs, freeholds, and feodums. All are small bits of land, controlled by petty lords and verging on anarchy. You will bring civilization to these people, uniting them under your banner. But wait! It must be something in the air; several other monarchs have had the exact same idea. You must race to get as much of the unclaimed land as possible, fending them off along the way. To do this you will hire minions, construct buildings, spruce up your castle, and fill the coffers of your treasury. Your parents wouldn't be proud, but your grandparents, on your mother's side, would be delighted.",
+      numOfPlayers: 3,
+      categories: ['strategy', 'economy', 'cards'],
+      images: [
+        'https://live.staticflickr.com/65535/52602209131_73a36c5d9b_z.jpg',
+        'https://live.staticflickr.com/65535/52602722908_98ff324c20_c.jpg',
+        'https://live.staticflickr.com/65535/52602638435_89c02c812c_c.jpg',
+        'https://live.staticflickr.com/65535/52602638460_d2b3b02cb1_c.jpg',
+      ],
+      previewImg:
+        'https://live.staticflickr.com/65535/52602209131_73a36c5d9b_z.jpg',
+      produced: 'Hans im Gluck',
+    },
+    quantity: 1,
+    position: 0,
+  },
+  {
+    game: {
+      id: 212023015,
+      name: 'Twilight Struggle',
+      price: 51.99,
+      inStock: 20,
+      rating: 5,
+      description:
+        "Twilight Struggle inherits its fundamental systems from the card-driven classics We the People and Hannibal: Rome vs. Carthage. It is a quick-playing, low-complexity game in that tradition. The game map is a world map of the period, whereon players move units and exert influence in attempts to gain allies and control for their superpower. As with GMT's other card-driven games, decision-making is a challenge; how to best use one's cards and units given consistently limited resources? Twilight Struggle's Event cards add detail and flavor to the game. They cover a vast array of historical happenings, from the Arab-Israeli conflicts of 1948 and 1967, to Vietnam and the U.S. peace movement, to the Cuban Missile Crisis and other such incidents that brought the world to the brink of nuclear annihilation. Subsystems capture the prestige-laden Space Race as well as nuclear tensions, with the possibility of game-ending nuclear war.",
+      numOfPlayers: 3,
+      categories: ['strategy', 'cards'],
+      images: [
+        'https://live.staticflickr.com/65535/52602489084_e950b057ba_z.jpg',
+        'https://live.staticflickr.com/65535/52602227896_6d929eda67_c.jpg',
+        'https://live.staticflickr.com/65535/52602227886_d3540ccd12_z.jpg',
+        'https://live.staticflickr.com/65535/52601737372_6668ce77ec_c.jpg',
+      ],
+      previewImg:
+        'https://live.staticflickr.com/65535/52602742323_65fbe2d336_n.jpg',
+      produced: 'GMT Games',
+    },
+    quantity: 1,
+    position: 0,
+  },
+  {
+    game: {
+      id: 212023016,
+      name: 'Dominant Species',
+      price: 69.95,
+      inStock: 2,
+      rating: 5,
+      description:
+        "Dominant Species is a game that abstractly recreates a tiny portion of ancient history: the ponderous encroachment of an ice age and what that entails for the living creatures trying to adapt to the slowly-changing earth. Each player will assume the role of one of six major animal classes—mammal, reptile, bird, amphibian, arachnid, or insect. Each begins the game more or less in a state of natural balance in relation to one another. But that won’t last: It is indeed 'survival of the fittest'. Through wily action pawn placement, players will strive to become dominant on as many different terrain tiles as possible in order to claim powerful card effects. Players will also want to propagate their individual species in order to earn victory points for their particular animal. Players will be aided in these endeavors via speciation, migration, and adaptation actions, among others. All of this eventually leads to the end game—the final ascent of the ice age—where the player having accumulated the most victory points will have his animal crowned the Dominant Species.",
+      numOfPlayers: 6,
+      categories: ['strategy', 'kids'],
+      images: [
+        'https://live.staticflickr.com/65535/52601760112_3e3039a3f5_z.jpg',
+        'https://live.staticflickr.com/65535/52602763773_6064e6c8af_c.jpg',
+        'https://live.staticflickr.com/65535/52602511354_154883699b_c.jpg',
+        'https://live.staticflickr.com/65535/52601760137_6f6fa21c01_c.jpg',
+      ],
+      previewImg:
+        'https://live.staticflickr.com/65535/52601760182_7fb25c329d_m.jpg',
+      produced: 'GMT Games',
+    },
+    quantity: 1,
+    position: 0,
+  },
+  {
+    game: {
+      id: 212023017,
+      name: '1846: The Race for the Midwest',
+      price: 59.16,
+      inStock: 91,
+      rating: 5,
+      description:
+        '1846 is an 18XX game that traces the westward expansion of railways across the Midwestern United States. As in other 18XX games, the winner is the player with the greatest combined wealth (cash on hand + value of stock held + value of private companies owned) at the end of the game. Play proceeds in a series of stock rounds, each followed by a pair of operating rounds. In stock rounds, players act as investors buying and selling stock in corporations. During operating rounds, corporations will lay track, build stations, run trains for revenue to be paid out as dividends or withheld, and buy trains. The majority shareholder of each corporation acts at its president, making all decisions during operating rounds. Players will continue operating companies, collecting dividends, and reinvesting until the bank breaks.',
+      numOfPlayers: 6,
+      categories: ['strategy', 'economy'],
+      images: [
+        'https://live.staticflickr.com/65535/52602799073_0fef2d80e1_c.jpg',
+        'https://live.staticflickr.com/65535/52602799098_0ec8b99e2f_c.jpg',
+        'https://live.staticflickr.com/65535/52602716035_2477a02449_c.jpg',
+        'https://live.staticflickr.com/65535/52602547359_ed3beb6d5e_c.jpg',
+      ],
+      previewImg:
+        'https://live.staticflickr.com/65535/52602547369_e42ecf217d_z.jpg',
+      produced: 'GMT Games',
     },
     quantity: 1,
     position: 0,

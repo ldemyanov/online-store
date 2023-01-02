@@ -13,9 +13,9 @@ body {
   background-position: center;
   background-size: cover;
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  // &::-webkit-scrollbar {
+  //   display: none;
+  // }
 }
 
 a {
@@ -29,4 +29,3 @@ a:visited {
 #root {
   height: 100%;
 }
-
