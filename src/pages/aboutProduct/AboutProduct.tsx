@@ -133,6 +133,7 @@ function AboutProduct() {
               <button
                 className="pp-controls__btn btn-buy-now"
                 onClick={() => {
+                  addGameToCart(thisGame);
                   setTimeout(() => {
                     toggleElementDisplay('.pchs-module');
                     toggleElementDisplay('.pchs-module-overlay');
