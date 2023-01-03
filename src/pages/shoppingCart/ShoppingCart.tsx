@@ -6,6 +6,8 @@ import { useAppDispatch } from '../../store';
 import { useSearchParams } from 'react-router-dom';
 import { gameActions } from '../../store/reducer/cartGamesReducer';
 import PromoBlock from '../../components/promoBlock/PromoBlock';
+import PrchsModuleContainer from '../../components/prchsModuleContainer/PrchsModuleContainer';
+import toggleElementDisplay from '../../helperFunctions/displayToggler';
 
 // http://localhost:3000/cart?itemsPerPage=3&currentPage=6
 enum ECartViewParams {
@@ -16,8 +18,13 @@ enum ECartViewParams {
 function ShoppingCart() {
   const isFirstRenderRef = useRef(true);
   const dispatch = useAppDispatch();
-  const { totalPrice, currentPage, itemsPerPage, discount, totalQuantity } =
-    useAppSelector((state) => state.cartGameReducer);
+  const {
+    totalPrice,
+    currentPage,
+    itemsPerPage,
+    discountTotal,
+    totalQuantity,
+  } = useAppSelector((state) => state.cartGameReducer);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const callbackSetItemsPerPage = useCallback((limit: number) => {
@@ -119,20 +126,44 @@ function ShoppingCart() {
       </div>
       <SCCardContainer />
       <div className="sc-totals">
-        <button className="sc-totals__checkout">Proceed to checkout</button>
-        <p className="sc-totals__quantity">Total quantity: {totalQuantity}</p>
-        <p className="sc-totals__price">
-          Total price:{' '}
-          <span className="sc-old-price">
-            {discount > 0 ? Math.round(totalPrice * 100) / 100 : ''}
-          </span>{' '}
-          {discount < 100
-            ? Math.round((totalPrice - (totalPrice * discount) / 100) * 100) /
-              100
-            : 0}{' '}
-          $
-        </p>
+        <button
+          className="sc-totals__checkout"
+          onClick={() => {
+            toggleElementDisplay('.pchs-module');
+            toggleElementDisplay('.pchs-module-overlay');
+            document.body.style.overflow = 'hidden';
+          }}
+        >
+          Proceed to checkout
+        </button>
+        <div className="sc-totals__data">
+          <p className="sc-totals__quantity">Total quantity: {totalQuantity}</p>
+          <p
+            className={
+              'sc-totals__discount ' + (discountTotal === 0 ? 'hidden' : '')
+            }
+          >
+            Total discount: {discountTotal} %
+          </p>
+          <p className="sc-totals__price">
+            Total price:{' '}
+            <span
+              className={
+                'sc-old-price ' + (totalQuantity === 0 ? 'hidden' : '')
+              }
+            >
+              {discountTotal > 0 ? Math.round(totalPrice * 100) / 100 : ''}
+            </span>{' '}
+            {discountTotal < 100
+              ? Math.round(
+                  (totalPrice - (totalPrice * discountTotal) / 100) * 100
+                ) / 100
+              : 0}{' '}
+            $
+          </p>
+        </div>
       </div>
+      <PrchsModuleContainer />
     </div>
   );
 }

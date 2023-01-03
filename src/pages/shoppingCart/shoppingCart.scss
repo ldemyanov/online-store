@@ -6,6 +6,7 @@
 // font-family: 'Kaisei Tokumin', serif;
 
 .sc-box {
+  position: relative;
   width: 90%;
   max-width: 1800px;
   margin: 40px auto 20px auto;
@@ -41,7 +42,17 @@
 
   &__quantity {
     text-align: right;
-    margin: 10px 20px 20px 0;
+    margin: 10px 40px 20px 0;
+    font-size: 26px;
+    font-family: 'Inder', sans-serif;
+
+    @media (max-width: 1200px) {
+      font-size: 20px;
+    }
+  }
+  &__discount {
+    text-align: right;
+    margin: 10px 40px 20px 0;
     font-size: 26px;
     font-family: 'Inder', sans-serif;
 
