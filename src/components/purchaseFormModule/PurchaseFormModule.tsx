@@ -10,6 +10,7 @@ import {
   validateForm,
   dateInitialValidator,
   cvvInitialValidator,
+  nameInitialValidator,
 } from '../../helperFunctions/formValidator';
 import { useAppDispatch } from '../../store';
 import { gameActions } from '../../store/reducer/cartGamesReducer';
@@ -48,6 +49,7 @@ function PurchaseFormModule({ setCounter }: setCounter) {
             name="customer-name"
             maxLength={40}
             id="customer-name"
+            onChange={(e) => nameInitialValidator(e)}
           />
           <span className="form-error-msg error-msg__name hidden">
             Enter your name correctly
