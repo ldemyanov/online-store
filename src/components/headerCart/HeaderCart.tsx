@@ -4,9 +4,13 @@ import cartIcon from './../../static/cart-icon.png';
 import toggleElementDisplay from '../../helperFunctions/displayToggler';
 import HeaderCardsContainer from '../headerCardsContainer/HeaderCardsContainer';
 import { useAppSelector } from '../../store';
+import { useNavigate, useMatch } from 'react-router-dom';
 
 function HeaderCart() {
-  const { cartGames, totalPrice } = useAppSelector(
+  const match = useMatch('/cart');
+  const navigate = useNavigate();
+
+  const { totalPrice, discountTotal, totalQuantity } = useAppSelector(
     (state) => state.cartGameReducer
   );
 
@@ -21,12 +25,40 @@ function HeaderCart() {
         />
       </div>
       <div className="cart-content dissolved hidden">
-        <p className="cart-content__ttl-num">Total games: {cartGames.length}</p>
+        <p className="cart-content__ttl-num">Total quantity: {totalQuantity}</p>
+        <p
+          className={
+            'cart-content__ttl-disc ' + (discountTotal === 0 ? 'hidden' : '')
+          }
+        >
+          Total discount: {discountTotal} %
+        </p>
         <p className="cart-content__ttl-price">
-          Total price: {Math.round(totalPrice * 100) / 100} $
+          Total price:{' '}
+          <span
+            className={
+              'cart-old-price ' + (totalQuantity === 0 ? 'hidden' : '')
+            }
+          >
+            {discountTotal > 0 ? Math.round(totalPrice * 100) / 100 : ''}
+          </span>{' '}
+          {discountTotal < 100
+            ? Math.round(
+                (totalPrice - (totalPrice * discountTotal) / 100) * 100
+              ) / 100
+            : 0}{' '}
+          $
         </p>
         <HeaderCardsContainer />
-        <button className="cart-content__btn">Open my cart</button>
+        <button
+          className="cart-content__btn"
+          onClick={() => {
+            if (!match) navigate('/cart');
+            toggleElementDisplay('.cart-content');
+          }}
+        >
+          Open my cart
+        </button>
       </div>
     </div>
   );

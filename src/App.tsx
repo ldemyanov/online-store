@@ -6,6 +6,7 @@ import ShoppingCart from './pages/shoppingCart/ShoppingCart';
 import Store from './pages/store/Store';
 import { appStore } from './store';
 import Wrapper from './wrapper/wrapper';
+import WrongDirectoryPage from './pages/404/404page';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
           <Route path="/" element={<Store />} />
           <Route path="/product" element={<AboutProduct />} />
           <Route path="/cart" element={<ShoppingCart />} />
-          <Route />
+          <Route path="/*" element={<WrongDirectoryPage />} />
         </Routes>
       </Wrapper>
     </Provider>
