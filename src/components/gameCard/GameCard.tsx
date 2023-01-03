@@ -5,12 +5,19 @@ import cross from './../../static/cross.png';
 import RatingDisplay from '../ratingDisplay/RatingDisplay';
 import CategoriesDisplay from '../categoriesDisplay/CategoriesDisplay';
 import { TGame } from '../../store/reducer/games';
+import { useAppDispatch } from '../../store';
+import { gameActions } from '../../store/reducer/cartGamesReducer';
 
 type TGameCardProps = {
   game: TGame;
 };
 
 function GameCard({ game }: TGameCardProps) {
+  const dispatch = useAppDispatch();
+  const addGameToCart = (newGame: TGame) => {
+    dispatch(gameActions.addGameToCart(newGame));
+  };
+
   return (
     <div className="game-card">
       <img
@@ -35,7 +42,12 @@ function GameCard({ game }: TGameCardProps) {
               />
             </p>
           </div>
-          <button className="game-dtls__add-btn">Add to Card</button>
+          <button
+            className="game-dtls__add-btn"
+            onClick={() => addGameToCart(game)}
+          >
+            Add to Card
+          </button>
         </div>
       </div>
     </div>

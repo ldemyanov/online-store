@@ -1,112 +1,105 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import './aboutProduct.scss';
 import booksIcon from './../../static/books-pile.png';
 import zoomIcon from './../../static/zoom-icon.png';
 import CategoriesProdPage from '../../components/categoriesProdPage/CategoriesProdPage';
 import RatingDisplay from '../../components/ratingDisplay/RatingDisplay';
+import { useSearchParams } from 'react-router-dom';
+import { games } from '../../store/reducer/games';
 
-function useQuery() {
-  const { search } = useLocation();
-  return React.useMemo(() => new URLSearchParams(search), [search]);
-}
-
-// const cartObject = {
-//   totalQuantity: 3,
-//   totalPrice: 69.2,
-//   chosenGames: {
-//     name: 'Gloomhaven',
-//     id: 234234234,
-//   },
-// };
-
-const gameObject = {
-  id: 212023017,
-  name: '1846: The Race for the Midwest',
-  price: 59.16,
-  inStock: 91,
-  rating: 5,
-  description:
-    '1846 is an 18XX game that traces the westward expansion of railways across the Midwestern United States. As in other 18XX games, the winner is the player with the greatest combined wealth (cash on hand + value of stock held + value of private companies owned) at the end of the game. Play proceeds in a series of stock rounds, each followed by a pair of operating rounds. In stock rounds, players act as investors buying and selling stock in corporations. During operating rounds, corporations will lay track, build stations, run trains for revenue to be paid out as dividends or withheld, and buy trains. The majority shareholder of each corporation acts at its president, making all decisions during operating rounds. Players will continue operating companies, collecting dividends, and reinvesting until the bank breaks.',
-  numOfPlayers: 6,
-  categories: ['strategy', 'economy'],
-  images: [
-    'https://live.staticflickr.com/65535/52602799073_0fef2d80e1_c.jpg',
-    'https://live.staticflickr.com/65535/52602799098_0ec8b99e2f_c.jpg',
-    'https://live.staticflickr.com/65535/52602716035_2477a02449_c.jpg',
-    'https://live.staticflickr.com/65535/52602547359_ed3beb6d5e_c.jpg',
-  ],
-  previewImg:
-    'https://live.staticflickr.com/65535/52602547369_e42ecf217d_z.jpg',
-  produced: 'GMT Games',
+const emptyGame = {
+  id: 0,
+  name: 'dummy',
+  price: 0,
+  inStock: 0,
+  rating: 0,
+  description: 'dummy',
+  numOfPlayers: 0,
+  categories: ['dummy'],
+  images: ['dummy'],
+  previewImg: 'dummy',
+  produced: 'dummy',
 };
 
 function AboutProduct() {
-  const query = useQuery();
-  const params = query.entries();
-  for (const [key, value] of params) {
-    console.log(key, value);
+  const [searchParams] = useSearchParams();
+  const [thisGame, setThisGame] = useState(emptyGame);
+
+  useEffect(() => {
+    const id = searchParams.get('id');
+    if (id) {
+      const displayedGame = games.find((game) => game.id === +id) || emptyGame;
+      setThisGame(displayedGame);
+    }
+  }, [searchParams]);
+
+  function returnEmptyBlock() {
+    return <div>No Game</div>;
   }
 
-  return (
-    <div className="pp-game">
-      <h2 className="pp-game__name">{gameObject.name}</h2>
-      <div className="pp-game__details">
-        <div className="pp-img-box">
-          <div className="pp-zoom-btn">
-            <img
-              className="pp-zoom-btn__img"
-              src={zoomIcon}
-              alt="zoom button"
+  function returnGameData() {
+    return (
+      <div className="pp-game">
+        <h2 className="pp-game__name">{thisGame.name}</h2>
+        <div className="pp-game__details">
+          <div className="pp-img-box">
+            <div className="pp-zoom-btn">
+              <img
+                className="pp-zoom-btn__img"
+                src={zoomIcon}
+                alt="zoom button"
+              />
+            </div>
+            <div
+              className="pp-img-box__img"
+              style={{ backgroundImage: `url(${thisGame.images[0]})` }}
+              data-url={thisGame.images[0]}
+            ></div>
+          </div>
+          <div className="pp-dtls-box">
+            <p className="pp-dtls-box__price">By: {thisGame.produced}</p>
+            <p className="pp-dtls-box__price">Price: {thisGame.price}$</p>
+            <p className="pp-dtls-box__stock">In stock: {thisGame.inStock}</p>
+            <div className="pp-dtls-box__rating">
+              <span className="pp-rating-name">Rating:</span>
+              <span className="pp-rating-box">
+                <RatingDisplay rating={thisGame.rating} />
+              </span>
+            </div>
+            <CategoriesProdPage
+              {...{
+                categories: thisGame.categories,
+                values: [0, 1, 2, 3, 4, 5],
+              }}
             />
           </div>
-          <div
-            className="pp-img-box__img"
-            style={{ backgroundImage: `url(${gameObject.images[0]})` }}
-            data-url={gameObject.images[0]}
-          ></div>
         </div>
-        <div className="pp-dtls-box">
-          <p className="pp-dtls-box__price">By: {gameObject.produced}</p>
-          <p className="pp-dtls-box__price">Price: {gameObject.price}$</p>
-          <p className="pp-dtls-box__stock">In stock: {gameObject.inStock}</p>
-          <div className="pp-dtls-box__rating">
-            <span className="pp-rating-name">Rating:</span>
-            <span className="pp-rating-box">
-              <RatingDisplay rating={gameObject.rating} />
-            </span>
+        <div className="pp-controls">
+          <div className="pp-img-panel" onClick={(e) => displayImg(e)}>
+            <img className="pp-img-panel__img" src={thisGame.images[0]} />
+            <img className="pp-img-panel__img" src={thisGame.images[1]} />
+            <img className="pp-img-panel__img" src={thisGame.images[2]} />
+            <img className="pp-img-panel__img" src={thisGame.images[3]} />
           </div>
-          <CategoriesProdPage
-            {...{
-              categories: gameObject.categories,
-              values: [0, 1, 2, 3, 4, 5],
-            }}
+          <button className="pp-controls__btn btn-send-to-cart">
+            Send to cart
+          </button>
+          <button className="pp-controls__btn btn-buy-now">Buy now</button>
+        </div>
+        <div className="pp-game__split-line">
+          <img
+            className="pp-game__decor"
+            src={booksIcon}
+            alt="pile of books image"
           />
         </div>
+        <h3 className="pp-game__descr-head">Description:</h3>
+        <p className="pp-game__description">{thisGame.description}</p>
       </div>
-      <div className="pp-controls">
-        <div className="pp-img-panel" onClick={(e) => displayImg(e)}>
-          <img className="pp-img-panel__img" src={gameObject.images[0]} />
-          <img className="pp-img-panel__img" src={gameObject.images[1]} />
-          <img className="pp-img-panel__img" src={gameObject.images[2]} />
-          <img className="pp-img-panel__img" src={gameObject.images[3]} />
-        </div>
-        <button className="pp-controls__btn btn-send-to-cart">
-          Send to cart
-        </button>
-        <button className="pp-controls__btn btn-buy-now">Buy now</button>
-      </div>
-      <div className="pp-game__split-line">
-        <img
-          className="pp-game__decor"
-          src={booksIcon}
-          alt="pile of books image"
-        />
-      </div>
-      <h3 className="pp-game__descr-head">Description:</h3>
-      <p className="pp-game__description">{gameObject.description}</p>
-    </div>
-  );
+    );
+  }
+
+  return thisGame === emptyGame ? returnEmptyBlock() : returnGameData();
 }
 
 function displayImg(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {

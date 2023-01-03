@@ -2,11 +2,11 @@ import React from 'react';
 import CategoriesDisplay from '../categoriesDisplay/CategoriesDisplay';
 import RatingDisplay from '../ratingDisplay/RatingDisplay';
 import './shopCartCard.scss';
-import { TCartGame } from '../../store/reducer/cartGames';
+import { ICartGame } from '../../store/reducer/cartGames';
 import { useAppDispatch } from '../../store';
 import { gameActions } from '../../store/reducer/cartGamesReducer';
 
-function ShopCartCard({ game, quantity, position }: TCartGame) {
+function ShopCartCard({ game, quantity, position }: ICartGame) {
   const dispatch = useAppDispatch();
   const id = game.id;
 

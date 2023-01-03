@@ -11,10 +11,12 @@ function CategoriesProdPage(props: { categories: string[]; values: number[] }) {
   //prettier-ignore
   const arrOfImages: string[] = [ catStrategy, catCards, catQuiz, catEconomy, catKids, catRolePlay ];
   //prettier-ignore
-  const arrOfCategoryNames: string[] = [ 'strategy', 'cards', 'quiz', 'economy', 'kids', 'role play' ];
-
+  const arrOfCategoryNames: string[] = [ 'strategy', 'cards', 'quiz', 'economy', 'kids', 'role' ];
+  console.log(props.categories);
   const arrOfElements = props.categories.map(
     (category: string, index: number) => {
+      console.log(category);
+
       const indexOfCategory = arrOfCategoryNames.indexOf(category);
       return (
         <div className="pp-category" key={props.values[index]}>

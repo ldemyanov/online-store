@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TCartGame, cartGames } from './cartGames';
+import { ICartGame, cartGames } from './cartGames';
+import { TGame } from './games';
 
 export type discountObj = { code: string; discount: number };
 
 type TCartPageState = {
-  cartGames: TCartGame[];
+  cartGames: ICartGame[];
   totalPrice: number;
   itemsPerPage: number;
   totalPages: number;
@@ -21,7 +22,7 @@ type curGameID = {
 };
 
 const initialState: TCartPageState = {
-  cartGames,
+  cartGames: retrieveLocalStorage(),
   totalPrice: 0,
   itemsPerPage: 8,
   totalPages: 0,
@@ -127,6 +128,16 @@ const gameSlice = createSlice({
       state.promoCodes.splice(action.payload, 1);
       state.discountTotal = updateDiscountTotal(state.promoCodes);
     },
+    addGameToCart(state, action: PayloadAction<TGame>) {
+      const newGame: ICartGame = {
+        game: action.payload,
+        quantity: 1,
+        position: 0,
+      };
+      state.cartGames.push(newGame);
+      const dataJSON = JSON.stringify(state.cartGames);
+      localStorage.setItem('onlstr-LDDV', dataJSON);
+    },
   },
 });
 
@@ -151,7 +162,7 @@ function updateDiscountTotal(allPromoCodes: discountObj[]) {
 
 function updateTotalQuantity(state: TCartPageState) {
   return state.cartGames.reduce(
-    (ttl: number, game: TCartGame) => (ttl += game.quantity),
+    (ttl: number, game: ICartGame) => (ttl += game.quantity),
     0
   );
 }
@@ -166,7 +177,7 @@ function updatePosition(state: TCartPageState) {
 
 function countTotalPrice(state: TCartPageState) {
   return state.cartGames.reduce(
-    (total: number, game: TCartGame) =>
+    (total: number, game: ICartGame) =>
       (total += game.game.price * game.quantity),
     0
   );
@@ -177,7 +188,7 @@ function removeGameFromCart(
   action: PayloadAction<curGameID>
 ) {
   return state.cartGames.filter(
-    (game: TCartGame) => game.game.id !== action.payload.id
+    (game: ICartGame) => game.game.id !== action.payload.id
   );
 }
 
@@ -200,6 +211,12 @@ function updateFirstIndex(state: TCartPageState) {
 
 function updateLastIndex(state: TCartPageState) {
   return state.firstIndex + state.itemsPerPage - 1;
+}
+
+function retrieveLocalStorage() {
+  const localData = localStorage.getItem('onlstr-LDDV');
+  const data: ICartGame[] = localData ? JSON.parse(localData) : [];
+  return data;
 }
 
 export const cartGameReducer = gameSlice.reducer;
