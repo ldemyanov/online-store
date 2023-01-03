@@ -239,6 +239,18 @@
   margin: 10px 10px 0 auto;
 }
 
+.btn-alrd-added {
+  background-image: linear-gradient(to top, #025d07, #007806);
+  color: #ffffff;
+  box-shadow: 0px 10px 6px rgba(0, 89, 3, 0.25);
+  font-family: 'Inder', sans-serif;
+  cursor: pointer;
+
+  &:hover {
+    background-image: linear-gradient(to top, #025d07, #007806);
+  }
+}
+
 .btn-buy-now {
   margin: 10px 20px 0 10px;
 }

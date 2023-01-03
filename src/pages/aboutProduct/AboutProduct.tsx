@@ -8,7 +8,8 @@ import RatingDisplay from '../../components/ratingDisplay/RatingDisplay';
 import { useSearchParams } from 'react-router-dom';
 import { games } from '../../store/reducer/games';
 import { TGame } from '../../store/reducer/games';
-import { useAppDispatch } from '../../store';
+import { useAppDispatch, useAppSelector } from '../../store';
+
 import { gameActions } from '../../store/reducer/cartGamesReducer';
 import { Link } from 'react-router-dom';
 import toggleElementDisplay from '../../helperFunctions/displayToggler';
@@ -30,10 +31,13 @@ const emptyGame = {
 function AboutProduct() {
   const [searchParams] = useSearchParams();
   const [thisGame, setThisGame] = useState(emptyGame);
-
+  const { cartGames } = useAppSelector((state) => state.cartGameReducer);
   const dispatch = useAppDispatch();
   const addGameToCart = (newGame: TGame) => {
     dispatch(gameActions.addGameToCart(newGame));
+  };
+  const isGameInCart = (id: number) => {
+    return cartGames.some((game) => game.game.id === id);
   };
 
   useEffect(() => {
@@ -117,10 +121,13 @@ function AboutProduct() {
               <img className="pp-img-panel__img" src={thisGame.images[3]} />
             </div>
             <button
-              className="pp-controls__btn btn-send-to-cart"
+              className={
+                `pp-controls__btn btn-send-to-cart ` +
+                (isGameInCart(thisGame.id) ? 'btn-alrd-added' : '')
+              }
               onClick={() => addGameToCart(thisGame)}
             >
-              Send to cart
+              {isGameInCart(thisGame.id) ? 'Game added' : 'Send to cart'}
             </button>
             <Link to={`/cart`}>
               <button
