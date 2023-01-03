@@ -24,6 +24,7 @@ function PromoBlock() {
           className={'promo__input ' + isFocused + ' ' + isValid}
           type="text"
           maxLength={8}
+          title="possible promocodes are ZEUS, MAFIA, SLAANESH and ENTROPY"
           value={inputValue}
           onFocus={() => setFocusState('focused')}
           onBlur={() => setFocusState('out-of-focus')}

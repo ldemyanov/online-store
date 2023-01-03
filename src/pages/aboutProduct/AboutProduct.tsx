@@ -6,6 +6,11 @@ import CategoriesProdPage from '../../components/categoriesProdPage/CategoriesPr
 import RatingDisplay from '../../components/ratingDisplay/RatingDisplay';
 import { useSearchParams } from 'react-router-dom';
 import { games } from '../../store/reducer/games';
+import { TGame } from '../../store/reducer/games';
+import { useAppDispatch } from '../../store';
+import { gameActions } from '../../store/reducer/cartGamesReducer';
+import { Link } from 'react-router-dom';
+import toggleElementDisplay from '../../helperFunctions/displayToggler';
 
 const emptyGame = {
   id: 0,
@@ -24,6 +29,11 @@ const emptyGame = {
 function AboutProduct() {
   const [searchParams] = useSearchParams();
   const [thisGame, setThisGame] = useState(emptyGame);
+
+  const dispatch = useAppDispatch();
+  const addGameToCart = (newGame: TGame) => {
+    dispatch(gameActions.addGameToCart(newGame));
+  };
 
   useEffect(() => {
     const id = searchParams.get('id');
@@ -81,10 +91,26 @@ function AboutProduct() {
             <img className="pp-img-panel__img" src={thisGame.images[2]} />
             <img className="pp-img-panel__img" src={thisGame.images[3]} />
           </div>
-          <button className="pp-controls__btn btn-send-to-cart">
+          <button
+            className="pp-controls__btn btn-send-to-cart"
+            onClick={() => addGameToCart(thisGame)}
+          >
             Send to cart
           </button>
-          <button className="pp-controls__btn btn-buy-now">Buy now</button>
+          <Link to={`/cart`}>
+            <button
+              className="pp-controls__btn btn-buy-now"
+              onClick={() => {
+                setTimeout(() => {
+                  toggleElementDisplay('.pchs-module');
+                  toggleElementDisplay('.pchs-module-overlay');
+                  document.body.style.overflow = 'hidden';
+                }, 100);
+              }}
+            >
+              Buy now
+            </button>
+          </Link>
         </div>
         <div className="pp-game__split-line">
           <img
