@@ -1,6 +1,7 @@
 export type TGame = {
   id: number;
   name: string;
+  manufacturer: string;
   price: number;
   rating: number;
   numOfPlayers: number;
@@ -9,10 +10,19 @@ export type TGame = {
   images: string[];
 };
 
+export const MANUFACTURES: string[] = [
+  'Hobby World',
+  'Magellan',
+  // 'empty',
+  // 'emty',
+  // 'emty',
+];
+
 export const games: TGame[] = [
   {
     id: 1,
     name: 'Gloomhaven',
+    manufacturer: 'Hobby World',
     price: 120.99,
     rating: 5,
     numOfPlayers: 5,
@@ -28,6 +38,7 @@ export const games: TGame[] = [
   {
     id: 2,
     name: 'Game2',
+    manufacturer: 'Magellan',
     price: 150.99,
     rating: 2,
     numOfPlayers: 2,
@@ -41,6 +52,7 @@ export const games: TGame[] = [
   {
     id: 3,
     name: 'Carcassonne',
+    manufacturer: 'Hobby World',
     price: 200,
     rating: 5,
     numOfPlayers: 4,
@@ -54,6 +66,7 @@ export const games: TGame[] = [
   {
     id: 4,
     name: 'Descent',
+    manufacturer: 'Magellan',
     price: 700,
     rating: 3,
     numOfPlayers: 4,

@@ -42,6 +42,7 @@ type TPageStoreState = {
   filterPrice: TRange;
   sort: TSort;
   categories: ECategory[];
+  manufacturers: string[];
   layout: ELayout;
 };
 
@@ -52,6 +53,7 @@ const initialState: TPageStoreState = {
   filterPrice: { min: 0, max: 1000 },
   sort: { param: ESortParam.rating, trend: ESortTrend.descending },
   categories: [],
+  manufacturers: [],
   layout: ELayout.cards,
 };
 
@@ -66,7 +68,8 @@ function filterGames(state: TPageStoreState): TGame[] {
       game.inStock < state.filterCountInStock.max &&
       game.price > state.filterPrice.min &&
       game.price < state.filterPrice.max &&
-      state.categories.every((cat) => game.categories.includes(cat))
+      state.categories.every((cat) => game.categories.includes(cat)) &&
+      state.manufacturers.every((m) => m === game.manufacturer)
   );
 
   return state.games;
@@ -104,9 +107,21 @@ const gameSlice = createSlice({
         : [...state.categories, action.payload];
       state.games = filterGames(state);
     },
+    toggleManufacturers(state, action: PayloadAction<string>) {
+      state.manufacturers = state.manufacturers.includes(action.payload)
+        ? state.manufacturers.filter((name) => name !== action.payload)
+        : [...state.manufacturers, action.payload];
+      state.games = filterGames(state);
+    },
     setCategories(state, action: PayloadAction<ECategory[]>) {
       state.categories = action.payload;
       state.games = filterGames(state);
+    },
+    setLayout(state, action: PayloadAction<ELayout>) {
+      state.layout = action.payload;
+    },
+    resetFilters(state) {
+      state = initialState;
     },
   },
 });
