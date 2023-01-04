@@ -1,9 +1,11 @@
 .wrapper {
-  height: inherit;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
 .wrapper__main {
   flex: 1 0 auto;
+  max-width: 2560px;
+  margin: 0 auto;
 }

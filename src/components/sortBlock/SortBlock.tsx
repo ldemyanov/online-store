@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './SortBlock.scss';
 // eslint-disable-next-line prettier/prettier
-import { ESortParam, ESortTrend, gameActions } from '../../store/reducer/gamesReducer';
-import { useDispatch } from 'react-redux';
+import { ESortParam, ESortTrend, TSort, gameActions } from '../../store/reducer/gamesReducer';
 import { useSearchParams } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../store';
 
 function SortBlock() {
-  const [param, setParam] = useState(ESortParam.rating);
-  const [trend, setTrend] = useState(ESortTrend.descending);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
+  const { param, trend } = useAppSelector((state) => state.gameReducer.sort);
 
   useEffect(() => {
     const oldParam = searchParams.get('param') || '';
@@ -25,12 +24,17 @@ function SortBlock() {
     }
   }, []);
 
-  useEffect(() => {
-    dispatch(gameActions.sort({ param, trend }));
+  const setSort = ({ param, trend }: TSort) => {
     searchParams.set('param', param);
     searchParams.set('trend', trend);
     setSearchParams(searchParams);
-  }, [param, trend]);
+    dispatch(
+      gameActions.sort({
+        param: param,
+        trend: trend,
+      })
+    );
+  };
 
   const getClassParam = (btnParam: ESortParam) => {
     if (param === btnParam) {
@@ -51,13 +55,13 @@ function SortBlock() {
       <div className="sort__block">
         <button
           className={getClassParam(ESortParam.rating)}
-          onClick={() => setParam(ESortParam.rating)}
+          onClick={() => setSort({ param: ESortParam.rating, trend })}
         >
           Sort By Rating
         </button>
         <button
           className={getClassParam(ESortParam.price)}
-          onClick={() => setParam(ESortParam.price)}
+          onClick={() => setSort({ param: ESortParam.price, trend })}
         >
           Sort By Price
         </button>
@@ -66,11 +70,11 @@ function SortBlock() {
         <div>
           <button
             className={getClassTrend(ESortTrend.ascending)}
-            onClick={() => setTrend(ESortTrend.ascending)}
+            onClick={() => setSort({ trend: ESortTrend.ascending, param })}
           />
           <button
             className={getClassTrend(ESortTrend.descending)}
-            onClick={() => setTrend(ESortTrend.descending)}
+            onClick={() => setSort({ trend: ESortTrend.descending, param })}
           />
         </div>
         <p className="sort__label">{trend.toUpperCase()}</p>

@@ -93,8 +93,8 @@ function SortViewBlock() {
               </p>
             </div>
             <DoubleRange
-              min={0}
-              max={25}
+              min={1}
+              max={9}
               left={filterPlayers.min}
               right={filterPlayers.max}
               onChange={callbackSetNumOfPlayers}
@@ -113,7 +113,7 @@ function SortViewBlock() {
             </div>
             <DoubleRange
               min={0}
-              max={100}
+              max={220}
               left={filterCountInStock.min}
               right={filterCountInStock.max}
               onChange={callbackSetCountInStock}
@@ -131,8 +131,8 @@ function SortViewBlock() {
               </p>
             </div>
             <DoubleRange
-              min={1}
-              max={1000}
+              min={5}
+              max={350}
               left={filterPrice.min}
               right={filterPrice.max}
               onChange={callbackSetPrice}
