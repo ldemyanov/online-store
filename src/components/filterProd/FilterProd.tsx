@@ -1,17 +1,39 @@
-import React from 'react';
-import { useAppSelector } from '../../store';
+import React, { useEffect, useRef } from 'react';
+import { useAppDispatch, useAppSelector } from '../../store';
 import './FilterProd.scss';
 import { PRODUCERS } from '../../store/reducer/games';
-import { useDispatch } from 'react-redux';
 import { gameActions } from '../../store/reducer/gamesReducer';
+import { useSearchParams } from 'react-router-dom';
 
 function FilterProd() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { producers } = useAppSelector((state) => state.gameReducer);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const isFirstRenderRef = useRef(true);
 
   const callbackToggleProd = (name: string) => {
     dispatch(gameActions.toggleProd(name));
   };
+
+  useEffect(() => {
+    if (!isFirstRenderRef.current) {
+      const spProducers = producers.join('-');
+      if (spProducers) {
+        searchParams.set('producers', spProducers);
+      } else {
+        searchParams.delete('producers');
+      }
+      setSearchParams(searchParams);
+    }
+    isFirstRenderRef.current = false;
+  }, [producers]);
+
+  useEffect(() => {
+    const oldProducers = searchParams.get('producers')?.split('-');
+    if (oldProducers) {
+      dispatch(gameActions.setProd(oldProducers));
+    }
+  }, []);
 
   const LiProd = ({ name }: { name: string }) => (
     <li

@@ -69,7 +69,8 @@ function filterGames(state: TPageStoreState): TGame[] {
       game.price > state.filterPrice.min &&
       game.price < state.filterPrice.max &&
       state.categories.every((cat) => game.categories.includes(cat)) &&
-      state.producers.every((m) => m === game.produced)
+      (state.producers.length === 0 ||
+        state.producers.find((prod) => prod === game.produced))
   );
 
   return state.games;
@@ -119,6 +120,9 @@ const gameSlice = createSlice({
     },
     setLayout(state, action: PayloadAction<ELayout>) {
       state.layout = action.payload;
+    },
+    setProd(state, action: PayloadAction<string[]>) {
+      state.producers = action.payload;
     },
     resetFilters(state) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
