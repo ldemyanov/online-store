@@ -5,7 +5,7 @@ import zoomIcon from './../../static/zoom-icon.png';
 import CategoriesProdPage from '../../components/categoriesProdPage/CategoriesProdPage';
 import RatingDisplay from '../../components/ratingDisplay/RatingDisplay';
 import { useSearchParams } from 'react-router-dom';
-import { games } from '../../store/reducer/games';
+import { GAMES } from '../../store/reducer/games';
 
 const emptyGame = {
   id: 0,
@@ -28,7 +28,7 @@ function AboutProduct() {
   useEffect(() => {
     const id = searchParams.get('id');
     if (id) {
-      const displayedGame = games.find((game) => game.id === +id) || emptyGame;
+      const displayedGame = GAMES.find((game) => game.id === +id) || emptyGame;
       setThisGame(displayedGame);
     }
   }, [searchParams]);

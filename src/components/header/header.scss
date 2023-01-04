@@ -2,15 +2,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inder&family=Julius+Sans+One&display=swap');
 
 .header {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
   background-color: #e5e5ff;
-  max-width: 1265px;
+  position: relative;
   height: 84px;
-  width: 66%;
+  width: 50%;
   filter: drop-shadow(13px 13px 25px rgba(0, 0, 0, 0.25));
+ 
+  @media (max-width: 1600px) {
+    height: 68px;
+  }
+  @media (max-width: 1000px) {
+  }
+
   &::after {
     content: '';
     display: block;
@@ -25,10 +28,13 @@
       transform: translateX(140px) translateY(-204px) rotateZ(55deg);
     }
   }
-  @media (max-width: 1600px) {
-    height: 68px;
-  }
-  @media (max-width: 1000px) {
+
+  &__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    max-width: 1265px;
+    margin-left: auto;
   }
 
   &__moto {
@@ -76,6 +82,7 @@
 }
 
 .header-logo {
+  position: relative;
   &__img {
     position: absolute;
     top: 4px;

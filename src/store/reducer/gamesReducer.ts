@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TGame, games } from './games';
+import { TGame, GAMES } from './games';
 
 type TRange = {
   min: number;
@@ -47,10 +47,10 @@ type TPageStoreState = {
 };
 
 const initialState: TPageStoreState = {
-  games,
-  filterPlayers: { min: 0, max: 25 },
-  filterCountInStock: { min: 0, max: 100 },
-  filterPrice: { min: 0, max: 1000 },
+  games: GAMES,
+  filterPlayers: { min: 1, max: 9 },
+  filterCountInStock: { min: 0, max: 220 },
+  filterPrice: { min: 5, max: 350 },
   sort: { param: ESortParam.rating, trend: ESortTrend.descending },
   categories: [],
   producers: [],
@@ -59,7 +59,7 @@ const initialState: TPageStoreState = {
 
 // To use only in reducers
 function filterGames(state: TPageStoreState): TGame[] {
-  state.games = games.filter(
+  state.games = GAMES.filter(
     (game) =>
       game.numOfPlayers > state.filterPlayers.min &&
       game.numOfPlayers < state.filterPlayers.max &&

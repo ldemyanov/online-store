@@ -22,7 +22,7 @@ export const PRODUCERS: string[] = [
   'Hans im Gluck',
 ];
 
-export const games: TGame[] = [
+export const GAMES: TGame[] = [
   {
     id: 312023001,
     name: 'Ancient Civilizations of the Inner Sea',
@@ -146,8 +146,8 @@ export const games: TGame[] = [
   {
     id: 312023007,
     name: 'RoboRally',
-    price: 175,
-    inStock: 69.87,
+    price: 69.87,
+    inStock: 175,
     rating: 3,
     description:
       "The robots of the Robo Rally automobile factory spend their weekdays toiling at the assembly line. They put in hard hours building high-speed supercars they never get to see in action. But on Saturday nights, the factory becomes a world of mad machines and dangerous schemes as these robots engage in their own epic race.It takes speed, wits, and dirty tricks to become a racing legend! Each player chooses a robot and directs its moves by playing cards. Chaos ensues as all players reveal the cards they've chosen. Players face obstacles like industrial lasers, gaping pits, and moving conveyor belts -- but those can also be used to their advantage! Each player aims to make it to each of the checkpoints in numerical order. The first player to reach all of the checkpoints wins.",
@@ -724,5 +724,3 @@ export const games: TGame[] = [
     produced: 'GMT Games',
   },
 ];
-
-console.log(new Set(games.map((game) => game.produced)));

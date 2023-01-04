@@ -37,8 +37,8 @@ function DoubleRange({ min, max, left, right, onChange }: TDoubleRangeProps) {
   const setFill = () => {
     if (filling.current) {
       const el: HTMLElement = filling.current;
-      el.style.left = (minValue / max) * 100 - 1 + '%';
-      el.style.right = 100 - (maxValue / max) * 100 - 1 + '%';
+      el.style.left = ((minValue - min) / (max - min)) * 100 - 1 + '%';
+      el.style.right = 100 - ((maxValue - min) / (max - min)) * 100 - 1 + '%';
     }
   };
 

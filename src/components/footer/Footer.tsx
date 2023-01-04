@@ -6,33 +6,35 @@ import rsLogoSvg from '../../static/rs-logo.svg';
 function Footer() {
   return (
     <footer className="footer">
-      <div className="footer__nav">
-        <a
-          className="footer__link"
-          href="https://rs.school/js/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <img className="footer__link-img" src={rsLogoSvg} alt="" />
-        </a>
-        <a
-          className="footer__link"
-          href="https://github.com/ldemyanov/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <img className="github-octopus" src={githubUserSvg} alt="" />
-          <span className="footer__link-text">Leonid Demyanov</span>
-        </a>
-        <a
-          className="footer__link"
-          href="https://github.com/DeevDevs/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <img className="github-octopus" src={githubUserSvg} alt="" />
-          <span className="footer__link-text">Dmitriy Vnuchkov</span>
-        </a>
+      <div className="footer__content">
+        <div className="footer__nav">
+          <a
+            className="footer__link"
+            href="https://rs.school/js/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img className="footer__link-img" src={rsLogoSvg} alt="" />
+          </a>
+          <a
+            className="footer__link"
+            href="https://github.com/ldemyanov/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img className="github-octopus" src={githubUserSvg} alt="" />
+            <span className="footer__link-text">Leonid Demyanov</span>
+          </a>
+          <a
+            className="footer__link"
+            href="https://github.com/DeevDevs/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img className="github-octopus" src={githubUserSvg} alt="" />
+            <span className="footer__link-text">Dmitriy Vnuchkov</span>
+          </a>
+        </div>
       </div>
     </footer>
   );
