@@ -6,6 +6,7 @@
 // font-family: 'Kaisei Tokumin', serif;
 
 .pp-game {
+  position: relative;
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
@@ -54,21 +55,25 @@
   height: 690px;
   border: 1px solid black;
   border-radius: 10px;
-}
 
-.pp-img-box__img {
-  border-radius: 10px;
-  height: 690px;
-  width: 690px;
-  background-position: center;
-  background-repeat: no-repeat;
   @media (max-width: 1600px) {
     width: 450px;
+    height: 450px;
   }
 
   @media (max-width: 1200px) {
     width: 380px;
+    height: 380px;
   }
+}
+
+.pp-img-box__img {
+  border-radius: 10px;
+  height: 100%;
+  width: 100%;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .pp-zoom-btn {
@@ -100,6 +105,49 @@
 
   @media (max-width: 1200px) {
     height: 20px;
+  }
+}
+
+.pp-magnified-img {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 110vh;
+  z-index: 20;
+  transform: translateY(-125px);
+  background-color: #161631;
+  transition: opacity 0.25s linear;
+
+  &__img {
+    display: block;
+    height: 80vh;
+    max-height: 1300px;
+    margin: auto;
+    transform: translateY(-5vh);
+  }
+
+  &__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: 40px;
+    width: 40px;
+    padding: 0;
+    background-color: #161631;
+    border: none;
+    cursor: pointer;
+
+    &:hover > img {
+      filter: drop-shadow(0 0 4px #ffffff);
+    }
+
+    & img {
+      height: 38px;
+      width: 38px;
+      margin: auto;
+    }
   }
 }
 
@@ -188,7 +236,19 @@
 }
 
 .btn-send-to-cart {
-  margin: 10px 0 0 50px;
+  margin: 10px 10px 0 auto;
+}
+
+.btn-alrd-added {
+  background-image: linear-gradient(to top, #025d07, #007806);
+  color: #ffffff;
+  box-shadow: 0px 10px 6px rgba(0, 89, 3, 0.25);
+  font-family: 'Inder', sans-serif;
+  cursor: pointer;
+
+  &:hover {
+    background-image: linear-gradient(to top, #025d07, #007806);
+  }
 }
 
 .btn-buy-now {

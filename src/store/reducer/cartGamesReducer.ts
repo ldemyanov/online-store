@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ICartGame, cartGames } from './cartGames';
+import { stat } from 'fs';
+import { ICartGame } from './cartGames';
 import { TGame } from './games';
 
 export type discountObj = { code: string; discount: number };
@@ -50,6 +51,7 @@ const gameSlice = createSlice({
       state.firstIndex = updateFirstIndex(state);
       state.lastIndex = updateLastIndex(state);
       state.totalQuantity = updateTotalQuantity(state);
+      updateLocalStorage(state);
     },
     decQuantity(state, action: PayloadAction<curGameID>) {
       let isZero = false;
@@ -73,6 +75,7 @@ const gameSlice = createSlice({
       }
       state.totalPrice = countTotalPrice(state);
       state.totalQuantity = updateTotalQuantity(state);
+      updateLocalStorage(state);
     },
     setItemsPerPage(state, action: PayloadAction<number>) {
       state.itemsPerPage = action.payload;
@@ -129,14 +132,24 @@ const gameSlice = createSlice({
       state.discountTotal = updateDiscountTotal(state.promoCodes);
     },
     addGameToCart(state, action: PayloadAction<TGame>) {
+      if (state.cartGames.some((game) => game.game.id === action.payload.id))
+        return;
       const newGame: ICartGame = {
         game: action.payload,
         quantity: 1,
         position: 0,
       };
       state.cartGames.push(newGame);
-      const dataJSON = JSON.stringify(state.cartGames);
-      localStorage.setItem('onlstr-LDDV', dataJSON);
+      updateLocalStorage(state);
+    },
+    clearCart(state) {
+      state.cartGames = [];
+      state.totalPrice = countTotalPrice(state);
+      state.firstIndex = updateFirstIndex(state);
+      state.lastIndex = updateLastIndex(state);
+      state.totalQuantity = updateTotalQuantity(state);
+      state.promoCodes = [];
+      updateLocalStorage(state);
     },
   },
 });
@@ -217,6 +230,11 @@ function retrieveLocalStorage() {
   const localData = localStorage.getItem('onlstr-LDDV');
   const data: ICartGame[] = localData ? JSON.parse(localData) : [];
   return data;
+}
+
+function updateLocalStorage(state: TCartPageState) {
+  const dataJSON = JSON.stringify(state.cartGames);
+  localStorage.setItem('onlstr-LDDV', dataJSON);
 }
 
 export const cartGameReducer = gameSlice.reducer;

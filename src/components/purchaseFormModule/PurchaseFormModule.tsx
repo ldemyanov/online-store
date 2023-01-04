@@ -10,13 +10,21 @@ import {
   validateForm,
   dateInitialValidator,
   cvvInitialValidator,
+  nameInitialValidator,
 } from '../../helperFunctions/formValidator';
+import { useAppDispatch } from '../../store';
+import { gameActions } from '../../store/reducer/cartGamesReducer';
 
 type setCounter = {
   setCounter: React.Dispatch<React.SetStateAction<number>>;
 };
 
 function PurchaseFormModule({ setCounter }: setCounter) {
+  const dispatch = useAppDispatch();
+  const clearCart = () => {
+    dispatch(gameActions.clearCart());
+  };
+
   return (
     <div className="pchs-module hidden dissolved">
       <img className="pchs-module__gold" src={gold} />
@@ -41,6 +49,7 @@ function PurchaseFormModule({ setCounter }: setCounter) {
             name="customer-name"
             maxLength={40}
             id="customer-name"
+            onChange={(e) => nameInitialValidator(e)}
           />
           <span className="form-error-msg error-msg__name hidden">
             Enter your name correctly
@@ -160,6 +169,7 @@ function PurchaseFormModule({ setCounter }: setCounter) {
               toggleElementDisplay('.pchs-module');
               toggleElementDisplay('.countdown-block');
               setCounter(4);
+              clearCart();
             }
           }}
         >
