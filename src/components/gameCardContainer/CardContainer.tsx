@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './CardContainer.scss';
 import GameCard from '../gameCard/GameCard';
 import ListGameCard from '../listGameCard/ListGameCard';
-import { useAppSelector } from '../../store';
-import { ELayout } from '../../store/reducer/gamesReducer';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { ELayout, gameActions } from '../../store/reducer/gamesReducer';
+import { useSearchParams } from 'react-router-dom';
 
 function CardContainer() {
   const { games, layout } = useAppSelector((state) => state.gameReducer);
+  const [searchParams] = useSearchParams();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const spLayout = searchParams.get('layout') || '';
+    if (spLayout in ELayout) {
+      dispatch(gameActions.setLayout(spLayout as ELayout));
+    }
+  }, []);
 
   return (
     <div className="card-container">
