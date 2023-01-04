@@ -5,6 +5,7 @@ import './shopCartCard.scss';
 import { ICartGame } from '../../store/reducer/cartGames';
 import { useAppDispatch } from '../../store';
 import { gameActions } from '../../store/reducer/cartGamesReducer';
+import { Link } from 'react-router-dom';
 
 function ShopCartCard({ game, quantity, position }: ICartGame) {
   const dispatch = useAppDispatch();
@@ -20,14 +21,18 @@ function ShopCartCard({ game, quantity, position }: ICartGame) {
   return (
     <div className="sc-game-card">
       <p className="sc-game-card__position">{position}</p>
-      <p className="sc-game-card__name">{game.name}</p>
+      <Link to={`/product?id=${id}`}>
+        <p className="sc-game-card__name">{game.name}</p>
+      </Link>
       <p className="sc-game-card__produced"> by: {game.produced}</p>
       <div className="sc-game-card__content">
         <div className="sc-game-data">
-          <div
-            className="sc-game-data__img"
-            style={{ backgroundImage: `url(${game.previewImg})` }}
-          ></div>
+          <Link to={`/product?id=${id}`}>
+            <div
+              className="sc-game-data__img"
+              style={{ backgroundImage: `url(${game.previewImg})` }}
+            ></div>
+          </Link>
           <div className="sc-game-card-dtls">
             <div className="sc-game-card-dtls__categories">
               <p>Categories:</p>
