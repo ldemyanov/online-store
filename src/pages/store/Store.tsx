@@ -6,7 +6,7 @@ import SearchParams from '../../components/searchParams/SearchParams';
 import SearchViewParams from '../../components/searchViewParams/SearchViewParams';
 import SortBlock from '../../components/sortBlock/SortBlock';
 import SortViewBlock from '../../components/sortViewBlock/SortViewBlock';
-import FilterManufactures from '../../components/filterManufacturers/FilterManufactures';
+import FilterProd from '../../components/filterProd/FilterProd';
 import './store.scss';
 
 function Store() {
@@ -22,7 +22,7 @@ function Store() {
         <SortBlock />
         <SortViewBlock />
         <CatSearchBlock />
-        <FilterManufactures />
+        <FilterProd />
       </div>
     </div>
   );

@@ -12,6 +12,16 @@ export type TGame = {
   produced: string;
 };
 
+export const PRODUCERS: string[] = [
+  'GMT Games',
+  'Hasbro',
+  'FryxGames',
+  'Arclight Games',
+  'Stonemaier Games',
+  'Cephalofair Games',
+  'Hans im Gluck',
+];
+
 export const games: TGame[] = [
   {
     id: 312023001,
