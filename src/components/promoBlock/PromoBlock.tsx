@@ -15,8 +15,10 @@ function PromoBlock() {
   const addPromo = (promo: string) => {
     dispatch(gameActions.addPromo(promo));
   };
+  // const { cartGames } = useAppSelector((state) => state.cartGameReducer);
 
   return (
+    // <div className={'promo ' + (cartGames.length > 0 ? '' : 'hidden')}>
     <div className="promo">
       <p className="promo__offer">Enter promocode:</p>
       <div className="promo-controls">

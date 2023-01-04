@@ -29,6 +29,10 @@
   justify-content: space-between;
   align-items: center;
 
+  &__data {
+    margin-left: auto;
+  }
+
   &__price {
     text-align: right;
     margin: 10px 40px 20px 0;
@@ -195,4 +199,8 @@ select > option {
 .sc-old-price {
   color: rgb(236, 78, 78);
   text-decoration: line-through;
+}
+
+.hidden {
+  display: none;
 }

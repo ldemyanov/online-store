@@ -5,13 +5,10 @@ import zoomIcon from './../../static/zoom-icon.png';
 import crossIcon from './../../static/white-cross.png';
 import CategoriesProdPage from '../../components/categoriesProdPage/CategoriesProdPage';
 import RatingDisplay from '../../components/ratingDisplay/RatingDisplay';
-import { useSearchParams } from 'react-router-dom';
-import { GAMES } from '../../store/reducer/games';
-import { TGame } from '../../store/reducer/games';
+import { useSearchParams, Link } from 'react-router-dom';
+import { GAMES, TGame } from '../../store/reducer/games';
 import { useAppDispatch, useAppSelector } from '../../store';
-
 import { gameActions } from '../../store/reducer/cartGamesReducer';
-import { Link } from 'react-router-dom';
 import toggleElementDisplay from '../../helperFunctions/displayToggler';
 
 const emptyGame = {
@@ -54,7 +51,7 @@ function AboutProduct() {
 
   function returnGameData() {
     return (
-      <div>
+      <div className="pp_parent-block">
         <div className="pp-magnified-img dissolved hidden">
           <img
             className="pp-magnified-img__img"
@@ -79,6 +76,7 @@ function AboutProduct() {
               <div
                 className="pp-zoom-btn"
                 onClick={() => {
+                  setBlockVerticalPosition();
                   toggleElementDisplay('.pp-magnified-img');
                   document.body.style.overflow = 'hidden';
                 }}
@@ -160,6 +158,13 @@ function AboutProduct() {
   }
 
   return thisGame === emptyGame ? returnEmptyBlock() : returnGameData();
+}
+
+function setBlockVerticalPosition() {
+  const verticalPosition: number = document.body.getBoundingClientRect().y;
+  const imageBlock = document.querySelector('.pp-magnified-img') as HTMLElement;
+  const value = Math.abs(verticalPosition);
+  imageBlock.style.top = `${value}px`;
 }
 
 function displayImg(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {

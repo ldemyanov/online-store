@@ -12,17 +12,19 @@ import './store.scss';
 function Store() {
   return (
     <div className="store">
-      <div className="store__left">
-        <SearchParams />
-        <SearchField />
-        <CardContainer />
-      </div>
-      <div className="store__right">
-        <SearchViewParams />
-        <SortBlock />
-        <SortViewBlock />
-        <CatSearchBlock />
-        <FilterProd />
+      <SearchParams />
+      <SearchField />
+      <div className="store-main">
+        <div className="store__left">
+          <CardContainer />
+        </div>
+        <div className="store__right">
+          <SearchViewParams />
+          <SortBlock />
+          <SortViewBlock />
+          <CatSearchBlock />
+          <FilterProd />
+        </div>
       </div>
     </div>
   );
