@@ -30,7 +30,7 @@ export enum ELayout {
   cards = 'cards',
 }
 
-type TSort = {
+export type TSort = {
   param: ESortParam;
   trend: ESortTrend;
 };
@@ -59,7 +59,6 @@ const initialState: TPageStoreState = {
 
 // To use only in reducers
 function filterGames(state: TPageStoreState): TGame[] {
-  console.log('Фильтрую');
   state.games = games.filter(
     (game) =>
       game.numOfPlayers > state.filterPlayers.min &&
@@ -72,8 +71,19 @@ function filterGames(state: TPageStoreState): TGame[] {
       (state.producers.length === 0 ||
         state.producers.find((prod) => prod === game.produced))
   );
-
+  state.games = sortGames(state.games, state.sort);
   return state.games;
+}
+
+function sortGames(games: TGame[], sort: TSort): TGame[] {
+  const { param, trend } = sort;
+  return games.sort((game1, game2) => {
+    if (trend === ESortTrend.ascending) {
+      return game1[param] - game2[param];
+    } else {
+      return game2[param] - game1[param];
+    }
+  });
 }
 
 const gameSlice = createSlice({
@@ -94,13 +104,7 @@ const gameSlice = createSlice({
     },
     sort(state, action: PayloadAction<TSort>) {
       state.sort = action.payload;
-      state.games = state.games.sort((game1, game2) => {
-        if (action.payload.trend === ESortTrend.ascending) {
-          return game1[action.payload.param] - game2[action.payload.param];
-        } else {
-          return game2[action.payload.param] - game1[action.payload.param];
-        }
-      });
+      state.games = sortGames(state.games, action.payload);
     },
     toggleCategory(state, action: PayloadAction<ECategory>) {
       state.categories = state.categories.includes(action.payload)
@@ -124,9 +128,8 @@ const gameSlice = createSlice({
     setProd(state, action: PayloadAction<string[]>) {
       state.producers = action.payload;
     },
-    resetFilters(state) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      state = initialState;
+    reset() {
+      return initialState;
     },
   },
 });
