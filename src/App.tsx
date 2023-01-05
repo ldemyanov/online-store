@@ -16,7 +16,7 @@ function App() {
           <Route path="/" element={<Store />} />
           <Route path="/product" element={<AboutProduct />} />
           <Route path="/cart" element={<ShoppingCart />} />
-          <Route path="/*" element={<WrongDirectoryPage />} />
+          <Route path="*" element={<WrongDirectoryPage />} />
         </Routes>
       </Wrapper>
     </Provider>
