@@ -6,7 +6,7 @@ import RatingDisplay from '../ratingDisplay/RatingDisplay';
 import CategoriesDisplay from '../categoriesDisplay/CategoriesDisplay';
 import { TGame } from '../../store/reducer/games';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { gameActions } from '../../store/reducer/cartGamesReducer';
+import { gameActions, curGameID } from '../../store/reducer/cartGamesReducer';
 import { Link } from 'react-router-dom';
 
 type TGameCardProps = {
@@ -18,6 +18,9 @@ function GameCard({ game }: TGameCardProps) {
   const { cartGames } = useAppSelector((state) => state.cartGameReducer);
   const addGameToCart = (newGame: TGame) => {
     dispatch(gameActions.addGameToCart(newGame));
+  };
+  const removeGame = (id: curGameID) => {
+    dispatch(gameActions.removeGame(id));
   };
   const isGameInCart = (id: number) => {
     return cartGames.some((game) => game.game.id === id);
@@ -56,7 +59,11 @@ function GameCard({ game }: TGameCardProps) {
               `game-dtls__add-btn ` +
               (isGameInCart(game.id) ? 'btn-alrd-added' : '')
             }
-            onClick={() => addGameToCart(game)}
+            onClick={() =>
+              isGameInCart(game.id)
+                ? removeGame({ id: game.id })
+                : addGameToCart(game)
+            }
           >
             {isGameInCart(game.id) ? 'Game added' : 'Add to cart'}
           </button>

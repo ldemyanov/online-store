@@ -18,7 +18,7 @@ type TCartPageState = {
   totalQuantity: number;
 };
 
-type curGameID = {
+export type curGameID = {
   id: number;
 };
 
@@ -140,6 +140,8 @@ const gameSlice = createSlice({
         position: 0,
       };
       state.cartGames.push(newGame);
+      state.totalPrice = countTotalPrice(state);
+      state.totalQuantity = updateTotalQuantity(state);
       updateLocalStorage(state);
     },
     clearCart(state) {
@@ -149,6 +151,12 @@ const gameSlice = createSlice({
       state.lastIndex = updateLastIndex(state);
       state.totalQuantity = updateTotalQuantity(state);
       state.promoCodes = [];
+      updateLocalStorage(state);
+    },
+    removeGame(state, action: PayloadAction<curGameID>) {
+      state.cartGames = removeGameFromCart(state, action);
+      state.totalPrice = countTotalPrice(state);
+      state.totalQuantity = updateTotalQuantity(state);
       updateLocalStorage(state);
     },
   },
