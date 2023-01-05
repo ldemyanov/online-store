@@ -37,6 +37,7 @@ export type TSort = {
 
 type TPageStoreState = {
   games: TGame[];
+  filterText: string;
   filterPlayers: TRange;
   filterCountInStock: TRange;
   filterPrice: TRange;
@@ -48,6 +49,7 @@ type TPageStoreState = {
 
 const initialState: TPageStoreState = {
   games: GAMES,
+  filterText: '',
   filterPlayers: { min: 1, max: 9 },
   filterCountInStock: { min: 0, max: 220 },
   filterPrice: { min: 5, max: 350 },
@@ -59,7 +61,8 @@ const initialState: TPageStoreState = {
 
 // To use only in reducers
 function filterGames(state: TPageStoreState): TGame[] {
-  state.games = GAMES.filter(
+  state.games = textFilter(GAMES, state.filterText);
+  state.games = state.games.filter(
     (game) =>
       game.numOfPlayers > state.filterPlayers.min &&
       game.numOfPlayers < state.filterPlayers.max &&
@@ -83,6 +86,20 @@ function sortGames(games: TGame[], sort: TSort): TGame[] {
     } else {
       return game2[param] - game1[param];
     }
+  });
+}
+
+function textFilter(games: TGame[], text: string): TGame[] {
+  return games.filter((game) => {
+    return (
+      game.name.toLowerCase().includes(text) ||
+      game.description.toLowerCase().includes(text) ||
+      game.rating.toString().toLowerCase().includes(text) ||
+      game.categories.some((cat) => cat.toLowerCase().includes(text)) ||
+      game.produced.toLowerCase().includes(text) ||
+      game.price.toString().toLowerCase().includes(text) ||
+      game.inStock.toString().toLowerCase().includes(text)
+    );
   });
 }
 
@@ -116,6 +133,10 @@ const gameSlice = createSlice({
       state.producers = state.producers.includes(action.payload)
         ? state.producers.filter((producer) => producer !== action.payload)
         : [...state.producers, action.payload];
+      state.games = filterGames(state);
+    },
+    setTextFilter(state, action: PayloadAction<string>) {
+      state.filterText = action.payload;
       state.games = filterGames(state);
     },
     setCategories(state, action: PayloadAction<ECategory[]>) {
