@@ -5,24 +5,44 @@
   display: flex;
   flex-direction: column;
   width: 260px;
-  height: 370px;
+  height: 390px;
   background-color: #ffffff;
   border-radius: 8px;
   // margin-bottom: 40px;
   // margin-right: 40px;
+
+  & a {
+    display: block;
+    margin: 0 auto;
+  }
 
   &__img {
     width: 230px;
     height: 230px;
     margin: 15px auto 0 auto;
     filter: drop-shadow(6px 6px 10px rgba(0, 0, 0, 0.25));
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.331);
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.694);
+    }
   }
 
   &__name {
     font-size: 20px;
+    min-height: 40px;
     margin: 5px auto 10px auto;
+    padding: 0 5px;
     font-weight: 600;
     font-family: 'Inder', sans-serif;
+    color: #161631;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+      filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.51));
+    }
   }
 }
 
@@ -82,5 +102,17 @@
     font-family: 'Inder', sans-serif;
     font-size: 14px;
     margin: 0 auto 0 15px;
+  }
+}
+
+.btn-alrd-added {
+  background-image: linear-gradient(to top, #025d07, #007806);
+  color: #ffffff;
+  box-shadow: 0px 10px 6px rgba(0, 89, 3, 0.25);
+  font-family: 'Inder', sans-serif;
+  cursor: pointer;
+
+  &:hover {
+    background-image: linear-gradient(to top, #025d07, #007806);
   }
 }

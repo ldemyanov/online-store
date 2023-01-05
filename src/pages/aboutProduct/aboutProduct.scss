@@ -5,6 +5,11 @@
 // font-family: 'Julius Sans One', sans-serif;
 // font-family: 'Kaisei Tokumin', serif;
 
+.pp_parent-block {
+  display: flex;
+  justify-content: center;
+}
+
 .pp-game {
   position: relative;
   display: flex;
@@ -109,14 +114,13 @@
 }
 
 .pp-magnified-img {
-  position: fixed;
+  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100vw;
-  height: 110vh;
+  height: 100vh;
   z-index: 20;
-  transform: translateY(-125px);
   background-color: #161631;
   transition: opacity 0.25s linear;
 
@@ -125,7 +129,6 @@
     height: 80vh;
     max-height: 1300px;
     margin: auto;
-    transform: translateY(-5vh);
   }
 
   &__close {

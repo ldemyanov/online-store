@@ -3,7 +3,7 @@
   box-sizing: border-box;
   width: 100%;
   height: 220px;
-  background: #FFFDFD;
+  background: #fffdfd;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
   border-radius: 7px;
 
@@ -12,14 +12,20 @@
     display: flex;
     flex-direction: column;
     &:last-child {
-        flex-basis: 200px;
-        padding: 25px;
+      flex-basis: 200px;
+      padding: 25px;
     }
   }
 
   &__image {
-    height: 100%;
+    height: 170px;
     aspect-ratio: 1;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.331);
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.694);
+    }
   }
 
   &__label {
@@ -34,6 +40,12 @@
     font-size: 24px;
     padding: 0;
     margin: 0;
+    color: #161631;
+    cursor: pointer;
+
+    &:hover {
+      filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.51));
+    }
   }
 
   &__description {
@@ -45,7 +57,7 @@
     line-height: 18px;
     overflow: hidden;
     text-overflow: ellipsis;
-    
+
     // experimental styles
     display: -webkit-box;
     -webkit-line-clamp: 6;
@@ -60,7 +72,7 @@
     font-family: 'Inder';
     font-size: 24px;
     text-align: right;
-    color: #0F873F;
+    color: #0f873f;
     &::after {
       content: '$';
     }
@@ -85,14 +97,25 @@
     box-shadow: 0px 10px 6px rgba(0, 0, 0, 0.25);
     font-family: 'Inder', sans-serif;
     cursor: pointer;
-  
+
     &:hover {
       background-image: linear-gradient(to top, #272756, #414280);
     }
-  
+
     &:active {
       box-shadow: 0px 7px 6px rgba(0, 0, 0, 0.25);
     }
   }
 }
 
+.btn-alrd-added {
+  background-image: linear-gradient(to top, #025d07, #007806);
+  color: #ffffff;
+  box-shadow: 0px 10px 6px rgba(0, 89, 3, 0.25);
+  font-family: 'Inder', sans-serif;
+  cursor: pointer;
+
+  &:hover {
+    background-image: linear-gradient(to top, #025d07, #007806);
+  }
+}

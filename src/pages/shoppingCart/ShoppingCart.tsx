@@ -16,6 +16,7 @@ enum ECartViewParams {
 }
 
 function ShoppingCart() {
+  const { cartGames } = useAppSelector((state) => state.cartGameReducer);
   const isFirstRenderRef = useRef(true);
   const dispatch = useAppDispatch();
   const {
@@ -73,7 +74,11 @@ function ShoppingCart() {
       <div className="sc-control-panel">
         <h2 className="sc-control-panel__name">Your Cart</h2>
         <PromoBlock />
-        <div className="pagination-panel">
+        <div
+          className={
+            'pagination-panel ' + (cartGames.length > 0 ? '' : 'hidden')
+          }
+        >
           <div className="pages-slider">
             <button
               className="pages-slider__btn btn-prev"
@@ -127,7 +132,9 @@ function ShoppingCart() {
       <SCCardContainer />
       <div className="sc-totals">
         <button
-          className="sc-totals__checkout"
+          className={
+            'sc-totals__checkout ' + (cartGames.length > 0 ? '' : 'hidden')
+          }
           onClick={() => {
             toggleElementDisplay('.pchs-module');
             toggleElementDisplay('.pchs-module-overlay');
