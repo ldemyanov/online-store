@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SearchViewParams.scss';
 import { ELayout, gameActions } from '../../store/reducer/gamesReducer';
 import { useAppSelector } from '../../store';
@@ -9,6 +9,8 @@ function SearchViewParams() {
   const dispatch = useDispatch();
   const { games, layout } = useAppSelector((state) => state.gameReducer);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [isBeingCopied, setIsBeingCopied] = useState(false);
+  const [filtersReset, setFiltersReset] = useState(false);
 
   const callbackSetLayout = (layout: ELayout) => {
     dispatch(gameActions.setLayout(layout));
@@ -17,14 +19,20 @@ function SearchViewParams() {
   };
 
   const copyLink = async () => {
+    if (isBeingCopied) return;
+    setIsBeingCopied(true);
     window.navigator.clipboard
       .writeText(window.location.href)
       .then(() => console.log('Скопировано'))
       .catch((e) => console.error(e));
+    setTimeout(() => setIsBeingCopied(false), 1500);
   };
 
   const reset = () => {
+    if (filtersReset) return;
+    setFiltersReset(true);
     dispatch(gameActions.reset());
+    setTimeout(() => setFiltersReset(false), 1000);
   };
 
   return (
@@ -56,16 +64,22 @@ function SearchViewParams() {
         </button>
       </div>
       <button
-        className="search-view-params-block__btn link-btn"
+        className={
+          'search-view-params-block__btn link-btn ' +
+          (isBeingCopied ? 'btn-activated' : '')
+        }
         onClick={copyLink}
       >
-        Copy Current Search Link
+        {isBeingCopied ? 'Copied' : 'Copy Current Search Link'}
       </button>
       <button
-        className="search-view-params-block__btn reset-btn"
+        className={
+          'search-view-params-block__btn reset-btn ' +
+          (filtersReset ? 'btn-activated' : '')
+        }
         onClick={reset}
       >
-        Reset All Filters
+        {filtersReset ? 'Filters reset' : 'Reset All Filters'}
       </button>
     </div>
   );

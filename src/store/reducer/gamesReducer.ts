@@ -55,7 +55,15 @@ const initialState: TPageStoreState = {
   filterPrice: { min: 5, max: 350 },
   sort: { param: ESortParam.rating, trend: ESortTrend.descending },
   categories: [],
-  producers: [],
+  producers: [
+    'Hans im Gluck',
+    'Cephalofair Games',
+    'Stonemaier Games',
+    'Arclight Games',
+    'FryxGames',
+    'GMT Games',
+    'Hasbro',
+  ],
   layout: ELayout.cards,
 };
 
@@ -90,15 +98,16 @@ function sortGames(games: TGame[], sort: TSort): TGame[] {
 }
 
 function textFilter(games: TGame[], text: string): TGame[] {
+  const textLowered: string = text.toLowerCase();
   return games.filter((game) => {
     return (
-      game.name.toLowerCase().includes(text) ||
-      game.description.toLowerCase().includes(text) ||
-      game.rating.toString().toLowerCase().includes(text) ||
-      game.categories.some((cat) => cat.toLowerCase().includes(text)) ||
-      game.produced.toLowerCase().includes(text) ||
-      game.price.toString().toLowerCase().includes(text) ||
-      game.inStock.toString().toLowerCase().includes(text)
+      game.name.toLowerCase().includes(textLowered) ||
+      game.description.toLowerCase().includes(textLowered) ||
+      game.rating.toString().toLowerCase().includes(textLowered) ||
+      game.categories.some((cat) => cat.toLowerCase().includes(textLowered)) ||
+      game.produced.toLowerCase().includes(textLowered) ||
+      game.price.toString().toLowerCase().includes(textLowered) ||
+      game.inStock.toString().toLowerCase().includes(textLowered)
     );
   });
 }
@@ -148,6 +157,7 @@ const gameSlice = createSlice({
     },
     setProd(state, action: PayloadAction<string[]>) {
       state.producers = action.payload;
+      console.log(state.producers);
     },
     reset() {
       return initialState;

@@ -8,7 +8,7 @@ import RatingDisplay from '../../components/ratingDisplay/RatingDisplay';
 import { useSearchParams, Link } from 'react-router-dom';
 import { GAMES, TGame } from '../../store/reducer/games';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { gameActions } from '../../store/reducer/cartGamesReducer';
+import { gameActions, curGameID } from '../../store/reducer/cartGamesReducer';
 import toggleElementDisplay from '../../helperFunctions/displayToggler';
 
 const emptyGame = {
@@ -32,6 +32,9 @@ function AboutProduct() {
   const dispatch = useAppDispatch();
   const addGameToCart = (newGame: TGame) => {
     dispatch(gameActions.addGameToCart(newGame));
+  };
+  const removeGame = (id: curGameID) => {
+    dispatch(gameActions.removeGame(id));
   };
   const isGameInCart = (id: number) => {
     return cartGames.some((game) => game.game.id === id);
@@ -123,7 +126,11 @@ function AboutProduct() {
                 `pp-controls__btn btn-send-to-cart ` +
                 (isGameInCart(thisGame.id) ? 'btn-alrd-added' : '')
               }
-              onClick={() => addGameToCart(thisGame)}
+              onClick={() =>
+                isGameInCart(thisGame.id)
+                  ? removeGame({ id: thisGame.id })
+                  : addGameToCart(thisGame)
+              }
             >
               {isGameInCart(thisGame.id) ? 'Game added' : 'Send to cart'}
             </button>

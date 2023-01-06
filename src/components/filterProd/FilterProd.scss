@@ -11,9 +11,9 @@
 
   &::before {
     position: absolute;
-    content: "";
+    content: '';
     width: 50px;
-    left: -50px;
+    left: -49px;
     top: 0;
     bottom: 0;
     background: #fffdfd;
@@ -23,15 +23,15 @@
   &__title {
     font-size: 26px;
     font-weight: 600;
-    font-family: "Inder", sans-serif;
+    font-family: 'Inder', sans-serif;
     padding: 0 0 15px;
     margin: 0;
   }
 
- &__list {
+  &__list {
     margin: 0;
     padding: 0;
- }
+  }
 
   &__li {
     list-style: none;
@@ -39,25 +39,36 @@
     padding: 0;
     display: flex;
     align-items: center;
+    &:hover {
+      filter: drop-shadow(4px 4px 2px #2e2f5b67);
+    }
   }
 
   &__checkbox {
     -webkit-appearance: none;
     appearance: none;
-    width: 30px;
-    height: 30px;
-    border: 1px solid black;
+    width: 35px;
+    height: 35px;
+    border: 2px solid black;
     outline: none;
     cursor: pointer;
     margin: 0;
 
     &:checked {
-      background: rgb(38, 107, 31);
+      background-image: url('./../../static/tick-icon-cat.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      filter: drop-shadow(0px 0px 4px rgb(14, 137, 0));
+
+      & ~ .flt-prod__name {
+        filter: drop-shadow(0px 0px 4px rgb(14, 137, 0));
+      }
     }
   }
 
   &__name {
-    font-family: "Inder", sans-serif;
+    font-family: 'Inder', sans-serif;
     font-size: 18px;
     margin: 0 0 0 20px;
     cursor: pointer;

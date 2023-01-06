@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import AboutProduct from './pages/aboutProduct/AboutProduct';
 import ShoppingCart from './pages/shoppingCart/ShoppingCart';
@@ -16,7 +16,8 @@ function App() {
           <Route path="/" element={<Store />} />
           <Route path="/product" element={<AboutProduct />} />
           <Route path="/cart" element={<ShoppingCart />} />
-          <Route path="/*" element={<WrongDirectoryPage />} />
+          <Route path="/404" element={<WrongDirectoryPage />} />
+          <Route path="*" element={<Navigate to="/404" />} />
         </Routes>
       </Wrapper>
     </Provider>
