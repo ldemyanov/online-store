@@ -9,6 +9,9 @@
   position: absolute;
   width: 100%;
   z-index: -1;
+  max-width: 2450px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .wrapper__main {
