@@ -25,17 +25,20 @@ function GameCard({ game }: TGameCardProps) {
   const isGameInCart = (id: number) => {
     return cartGames.some((game) => game.game.id === id);
   };
+  const linkString = `/product?prodBy=${game.produced
+    .split(' ')
+    .join('-')}&id=${game.id}`;
 
   return (
     <div className="game-card">
-      <Link to={`/product?id=${game.id}`}>
+      <Link to={linkString}>
         <img
           className="game-card__img"
           src={game.previewImg}
           alt="Image of a game"
         />
       </Link>
-      <Link to={`/product?id=${game.id}`}>
+      <Link to={linkString}>
         <p className="game-card__name">{game.name}</p>
       </Link>
       <div className="game-dtls">

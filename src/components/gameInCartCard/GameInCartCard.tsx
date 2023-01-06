@@ -15,17 +15,20 @@ function GameInCartCard({ game, quantity }: ICartGame) {
   const decQuantity = (id: number) => {
     dispatch(gameActions.decQuantity({ id }));
   };
+  const linkString = `/product?prodBy=${game.produced
+    .split(' ')
+    .join('-')}&id=${game.id}`;
 
   return (
     <div className="hd-game-card">
-      <Link to={`/product?id=${id}`}>
+      <Link to={linkString}>
         <div
           className="hd-game-card__img"
           style={{ backgroundImage: `url(${game.images[0]})` }}
         ></div>
       </Link>
       <div className="hd-game-card-dtls">
-        <Link to={`/product?id=${id}`}>
+        <Link to={linkString}>
           <p className="hd-game-card-dtls__name">{game.name}</p>
         </Link>
         <p className="hd-game-card-dtls__price">

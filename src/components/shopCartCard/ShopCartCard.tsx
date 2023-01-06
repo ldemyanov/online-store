@@ -18,16 +18,20 @@ function ShopCartCard({ game, quantity, position }: ICartGame) {
     dispatch(gameActions.decQuantity({ id }));
   };
 
+  const linkString = `/product?prodBy=${game.produced
+    .split(' ')
+    .join('-')}&id=${game.id}`;
+
   return (
     <div className="sc-game-card">
       <p className="sc-game-card__position">{position}</p>
-      <Link to={`/product?id=${id}`}>
+      <Link to={linkString}>
         <p className="sc-game-card__name">{game.name}</p>
       </Link>
       <p className="sc-game-card__produced"> by: {game.produced}</p>
       <div className="sc-game-card__content">
         <div className="sc-game-data">
-          <Link to={`/product?id=${id}`}>
+          <Link to={linkString}>
             <div
               className="sc-game-data__img"
               style={{ backgroundImage: `url(${game.previewImg})` }}

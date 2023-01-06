@@ -55,15 +55,7 @@ const initialState: TPageStoreState = {
   filterPrice: { min: 5, max: 350 },
   sort: { param: ESortParam.rating, trend: ESortTrend.descending },
   categories: [],
-  producers: [
-    'Hans im Gluck',
-    'Cephalofair Games',
-    'Stonemaier Games',
-    'Arclight Games',
-    'FryxGames',
-    'GMT Games',
-    'Hasbro',
-  ],
+  producers: [],
   layout: ELayout.cards,
 };
 
