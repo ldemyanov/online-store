@@ -35,8 +35,8 @@ function AboutProduct() {
   };
 
   useEffect(() => {
-    document.title = 'Tabletop Geek: About the game';
-  }, []);
+    document.title = `Tabletop Geek: ${thisGame.name}`;
+  }, [thisGame]);
 
   useEffect(() => {
     const id = searchParams.get('id');
