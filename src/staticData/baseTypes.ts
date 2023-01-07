@@ -20,6 +20,7 @@ export type TGame = {
 
 export type TGameCardProps = {
   game: TGame;
+  prodParent?: boolean;
 };
 
 export type TGameCardsProp = {

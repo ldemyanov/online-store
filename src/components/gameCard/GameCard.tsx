@@ -9,7 +9,7 @@ import { gameActions } from '../../store/reducer/cartGamesReducer';
 import { Link } from 'react-router-dom';
 import * as types from './../../staticData/baseTypes';
 
-function GameCard({ game }: types.TGameCardProps) {
+function GameCard({ game, prodParent }: types.TGameCardProps) {
   const dispatch = useAppDispatch();
   const { cartGames } = useAppSelector((state) => state.cartGameReducer);
   const addGameToCart = (newGame: types.TGame) => {
@@ -27,14 +27,14 @@ function GameCard({ game }: types.TGameCardProps) {
 
   return (
     <div className="game-card">
-      <Link to={linkString} target="_blank">
+      <Link to={linkString} target={prodParent ? '_self' : '_blank'}>
         <img
           className="game-card__img"
           src={game.previewImg}
           alt="Image of a game"
         />
       </Link>
-      <Link to={linkString} target="_blank">
+      <Link to={linkString} target={prodParent ? '_self' : '_blank'}>
         <p className="game-card__name">{game.name}</p>
       </Link>
       <div className="game-dtls">

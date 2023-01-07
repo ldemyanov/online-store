@@ -16,7 +16,7 @@ function ProducerPage({ games }: types.TGameCardsProp) {
         <p className="producer-page__name">{producer}</p>
         <div className="producer-page__container">
           {games.map((game) => {
-            return <GameCard key={game.id} game={game} />;
+            return <GameCard key={game.id} game={game} prodParent={true} />;
           })}
         </div>
       </div>
