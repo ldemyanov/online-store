@@ -36,6 +36,10 @@ function ShoppingCart() {
   }, []);
 
   useEffect(() => {
+    document.title = 'Tabletop Geek: Your Cart';
+  }, []);
+
+  useEffect(() => {
     const itemsPerPage = searchParams.get(types.ECartViewParams.itemsPerPage);
     const currentPage = searchParams.get(types.ECartViewParams.currentPage);
 

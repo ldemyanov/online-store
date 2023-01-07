@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './404page.scss';
 import troll from './../../static/troll.png';
 import map from './../../static/map.png';
 
 function WrongDirectoryPage() {
+  useEffect(() => {
+    document.title = 'Tabletop Geek: Page not found';
+  }, []);
+
   return (
     <div className="wd-page">
       <img className="wd-page__map" src={map} alt="map image" />

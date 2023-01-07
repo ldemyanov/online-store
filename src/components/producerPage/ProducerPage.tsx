@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './producerPage.scss';
 import GameCard from '../gameCard/GameCard';
 import BreadCrumbs from '../breadCrumbs/BreadCrumbs';
@@ -6,6 +6,11 @@ import * as types from './../../staticData/baseTypes';
 
 function ProducerPage({ games }: types.TGameCardsProp) {
   const producer = games.length > 0 ? games[0].produced : 'GMT Games';
+
+  useEffect(() => {
+    document.title = `Tabletop Geek: ${producer}`;
+  }, []);
+
   return (
     <>
       <div className="producer-page-crumbs">

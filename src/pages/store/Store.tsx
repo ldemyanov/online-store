@@ -16,6 +16,10 @@ function Store() {
     dispatch(gameActions.initialData());
   }, []);
 
+  useEffect(() => {
+    document.title = 'Tabletop Geek: Store';
+  }, []);
+
   return (
     <div className="store">
       <Search />
