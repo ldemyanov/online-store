@@ -1,20 +1,16 @@
 import React from 'react';
 import './ListGameCard.scss';
-import { TGame } from '../../store/reducer/games';
 import RatingDisplay from '../ratingDisplay/RatingDisplay';
 import CategoriesDisplay from '../categoriesDisplay/CategoriesDisplay';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { gameActions } from '../../store/reducer/cartGamesReducer';
 import { Link } from 'react-router-dom';
+import * as types from './../../staticData/baseTypes';
 
-type TGameCardProps = {
-  game: TGame;
-};
-
-function ListGameCard({ game }: TGameCardProps) {
+function ListGameCard({ game }: types.TGameCardProps) {
   const dispatch = useAppDispatch();
   const { cartGames } = useAppSelector((state) => state.cartGameReducer);
-  const addGameToCart = (newGame: TGame) => {
+  const addGameToCart = (newGame: types.TGame) => {
     dispatch(gameActions.addGameToCart(newGame));
   };
   const isGameInCart = (id: number) => {

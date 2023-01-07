@@ -5,12 +5,9 @@ import catEconomy from './../../static/cat-economy.png';
 import catKids from './../../static/cat-kids.png';
 import catQuiz from './../../static/cat-quiz.png';
 import catStrategy from './../../static/cat-strategy.png';
+import * as types from './../../staticData/baseTypes';
 
-type TPropsCategoriesDisplay = {
-  categories: string[];
-};
-
-function CategoriesDisplay(props: TPropsCategoriesDisplay) {
+function CategoriesDisplay(props: types.TPropsCategoriesDisplay) {
   const totalCategories = [];
   if (props.categories.includes('strategy'))
     totalCategories.push(

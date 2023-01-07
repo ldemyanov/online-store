@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './SearchViewParams.scss';
-import { ELayout, gameActions } from '../../store/reducer/gamesReducer';
+import { gameActions } from '../../store/reducer/gamesReducer';
 import { useAppSelector } from '../../store';
 import { useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
+import * as types from './../../staticData/baseTypes';
 
 function SearchViewParams() {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ function SearchViewParams() {
   const [isBeingCopied, setIsBeingCopied] = useState(false);
   const [filtersReset, setFiltersReset] = useState(false);
 
-  const callbackSetLayout = (layout: ELayout) => {
+  const callbackSetLayout = (layout: types.ELayout) => {
     dispatch(gameActions.setLayout(layout));
     searchParams.set('layout', layout);
     setSearchParams(searchParams);
@@ -44,21 +45,21 @@ function SearchViewParams() {
         <p className="search-view-btns__word">View:</p>
         <button
           className={
-            layout === ELayout.cards
+            layout === types.ELayout.cards
               ? 'search-view-btns__btn search-view-btns__btn_active'
               : 'search-view-btns__btn'
           }
-          onClick={() => callbackSetLayout(ELayout.cards)}
+          onClick={() => callbackSetLayout(types.ELayout.cards)}
         >
           Cards
         </button>
         <button
           className={
-            layout === ELayout.list
+            layout === types.ELayout.list
               ? 'search-view-btns__btn search-view-btns__btn_active'
               : 'search-view-btns__btn'
           }
-          onClick={() => callbackSetLayout(ELayout.list)}
+          onClick={() => callbackSetLayout(types.ELayout.list)}
         >
           List
         </button>

@@ -1,17 +1,10 @@
 import React from 'react';
 import './breadCrumbs.scss';
 import { Link } from 'react-router-dom';
-import { TGame } from '../../store/reducer/games';
 import arrowRight from './../../static/arrow-right-crumbs.png';
+import * as types from './../../staticData/baseTypes';
 
-type crumbsParams = {
-  params: {
-    producer: string;
-    game?: TGame;
-  };
-};
-
-function BreadCrumbs({ params }: crumbsParams) {
+function BreadCrumbs({ params }: types.crumbsParams) {
   const nameOfTheProducer = params.producer;
   const linkToProducerGameSet =
     `/product?` + `prodBy=${nameOfTheProducer.split(' ').join('-')}`;

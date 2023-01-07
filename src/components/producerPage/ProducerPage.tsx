@@ -1,14 +1,10 @@
 import React from 'react';
 import './producerPage.scss';
-import { TGame } from '../../store/reducer/games';
 import GameCard from '../gameCard/GameCard';
 import BreadCrumbs from '../breadCrumbs/BreadCrumbs';
+import * as types from './../../staticData/baseTypes';
 
-type TGameCardsProp = {
-  games: TGame[];
-};
-
-function ProducerPage({ games }: TGameCardsProp) {
+function ProducerPage({ games }: types.TGameCardsProp) {
   const producer = games.length > 0 ? games[0].produced : 'GMT Games';
   return (
     <>

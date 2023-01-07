@@ -5,7 +5,7 @@ import AboutProduct from './pages/aboutProduct/AboutProduct';
 import ShoppingCart from './pages/shoppingCart/ShoppingCart';
 import Store from './pages/store/Store';
 import { appStore } from './store';
-import Wrapper from './wrapper/wrapper';
+import Wrapper from './components/wrapper/wrapper';
 import WrongDirectoryPage from './pages/404/404page';
 
 function App() {

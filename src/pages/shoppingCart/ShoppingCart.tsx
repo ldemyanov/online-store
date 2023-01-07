@@ -8,12 +8,7 @@ import { gameActions } from '../../store/reducer/cartGamesReducer';
 import PromoBlock from '../../components/promoBlock/PromoBlock';
 import PrchsModuleContainer from '../../components/prchsModuleContainer/PrchsModuleContainer';
 import toggleElementDisplay from '../../helperFunctions/displayToggler';
-
-// http://localhost:3000/cart?itemsPerPage=3&currentPage=6
-enum ECartViewParams {
-  itemsPerPage = 'itemsPerPage',
-  currentPage = 'currentPage',
-}
+import * as types from './../../staticData/baseTypes';
 
 function ShoppingCart() {
   const { cartGames } = useAppSelector((state) => state.cartGameReducer);
@@ -41,8 +36,8 @@ function ShoppingCart() {
   }, []);
 
   useEffect(() => {
-    const itemsPerPage = searchParams.get(ECartViewParams.itemsPerPage);
-    const currentPage = searchParams.get(ECartViewParams.currentPage);
+    const itemsPerPage = searchParams.get(types.ECartViewParams.itemsPerPage);
+    const currentPage = searchParams.get(types.ECartViewParams.currentPage);
 
     if (itemsPerPage) {
       const limit = +itemsPerPage;
@@ -58,8 +53,8 @@ function ShoppingCart() {
   useEffect(() => {
     if (!isFirstRenderRef.current) {
       setSearchParams({
-        [ECartViewParams.itemsPerPage]: itemsPerPage.toString(),
-        [ECartViewParams.currentPage]: currentPage.toString(),
+        [types.ECartViewParams.itemsPerPage]: itemsPerPage.toString(),
+        [types.ECartViewParams.currentPage]: currentPage.toString(),
       });
     }
     isFirstRenderRef.current = false;

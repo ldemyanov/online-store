@@ -6,16 +6,11 @@ import catKids from './../../static/cat-kids.png';
 import catQuiz from './../../static/cat-quiz.png';
 import catStrategy from './../../static/cat-strategy.png';
 import catRole from './../../static/role-play-icon.png';
-import { ECategory, gameActions } from '../../store/reducer/gamesReducer';
+import { gameActions } from '../../store/reducer/gamesReducer';
 import { useAppSelector } from '../../store';
 import { useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
-
-type propsDivCategory = {
-  category: ECategory;
-  srcImg: string;
-  label: string;
-};
+import * as types from './../../staticData/baseTypes';
 
 function CategorySearchBlock() {
   const { categories } = useAppSelector((state) => state.gameReducer);
@@ -23,7 +18,7 @@ function CategorySearchBlock() {
   const dispatch = useDispatch();
   const isFirstRender = useRef(true);
 
-  const callbackToggleCategory = (cat: ECategory) => {
+  const callbackToggleCategory = (cat: types.ECategory) => {
     dispatch(gameActions.toggleCategory(cat));
   };
 
@@ -31,10 +26,10 @@ function CategorySearchBlock() {
     const strCategories = searchParams.get('category') || '';
     const arrayCategories = strCategories
       .split('-')
-      .filter((cat) => cat in ECategory);
+      .filter((cat) => cat in types.ECategory);
 
     if (arrayCategories.length) {
-      dispatch(gameActions.setCategories(arrayCategories as ECategory[]));
+      dispatch(gameActions.setCategories(arrayCategories as types.ECategory[]));
     }
   }, []);
 
@@ -47,7 +42,7 @@ function CategorySearchBlock() {
     isFirstRender.current = false;
   }, [categories]);
 
-  const DivCategory = ({ category, srcImg, label }: propsDivCategory) => (
+  const DivCategory = ({ category, srcImg, label }: types.propsDivCategory) => (
     <div
       className={
         categories.includes(category)
@@ -65,32 +60,32 @@ function CategorySearchBlock() {
     <div className="categories-search-block">
       <p className="categories-search-block__title">Categories of Games</p>
       <DivCategory
-        category={ECategory.cards}
+        category={types.ECategory.cards}
         srcImg={catCards}
         label="Card Games"
       />
       <DivCategory
-        category={ECategory.economy}
+        category={types.ECategory.economy}
         srcImg={catEconomy}
         label="Economy Games"
       />
       <DivCategory
-        category={ECategory.kids}
+        category={types.ECategory.kids}
         srcImg={catKids}
         label="For children"
       />
       <DivCategory
-        category={ECategory.quiz}
+        category={types.ECategory.quiz}
         srcImg={catQuiz}
         label="Quizzes and Mind Games"
       />
       <DivCategory
-        category={ECategory.strategy}
+        category={types.ECategory.strategy}
         srcImg={catStrategy}
         label="Strategy games"
       />
       <DivCategory
-        category={ECategory.role}
+        category={types.ECategory.role}
         srcImg={catRole}
         label="Role-playing games"
       />

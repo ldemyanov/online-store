@@ -1,9 +1,3 @@
-import { TGame } from './games';
+import * as types from './../../staticData/baseTypes';
 
-export interface ICartGame {
-  game: TGame;
-  quantity: number;
-  position: number;
-}
-
-export const cartGames: ICartGame[] = [];
+export const cartGames: types.ICartGame[] = [];

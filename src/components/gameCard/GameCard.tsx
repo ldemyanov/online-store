@@ -4,22 +4,18 @@ import tick from './../../static/tick.png';
 import cross from './../../static/cross.png';
 import RatingDisplay from '../ratingDisplay/RatingDisplay';
 import CategoriesDisplay from '../categoriesDisplay/CategoriesDisplay';
-import { TGame } from '../../store/reducer/games';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { gameActions, curGameID } from '../../store/reducer/cartGamesReducer';
+import { gameActions } from '../../store/reducer/cartGamesReducer';
 import { Link } from 'react-router-dom';
+import * as types from './../../staticData/baseTypes';
 
-type TGameCardProps = {
-  game: TGame;
-};
-
-function GameCard({ game }: TGameCardProps) {
+function GameCard({ game }: types.TGameCardProps) {
   const dispatch = useAppDispatch();
   const { cartGames } = useAppSelector((state) => state.cartGameReducer);
-  const addGameToCart = (newGame: TGame) => {
+  const addGameToCart = (newGame: types.TGame) => {
     dispatch(gameActions.addGameToCart(newGame));
   };
-  const removeGame = (id: curGameID) => {
+  const removeGame = (id: types.curGameID) => {
     dispatch(gameActions.removeGame(id));
   };
   const isGameInCart = (id: number) => {

@@ -2,12 +2,12 @@ import React from 'react';
 import CategoriesDisplay from '../categoriesDisplay/CategoriesDisplay';
 import RatingDisplay from '../ratingDisplay/RatingDisplay';
 import './shopCartCard.scss';
-import { ICartGame } from '../../store/reducer/cartGames';
 import { useAppDispatch } from '../../store';
 import { gameActions } from '../../store/reducer/cartGamesReducer';
 import { Link } from 'react-router-dom';
+import * as types from './../../staticData/baseTypes';
 
-function ShopCartCard({ game, quantity, position }: ICartGame) {
+function ShopCartCard({ game, quantity, position }: types.ICartGame) {
   const dispatch = useAppDispatch();
   const id = game.id;
 

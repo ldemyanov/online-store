@@ -6,10 +6,11 @@ import crossIcon from './../../static/white-cross.png';
 import friendlyOrc from './../../static/friendly-orc.jpg';
 import CategoriesProdPage from '../../components/categoriesProdPage/CategoriesProdPage';
 import RatingDisplay from '../../components/ratingDisplay/RatingDisplay';
+import * as types from './../../staticData/baseTypes';
 import { useSearchParams, Link } from 'react-router-dom';
-import { GAMES, TGame } from '../../store/reducer/games';
+import { GAMES } from '../../store/reducer/games';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { gameActions, curGameID } from '../../store/reducer/cartGamesReducer';
+import { gameActions } from '../../store/reducer/cartGamesReducer';
 import toggleElementDisplay from '../../helperFunctions/displayToggler';
 import { EMPTY_GAME } from '../../staticData/baseValues';
 import ProducerPage from '../../components/producerPage/ProducerPage';
@@ -19,14 +20,14 @@ function AboutProduct() {
   const [searchParams] = useSearchParams();
   const [thisGame, setThisGame] = useState(EMPTY_GAME);
   const [displayGame, setDisplayGame] = useState(false);
-  const arrOfGames: TGame[] = [];
+  const arrOfGames: types.TGame[] = [];
   const [producerGames, setProducerGames] = useState(arrOfGames);
   const { cartGames } = useAppSelector((state) => state.cartGameReducer);
   const dispatch = useAppDispatch();
-  const addGameToCart = (newGame: TGame) => {
+  const addGameToCart = (newGame: types.TGame) => {
     dispatch(gameActions.addGameToCart(newGame));
   };
-  const removeGame = (id: curGameID) => {
+  const removeGame = (id: types.curGameID) => {
     dispatch(gameActions.removeGame(id));
   };
   const isGameInCart = (id: number) => {
