@@ -51,6 +51,7 @@ function HeaderCart() {
         </p>
         <HeaderCardsContainer />
         <button
+          type="button"
           className="cart-content__btn"
           onClick={() => {
             if (!match) navigate('/cart');

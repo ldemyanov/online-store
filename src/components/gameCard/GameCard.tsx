@@ -54,6 +54,7 @@ function GameCard({ game, prodParent }: types.TGameCardProps) {
             </p>
           </div>
           <button
+            type="button"
             className={
               `game-dtls__add-btn ` +
               (isGameInCart(game.id) ? 'btn-alrd-added' : '')

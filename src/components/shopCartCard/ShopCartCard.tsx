@@ -53,6 +53,7 @@ function ShopCartCard({ game, quantity, position }: types.ICartGame) {
               <span className="sc-game-quantity__line">Quantity:</span>
               <div className="sc-game-quantity-panel">
                 <button
+                  type="button"
                   className="sc-game-quantity-panel__btn sc-quantity-btn-less"
                   onClick={() => decQuantity(id)}
                 >
@@ -60,6 +61,7 @@ function ShopCartCard({ game, quantity, position }: types.ICartGame) {
                 </button>
                 <span className="sc-game-quantity-panel__num">{quantity}</span>
                 <button
+                  type="button"
                   className="sc-game-quantity-panel__btn sc-quantity-btn-more"
                   onClick={() => incQuantity(id)}
                 >

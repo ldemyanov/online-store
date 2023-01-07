@@ -16,6 +16,7 @@ function PromoActivated({ promo, index }: types.TPromoCode) {
       <p className="promo-code__name">{promo.code}</p>
       <p className="promo-code__value">{promo.discount} %</p>
       <button
+        type="button"
         className="promo-code__deactivate"
         onClick={() => removePromo(index)}
       >

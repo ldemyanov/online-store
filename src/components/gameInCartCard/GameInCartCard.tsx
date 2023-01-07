@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 function GameInCartCard({ game, quantity }: types.ICartGame) {
   const dispatch = useAppDispatch();
   const id = game.id;
-
   const incQuantity = (id: number) => {
     dispatch(gameActions.incQuantity({ id }));
   };
@@ -38,6 +37,7 @@ function GameInCartCard({ game, quantity }: types.ICartGame) {
           <span className="hd-game-quantity__line">Quantity:</span>
           <div className="hd-game-quantity-panel">
             <button
+              type="button"
               className="hd-game-quantity-panel__btn hd-quantity-btn-less"
               onClick={() => decQuantity(id)}
             >
@@ -45,6 +45,7 @@ function GameInCartCard({ game, quantity }: types.ICartGame) {
             </button>
             <span className="hd-game-quantity-panel__num">{quantity}</span>
             <button
+              type="button"
               className="hd-game-quantity-panel__btn hd-quantity-btn-more"
               onClick={() => incQuantity(id)}
             >

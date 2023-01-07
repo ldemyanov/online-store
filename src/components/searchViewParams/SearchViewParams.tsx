@@ -43,6 +43,7 @@ function SearchViewParams() {
       <div className="search-view-btns">
         <p className="search-view-btns__word">View:</p>
         <button
+          type="button"
           className={
             layout === types.ELayout.cards
               ? 'search-view-btns__btn search-view-btns__btn_active'
@@ -53,6 +54,7 @@ function SearchViewParams() {
           Cards
         </button>
         <button
+          type="button"
           className={
             layout === types.ELayout.list
               ? 'search-view-btns__btn search-view-btns__btn_active'
@@ -64,6 +66,7 @@ function SearchViewParams() {
         </button>
       </div>
       <button
+        type="button"
         className={
           'search-view-params-block__btn link-btn ' +
           (isBeingCopied ? 'btn-activated' : '')
@@ -73,6 +76,7 @@ function SearchViewParams() {
         {isBeingCopied ? 'Copied' : 'Copy Current Search Link'}
       </button>
       <button
+        type="button"
         className={
           'search-view-params-block__btn reset-btn ' +
           (filtersReset ? 'btn-activated' : '')

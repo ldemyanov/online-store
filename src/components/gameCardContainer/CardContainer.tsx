@@ -19,7 +19,6 @@ function CardContainer() {
     }
   }, []);
 
-  console.log(games);
   return (
     <div className="card-container">
       {games.map((game) => {

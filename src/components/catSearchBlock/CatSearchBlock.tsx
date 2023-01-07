@@ -87,7 +87,7 @@ function CategorySearchBlock() {
       <DivCategory
         category={types.ECategory.role}
         srcImg={catRole}
-        label="Role-playing games"
+        label="Role-play games"
       />
     </div>
   );

@@ -9,8 +9,8 @@ function ScCardContainer() {
   const { cartGames, firstIndex, lastIndex } = useAppSelector(
     (state) => state.cartGameReducer
   );
-
   let blockContent: JSX.Element[] | JSX.Element;
+
   if (cartGames.length > 0) {
     blockContent = cartGames
       .filter((_, index) => index >= firstIndex && index <= lastIndex)

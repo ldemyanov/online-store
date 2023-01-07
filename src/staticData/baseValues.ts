@@ -50,3 +50,5 @@ export const PRODUCERS: string[] = [
   'Cephalofair Games',
   'Hans im Gluck',
 ];
+
+export const PROMOCODES = ['ZEUS', 'SLAANESH', 'ENTROPY', 'MAFIA'];

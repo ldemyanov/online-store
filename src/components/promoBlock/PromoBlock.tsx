@@ -3,6 +3,7 @@ import PromoContainer from '../promoContainer/PromoContainer';
 import './promoBlock.scss';
 import { gameActions } from '../../store/reducer/cartGamesReducer';
 import { useAppDispatch } from '../../store';
+import * as baseV from './../../staticData/baseValues';
 
 function PromoBlock() {
   const [promos, setPromos] = useState(false);
@@ -35,6 +36,7 @@ function PromoBlock() {
           }}
         />
         <button
+          type="button"
           className={'promo__activate ' + (buttonState ? '' : 'inactive-btn')}
           onClick={() => {
             if (buttonState) {
@@ -71,11 +73,9 @@ function PromoBlock() {
   );
 }
 
-const validPromos = ['ZEUS', 'SLAANESH', 'ENTROPY', 'MAFIA'];
-
 function checkInput(value: string) {
-  if (!validPromos.includes(value)) return 'is-invalid';
-  if (validPromos.includes(value)) {
+  if (!baseV.PROMOCODES.includes(value)) return 'is-invalid';
+  if (baseV.PROMOCODES.includes(value)) {
     return 'is-valid';
   }
   return '';

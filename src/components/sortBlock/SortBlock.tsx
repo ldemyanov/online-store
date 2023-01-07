@@ -55,12 +55,14 @@ function SortBlock() {
     <div className="sort">
       <div className="sort__block">
         <button
+          type="button"
           className={getClassParam(types.ESortParam.rating)}
           onClick={() => setSort({ param: types.ESortParam.rating, trend })}
         >
           Sort By Rating
         </button>
         <button
+          type="button"
           className={getClassParam(types.ESortParam.price)}
           onClick={() => setSort({ param: types.ESortParam.price, trend })}
         >
@@ -70,12 +72,14 @@ function SortBlock() {
       <div className="sort__block">
         <div>
           <button
+            type="button"
             className={getClassTrend(types.ESortTrend.ascending)}
             onClick={() =>
               setSort({ trend: types.ESortTrend.ascending, param })
             }
           />
           <button
+            type="button"
             className={getClassTrend(types.ESortTrend.descending)}
             onClick={() =>
               setSort({ trend: types.ESortTrend.descending, param })

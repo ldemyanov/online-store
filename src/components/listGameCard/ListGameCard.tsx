@@ -47,6 +47,7 @@ function ListGameCard({ game }: types.TGameCardProps) {
         <div className="lg-card__price">{game.price}</div>
         <div className="lg-card__stock">In stock: {game.inStock}</div>
         <button
+          type="button"
           className={
             `lg-card__add-btn ` +
             (isGameInCart(game.id) ? 'btn-alrd-added' : '')

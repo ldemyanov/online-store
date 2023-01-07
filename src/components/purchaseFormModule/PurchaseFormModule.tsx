@@ -29,6 +29,7 @@ function PurchaseFormModule({ setCounter }: setCounter) {
     <div className="pchs-module hidden dissolved">
       <img className="pchs-module__gold" src={gold} />
       <button
+        type="button"
         className="pchs-module__close-btn"
         onClick={() => {
           toggleElementDisplay('.pchs-module');
@@ -161,6 +162,7 @@ function PurchaseFormModule({ setCounter }: setCounter) {
           </div>
         </div>
         <button
+          type="button"
           className="pchs-form__btn submit-purchase"
           onClick={(e) => {
             e.preventDefault();
