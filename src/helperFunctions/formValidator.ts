@@ -1,19 +1,19 @@
-const integersRegExp = /^\d+$/;
-const lettersRegExp = /^[A-Za-z ]*$/;
-const emailRegExp =
-  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+import * as baseV from './../staticData/baseValues';
 
 export function nameInitialValidator(
   event: React.ChangeEvent<HTMLInputElement>
 ) {
-  const name: string = filterNumbersLettersOnly(event, lettersRegExp);
+  const name: string = filterNumbersLettersOnly(event, baseV.LETTERS_REG_EXP);
   event.target.value = name;
 }
 
 export function cardNumberInitialValidator(
   event: React.ChangeEvent<HTMLInputElement>
 ) {
-  const number: string = filterNumbersLettersOnly(event, integersRegExp);
+  const number: string = filterNumbersLettersOnly(
+    event,
+    baseV.INTEGERS_REG_EXP
+  );
   highlightChosenCardSystem(number.slice(0, 1));
   if (number.length === 16) {
     event.target.value = addSpaces(number);
@@ -46,7 +46,10 @@ function highlightChosenCardSystem(num: string) {
 export function dateInitialValidator(
   event: React.ChangeEvent<HTMLInputElement>
 ) {
-  const clearDate = filterNumbersLettersOnly(event, integersRegExp).slice(0, 4);
+  const clearDate = filterNumbersLettersOnly(
+    event,
+    baseV.INTEGERS_REG_EXP
+  ).slice(0, 4);
   const deletingMonth =
     clearDate.length === 2 &&
     event.target.value.indexOf('/') === event.target.value.length - 1;
@@ -63,8 +66,11 @@ export function cvvInitialValidator(
   event: React.ChangeEvent<HTMLInputElement>
 ) {
   const cvv = event.target.value;
-  if (!integersRegExp.test(cvv) || cvv.length > 3)
-    event.target.value = filterNumbersLettersOnly(event, integersRegExp);
+  if (!baseV.INTEGERS_REG_EXP.test(cvv) || cvv.length > 3)
+    event.target.value = filterNumbersLettersOnly(
+      event,
+      baseV.INTEGERS_REG_EXP
+    );
 }
 
 function filterNumbersLettersOnly(
@@ -133,7 +139,7 @@ function isNameValid(strng: string) {
     .split(' ')
     .filter((str) => str.length > 0);
   if (nameParts.length !== 2) return false;
-  if (!lettersRegExp.test(nameParts.join(''))) return false;
+  if (!baseV.LETTERS_REG_EXP.test(nameParts.join(''))) return false;
   if (nameParts[0].length < 3 || nameParts[1].length < 3) return false;
   return true;
 }
@@ -141,7 +147,7 @@ function isNameValid(strng: string) {
 function isNumberValid(strng: string) {
   const phoneNumber: string = strng.trim();
   if (phoneNumber.slice(0, 1) !== '+') return false;
-  if (!integersRegExp.test(phoneNumber.slice(1))) return false;
+  if (!baseV.INTEGERS_REG_EXP.test(phoneNumber.slice(1))) return false;
   if (phoneNumber.slice(1).length < 9) return false;
   return true;
 }
@@ -157,13 +163,13 @@ function isAddressValid(strng: string) {
 }
 
 function isEmailValid(strng: string) {
-  if (!emailRegExp.test(strng)) return false;
+  if (!baseV.EMAIL_REG_EXP.test(strng)) return false;
   return true;
 }
 
 function isCardValid(strng: string) {
   const cardNum = strng.trim().split(' ').join('');
-  if (!integersRegExp.test(cardNum)) return false;
+  if (!baseV.INTEGERS_REG_EXP.test(cardNum)) return false;
   if (cardNum.length !== 16) return false;
   return true;
 }
@@ -171,7 +177,7 @@ function isCardValid(strng: string) {
 function isDateValid(strng: string) {
   const expiryDate = strng.split(' / ');
   if (expiryDate.join('').length !== 4) return false;
-  if (!integersRegExp.test(expiryDate.join(''))) return false;
+  if (!baseV.INTEGERS_REG_EXP.test(expiryDate.join(''))) return false;
   if (+expiryDate[0] > 12) return false;
   if (+expiryDate[1] < 22) return false;
   return true;
@@ -180,6 +186,6 @@ function isDateValid(strng: string) {
 function isCvvValid(strng: string) {
   const cvvNumber = strng.trim();
   if (cvvNumber.length !== 3) return false;
-  if (!integersRegExp.test(cvvNumber)) return false;
+  if (!baseV.INTEGERS_REG_EXP.test(cvvNumber)) return false;
   return true;
 }

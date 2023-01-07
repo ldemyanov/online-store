@@ -18,11 +18,13 @@ export type TGame = {
   produced: string;
 };
 
-export interface ICartGame {
+export type TGameCardProps = {
   game: TGame;
-  quantity: number;
-  position: number;
-}
+};
+
+export type TGameCardsProp = {
+  games: TGame[];
+};
 
 export type WrapperProps = {
   children: React.ReactNode;
@@ -33,26 +35,14 @@ export enum ECartViewParams {
   currentPage = 'currentPage',
 }
 
-export type TGameCardProps = {
-  game: TGame;
-};
-
-export type TGameCardsProp = {
-  games: TGame[];
-};
-
-export type TPropsRatingDisplay = {
-  rating: number;
-};
-
-export type TPromoCode = {
-  promo: discountObj;
-  index: number;
-};
-
-export type TPropsCategoriesDisplay = {
-  categories: string[];
-};
+export enum ESearchParams {
+  minPrice = 'minPrice',
+  maxPrice = 'maxPrice',
+  minInStock = 'minInStock',
+  maxInStock = 'maxInStock',
+  minPlayers = 'minPlayers',
+  maxPlayers = 'maxPlayers',
+}
 
 export type TRange = {
   min: number;
@@ -118,6 +108,7 @@ export type propsDivCategory = {
   label: string;
 };
 
+// About Product Page Types
 export type crumbsParams = {
   params: {
     producer: string;
@@ -125,7 +116,20 @@ export type crumbsParams = {
   };
 };
 
-export type discountObj = { code: string; discount: number };
+export type TPropsRatingDisplay = {
+  rating: number;
+};
+
+export type TPropsCategoriesDisplay = {
+  categories: string[];
+};
+
+// Shopping Cart Types
+export interface ICartGame {
+  game: TGame;
+  quantity: number;
+  position: number;
+}
 
 export type TCartPageState = {
   cartGames: ICartGame[];
@@ -140,6 +144,13 @@ export type TCartPageState = {
   totalQuantity: number;
 };
 
+export type discountObj = { code: string; discount: number };
+
 export type curGameID = {
   id: number;
+};
+
+export type TPromoCode = {
+  promo: discountObj;
+  index: number;
 };

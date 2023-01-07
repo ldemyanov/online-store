@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import * as types from './../../staticData/baseTypes';
+import * as baseV from './../../staticData/baseValues';
 
 const initialState: types.TCartPageState = {
   cartGames: retrieveLocalStorage(),
@@ -142,14 +143,10 @@ const gameSlice = createSlice({
 });
 
 ////////////////helperFunctions
-
-const allPromoCodes = ['ZEUS', 'MAFIA', 'ENTROPY', 'SLAANESH'];
-const allDiscounts = [5, 5, 10, 20];
-
 function udpatePromoCodes(state: types.TCartPageState, promoCode: string) {
   const newPromo = {
     code: promoCode,
-    discount: allDiscounts[allPromoCodes.indexOf(promoCode)],
+    discount: baseV.ALL_DISCOUNTS[baseV.ALL_PROMOCODES.indexOf(promoCode)],
   };
   return [newPromo, ...state.promoCodes];
 }

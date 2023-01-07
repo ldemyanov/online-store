@@ -11,3 +11,42 @@ export const EMPTY_GAME = {
   previewImg: 'dummy',
   produced: 'dummy',
 };
+
+export const ARR_OF_CATEGORIES: string[] = [
+  'strategy',
+  'cards',
+  'quiz',
+  'economy',
+  'kids',
+  'role',
+];
+
+export const ARR_OF_CATEGORY_NAMES: string[] = [
+  'strategy',
+  'cards',
+  'quiz',
+  'economy',
+  'kids',
+  'role play',
+];
+
+export const INTEGERS_REG_EXP = /^\d+$/;
+
+export const LETTERS_REG_EXP = /^[A-Za-z ]*$/;
+
+export const EMAIL_REG_EXP =
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+export const ALL_PROMOCODES = ['ZEUS', 'MAFIA', 'ENTROPY', 'SLAANESH'];
+
+export const ALL_DISCOUNTS = [5, 5, 10, 20];
+
+export const PRODUCERS: string[] = [
+  'GMT Games',
+  'Hasbro',
+  'FryxGames',
+  'Arclight Games',
+  'Stonemaier Games',
+  'Cephalofair Games',
+  'Hans im Gluck',
+];

@@ -1,15 +1,5 @@
 import * as types from './../../staticData/baseTypes';
 
-export const PRODUCERS: string[] = [
-  'GMT Games',
-  'Hasbro',
-  'FryxGames',
-  'Arclight Games',
-  'Stonemaier Games',
-  'Cephalofair Games',
-  'Hans im Gluck',
-];
-
 export const GAMES: types.TGame[] = [
   {
     id: 312023001,

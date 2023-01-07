@@ -13,7 +13,7 @@ function ScCardContainer() {
   let blockContent: JSX.Element[] | JSX.Element;
   if (cartGames.length > 0) {
     blockContent = cartGames
-      .filter((game, index) => index >= firstIndex && index <= lastIndex)
+      .filter((_, index) => index >= firstIndex && index <= lastIndex)
       .map((game) => (
         <ShopCartCard
           key={game.game.id}

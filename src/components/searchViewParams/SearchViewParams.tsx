@@ -24,7 +24,6 @@ function SearchViewParams() {
     setIsBeingCopied(true);
     window.navigator.clipboard
       .writeText(window.location.href)
-      .then(() => console.log('Скопировано'))
       .catch((e) => console.error(e));
     setTimeout(() => setIsBeingCopied(false), 1500);
   };
