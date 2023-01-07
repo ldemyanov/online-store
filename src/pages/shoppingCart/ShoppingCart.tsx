@@ -21,15 +21,12 @@ function ShoppingCart() {
     discountTotal,
     totalQuantity,
   } = useAppSelector((state) => state.cartGameReducer);
-  const [searchParams, setSearchParams] = useSearchParams();
 
+  const [searchParams, setSearchParams] = useSearchParams();
   const setItemsPerPage = (limit: number) =>
     dispatch(gameActions.setItemsPerPage(limit));
-
   const goToNextPage = () => dispatch(gameActions.goToNextPage());
-
   const goToPrevPage = () => dispatch(gameActions.goToPrevPage());
-
   const goToPage = (curPage: number) => dispatch(gameActions.goToPage(curPage));
 
   useEffect(() => {

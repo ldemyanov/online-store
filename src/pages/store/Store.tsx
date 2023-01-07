@@ -1,4 +1,7 @@
 import React, { useEffect } from 'react';
+import { useAppDispatch } from '../../store';
+import { gameActions } from '../../store/reducer/cartGamesReducer';
+import './store.scss';
 import CardContainer from '../../components/gameCardContainer/CardContainer';
 import CatSearchBlock from '../../components/catSearchBlock/CatSearchBlock';
 import Search from '../../components/search/Search';
@@ -6,9 +9,6 @@ import SearchViewParams from '../../components/searchViewParams/SearchViewParams
 import SortBlock from '../../components/sortBlock/SortBlock';
 import SortViewBlock from '../../components/sortViewBlock/SortViewBlock';
 import FilterProd from '../../components/filterProd/FilterProd';
-import './store.scss';
-import { gameActions } from '../../store/reducer/cartGamesReducer';
-import { useAppDispatch } from '../../store';
 
 function Store() {
   const dispatch = useAppDispatch();
