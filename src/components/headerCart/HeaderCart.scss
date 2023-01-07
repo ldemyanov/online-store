@@ -1,5 +1,4 @@
 @import './../../styles/variables';
-@import url('https://fonts.googleapis.com/css2?family=Inder&family=Julius+Sans+One&display=swap');
 
 .hd-cart {
   background-color: transparent;
@@ -136,14 +135,6 @@
     border-radius: 8px;
     height: 30px;
   }
-}
-
-.hidden {
-  display: none;
-}
-
-.dissolved {
-  opacity: 0;
 }
 
 .cart-old-price {

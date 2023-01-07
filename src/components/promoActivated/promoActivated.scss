@@ -1,5 +1,4 @@
 @import './../../styles/variables';
-@import url('https://fonts.googleapis.com/css2?family=Inder&family=Julius+Sans+One&display=swap');
 
 .promo-code {
   width: 200px;
@@ -60,8 +59,6 @@
   }
 
   @media (max-width: 1200px) {
-    // padding: 0;
-    // margin: 1px;
     width: 165px;
     font-size: 11px;
   }
