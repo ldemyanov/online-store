@@ -16,11 +16,14 @@ function ListGameCard({ game }: types.TGameCardProps) {
   const isGameInCart = (id: number) => {
     return cartGames.some((game) => game.game.id === id);
   };
+  const linkString = `/product?prodBy=${game.produced
+    .split(' ')
+    .join('-')}&id=${game.id}`;
 
   return (
     <div className="lg-card">
       <div className="lg-card__col">
-        <Link to={`/product?id=${game.id}`}>
+        <Link to={linkString} target="_blank">
           <img
             className="lg-card__image"
             src={game.previewImg}
@@ -30,7 +33,7 @@ function ListGameCard({ game }: types.TGameCardProps) {
       </div>
       <div className="lg-card__col">
         <div className="lg-card__label">
-          <Link to={`/product?id=${game.id}`}>
+          <Link to={linkString} target="_blank">
             <p className="lg-card__name">{game.name}</p>
           </Link>
           <RatingDisplay rating={game.rating} />

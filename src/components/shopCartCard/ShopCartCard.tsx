@@ -25,13 +25,13 @@ function ShopCartCard({ game, quantity, position }: types.ICartGame) {
   return (
     <div className="sc-game-card">
       <p className="sc-game-card__position">{position}</p>
-      <Link to={linkString}>
+      <Link to={linkString} target="_blank">
         <p className="sc-game-card__name">{game.name}</p>
       </Link>
       <p className="sc-game-card__produced"> by: {game.produced}</p>
       <div className="sc-game-card__content">
         <div className="sc-game-data">
-          <Link to={linkString}>
+          <Link to={linkString} target="_blank">
             <div
               className="sc-game-data__img"
               style={{ backgroundImage: `url(${game.previewImg})` }}

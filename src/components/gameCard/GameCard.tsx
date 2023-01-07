@@ -27,14 +27,14 @@ function GameCard({ game }: types.TGameCardProps) {
 
   return (
     <div className="game-card">
-      <Link to={linkString}>
+      <Link to={linkString} target="_blank">
         <img
           className="game-card__img"
           src={game.previewImg}
           alt="Image of a game"
         />
       </Link>
-      <Link to={linkString}>
+      <Link to={linkString} target="_blank">
         <p className="game-card__name">{game.name}</p>
       </Link>
       <div className="game-dtls">

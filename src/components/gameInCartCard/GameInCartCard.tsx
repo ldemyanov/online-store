@@ -21,14 +21,14 @@ function GameInCartCard({ game, quantity }: types.ICartGame) {
 
   return (
     <div className="hd-game-card">
-      <Link to={linkString}>
+      <Link to={linkString} target="_blank">
         <div
           className="hd-game-card__img"
           style={{ backgroundImage: `url(${game.images[0]})` }}
         ></div>
       </Link>
       <div className="hd-game-card-dtls">
-        <Link to={linkString}>
+        <Link to={linkString} target="_blank">
           <p className="hd-game-card-dtls__name">{game.name}</p>
         </Link>
         <p className="hd-game-card-dtls__price">
