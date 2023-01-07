@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import PromoContainer from '../promoContainer/PromoContainer';
-import './promoBlock.scss';
-import { gameActions } from '../../store/reducer/cartGamesReducer';
 import { useAppDispatch } from '../../store';
+import { gameActions } from '../../store/reducer/cartGamesReducer';
+import './promoBlock.scss';
+import PromoContainer from '../promoContainer/PromoContainer';
 import * as baseV from './../../staticData/baseValues';
 
 function PromoBlock() {

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import './SearchViewParams.scss';
-import { gameActions } from '../../store/reducer/gamesReducer';
-import { useAppSelector } from '../../store';
 import { useDispatch } from 'react-redux';
+import { useAppSelector } from '../../store';
+import { gameActions } from '../../store/reducer/gamesReducer';
 import { useSearchParams } from 'react-router-dom';
+import './SearchViewParams.scss';
 import * as types from './../../staticData/baseTypes';
 
 function SearchViewParams() {

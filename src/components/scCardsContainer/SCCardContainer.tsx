@@ -1,9 +1,9 @@
 import React from 'react';
-import './scCardContainer.scss';
 import { useAppSelector } from '../../store';
-import ShopCartCard from '../shopCartCard/ShopCartCard';
+import './scCardContainer.scss';
 import emptyChest from './../../static/empty-chest.png';
 import helmetIcon from './../../static/helmet.png';
+import ShopCartCard from '../shopCartCard/ShopCartCard';
 
 function ScCardContainer() {
   const { cartGames, firstIndex, lastIndex } = useAppSelector(

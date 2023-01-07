@@ -1,4 +1,8 @@
 import React, { useEffect, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { useAppSelector } from '../../store';
+import { gameActions } from '../../store/reducer/gamesReducer';
+import { useSearchParams } from 'react-router-dom';
 import './CatSearchBlock.scss';
 import catCards from './../../static/cat-cards.png';
 import catEconomy from './../../static/cat-economy.png';
@@ -6,10 +10,6 @@ import catKids from './../../static/cat-kids.png';
 import catQuiz from './../../static/cat-quiz.png';
 import catStrategy from './../../static/cat-strategy.png';
 import catRole from './../../static/role-play-icon.png';
-import { gameActions } from '../../store/reducer/gamesReducer';
-import { useAppSelector } from '../../store';
-import { useDispatch } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
 import * as types from './../../staticData/baseTypes';
 
 function CategorySearchBlock() {

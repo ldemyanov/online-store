@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import './SortBlock.scss';
-// eslint-disable-next-line prettier/prettier
+import { useAppDispatch, useAppSelector } from '../../store';
 import { gameActions } from '../../store/reducer/gamesReducer';
 import { useSearchParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../store';
+import './SortBlock.scss';
 import * as types from './../../staticData/baseTypes';
 
 function SortBlock() {

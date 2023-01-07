@@ -1,9 +1,9 @@
 import React from 'react';
-import './GameInCartCard.scss';
-import * as types from './../../staticData/baseTypes';
 import { useAppDispatch } from '../../store';
 import { gameActions } from '../../store/reducer/cartGamesReducer';
 import { Link } from 'react-router-dom';
+import './GameInCartCard.scss';
+import * as types from './../../staticData/baseTypes';
 
 function GameInCartCard({ game, quantity }: types.ICartGame) {
   const dispatch = useAppDispatch();

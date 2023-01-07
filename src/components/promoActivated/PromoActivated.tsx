@@ -1,8 +1,8 @@
 import React from 'react';
+import { useAppDispatch } from '../../store';
+import { gameActions } from '../../store/reducer/cartGamesReducer';
 import './promoActivated.scss';
 import crossIcon from './../../static/cross-icon.png';
-import { gameActions } from '../../store/reducer/cartGamesReducer';
-import { useAppDispatch } from '../../store';
 import * as types from './../../staticData/baseTypes';
 
 function PromoActivated({ promo, index }: types.TPromoCode) {

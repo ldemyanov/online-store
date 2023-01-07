@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store';
-import './FilterProd.scss';
 import { gameActions } from '../../store/reducer/gamesReducer';
 import { useSearchParams } from 'react-router-dom';
+import './FilterProd.scss';
 import * as baseV from './../../staticData/baseValues';
 
 function FilterProd() {

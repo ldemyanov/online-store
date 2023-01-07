@@ -1,6 +1,6 @@
 import React from 'react';
-import './headerCardsContainer.scss';
 import { useAppSelector } from '../../store';
+import './headerCardsContainer.scss';
 import GameInCartCard from '../gameInCartCard/GameInCartCard';
 
 function HeaderCardsContainer() {

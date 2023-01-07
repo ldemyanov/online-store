@@ -1,12 +1,12 @@
 import React from 'react';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { gameActions } from '../../store/reducer/cartGamesReducer';
+import { Link } from 'react-router-dom';
 import './GameCard.scss';
 import tick from './../../static/tick.png';
 import cross from './../../static/cross.png';
 import RatingDisplay from '../ratingDisplay/RatingDisplay';
 import CategoriesDisplay from '../categoriesDisplay/CategoriesDisplay';
-import { useAppDispatch, useAppSelector } from '../../store';
-import { gameActions } from '../../store/reducer/cartGamesReducer';
-import { Link } from 'react-router-dom';
 import * as types from './../../staticData/baseTypes';
 
 function GameCard({ game, prodParent }: types.TGameCardProps) {

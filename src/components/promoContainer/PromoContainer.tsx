@@ -1,7 +1,7 @@
 import React from 'react';
+import { useAppSelector } from '../../store';
 import './promoContainer.scss';
 import PromoActivated from '../promoActivated/PromoActivated';
-import { useAppSelector } from '../../store';
 
 function PromoContainer() {
   const { promoCodes } = useAppSelector((state) => state.cartGameReducer);

@@ -1,9 +1,9 @@
 import React from 'react';
 import './wrapper.scss';
-import Footer from '../footer/Footer';
-import Header from '../header/header';
 import spiderWeb from './../../static/bg-web.png';
 import * as types from './../../staticData/baseTypes';
+import Header from '../header/header';
+import Footer from '../footer/Footer';
 
 function Wrapper({ children }: types.WrapperProps) {
   return (

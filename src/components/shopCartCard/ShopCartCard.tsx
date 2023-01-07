@@ -1,11 +1,11 @@
 import React from 'react';
-import CategoriesDisplay from '../categoriesDisplay/CategoriesDisplay';
-import RatingDisplay from '../ratingDisplay/RatingDisplay';
-import './shopCartCard.scss';
 import { useAppDispatch } from '../../store';
 import { gameActions } from '../../store/reducer/cartGamesReducer';
 import { Link } from 'react-router-dom';
+import './shopCartCard.scss';
 import * as types from './../../staticData/baseTypes';
+import CategoriesDisplay from '../categoriesDisplay/CategoriesDisplay';
+import RatingDisplay from '../ratingDisplay/RatingDisplay';
 
 function ShopCartCard({ game, quantity, position }: types.ICartGame) {
   const dispatch = useAppDispatch();

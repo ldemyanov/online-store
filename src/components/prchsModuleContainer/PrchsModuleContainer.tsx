@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './prchsModuleContainer.scss';
 import PurchaseFormModule from '../purchaseFormModule/PurchaseFormModule';
 import CountdownModule from '../countdownModule/CountdownModule';
-import { useNavigate } from 'react-router-dom';
 
 function PrchsModuleContainer() {
   const [counter, setCounter] = useState(5);

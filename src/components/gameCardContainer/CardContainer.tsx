@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import './CardContainer.scss';
-import GameCard from '../gameCard/GameCard';
-import ListGameCard from '../listGameCard/ListGameCard';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { gameActions } from '../../store/reducer/gamesReducer';
 import { useSearchParams } from 'react-router-dom';
+import './CardContainer.scss';
 import * as types from './../../staticData/baseTypes';
+import GameCard from '../gameCard/GameCard';
+import ListGameCard from '../listGameCard/ListGameCard';
 
 function CardContainer() {
   const { games, layout } = useAppSelector((state) => state.gameReducer);

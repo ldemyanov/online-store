@@ -1,11 +1,11 @@
 import React from 'react';
+import { gameActions } from '../../store/reducer/cartGamesReducer';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { Link } from 'react-router-dom';
 import './ListGameCard.scss';
+import * as types from './../../staticData/baseTypes';
 import RatingDisplay from '../ratingDisplay/RatingDisplay';
 import CategoriesDisplay from '../categoriesDisplay/CategoriesDisplay';
-import { useAppDispatch, useAppSelector } from '../../store';
-import { gameActions } from '../../store/reducer/cartGamesReducer';
-import { Link } from 'react-router-dom';
-import * as types from './../../staticData/baseTypes';
 
 function ListGameCard({ game }: types.TGameCardProps) {
   const dispatch = useAppDispatch();

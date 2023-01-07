@@ -1,19 +1,13 @@
 import React from 'react';
+import { useAppDispatch } from '../../store';
+import { gameActions } from '../../store/reducer/cartGamesReducer';
 import './purchaseFormModule.scss';
-import toggleElementDisplay from '../../helperFunctions/displayToggler';
 import mastercard from './../../static/mastercard.png';
 import visa from './../../static/visa.png';
 import discover from './../../static/discover-card.png';
 import gold from './../../static/pile-of-gold.png';
-import {
-  cardNumberInitialValidator,
-  validateForm,
-  dateInitialValidator,
-  cvvInitialValidator,
-  nameInitialValidator,
-} from '../../helperFunctions/formValidator';
-import { useAppDispatch } from '../../store';
-import { gameActions } from '../../store/reducer/cartGamesReducer';
+import toggleElementDisplay from '../../helperFunctions/displayToggler';
+import * as valFns from '../../helperFunctions/formValidator';
 
 type setCounter = {
   setCounter: React.Dispatch<React.SetStateAction<number>>;
@@ -50,7 +44,7 @@ function PurchaseFormModule({ setCounter }: setCounter) {
             name="customer-name"
             maxLength={40}
             id="customer-name"
-            onChange={(e) => nameInitialValidator(e)}
+            onChange={(e) => valFns.nameInitialValidator(e)}
           />
           <span className="form-error-msg error-msg__name hidden">
             Enter your name correctly
@@ -104,7 +98,7 @@ function PurchaseFormModule({ setCounter }: setCounter) {
             name="customer-card"
             id="customer-card"
             maxLength={19}
-            onChange={(e) => cardNumberInitialValidator(e)}
+            onChange={(e) => valFns.cardNumberInitialValidator(e)}
           />
           <span className="form-error-msg error-msg__card hidden">
             Enter card number correctly
@@ -140,7 +134,7 @@ function PurchaseFormModule({ setCounter }: setCounter) {
               name="expiry-date"
               id="expiry-date"
               maxLength={7}
-              onChange={(e) => dateInitialValidator(e)}
+              onChange={(e) => valFns.dateInitialValidator(e)}
             />
             <span className="card-dtls-error-msg error-msg__date hidden">
               Enter expiry date correctly
@@ -154,7 +148,7 @@ function PurchaseFormModule({ setCounter }: setCounter) {
               name="card-cvv"
               id="card-cvv"
               maxLength={3}
-              onChange={(e) => cvvInitialValidator(e)}
+              onChange={(e) => valFns.cvvInitialValidator(e)}
             />
             <span className="card-dtls-error-msg error-msg__cvv hidden">
               Enter CVV correctly
@@ -166,7 +160,7 @@ function PurchaseFormModule({ setCounter }: setCounter) {
           className="pchs-form__btn submit-purchase"
           onClick={(e) => {
             e.preventDefault();
-            const isValid = validateForm();
+            const isValid = valFns.validateForm();
             if (isValid) {
               toggleElementDisplay('.pchs-module');
               toggleElementDisplay('.countdown-block');

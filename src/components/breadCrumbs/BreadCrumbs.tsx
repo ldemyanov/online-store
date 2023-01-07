@@ -1,8 +1,8 @@
 import React from 'react';
-import './breadCrumbs.scss';
-import * as types from './../../staticData/baseTypes';
-import arrowRight from './../../static/arrow-right-crumbs.png';
 import { Link } from 'react-router-dom';
+import './breadCrumbs.scss';
+import arrowRight from './../../static/arrow-right-crumbs.png';
+import * as types from './../../staticData/baseTypes';
 
 function BreadCrumbs({ params }: types.crumbsParams) {
   const nameOfTheProducer = params.producer;

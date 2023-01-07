@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useRef } from 'react';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { gameActions } from '../../store/reducer/gamesReducer';
+import { useSearchParams } from 'react-router-dom';
 import './SortViewBlock.scss';
 import inStockImg from './../../static/in-stock-param.png';
 import numOfPlayersImg from './../../static/num-of-players-param.png';
 import priceImg from './../../static/price-param.png';
-import DoubleRange from '../doubleRange/DoubleRange';
-import { useAppDispatch, useAppSelector } from '../../store';
-import { gameActions } from '../../store/reducer/gamesReducer';
-import { useSearchParams } from 'react-router-dom';
 import * as types from './../../staticData/baseTypes';
+import DoubleRange from '../doubleRange/DoubleRange';
 
 function SortViewBlock() {
   const isFirstRenderRef = useRef(true);
