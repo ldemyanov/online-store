@@ -26,7 +26,7 @@ const gameSlice = createSlice({
         thisGame.quantity += 1;
         return thisGame;
       });
-      state.totalPrice = countTotalPrice(state);
+      state.totalPrice = countTotalPrice(state.cartGames);
       state.firstIndex = updateFirstIndex(state);
       state.lastIndex = updateLastIndex(state);
       state.totalQuantity = updateTotalQuantity(state);
@@ -52,7 +52,7 @@ const gameSlice = createSlice({
         state.firstIndex = updateFirstIndex(state);
         state.lastIndex = updateLastIndex(state);
       }
-      state.totalPrice = countTotalPrice(state);
+      state.totalPrice = countTotalPrice(state.cartGames);
       state.totalQuantity = updateTotalQuantity(state);
       updateLocalStorage(state);
     },
@@ -85,7 +85,7 @@ const gameSlice = createSlice({
       state.lastIndex = updateLastIndex(state);
     },
     initialData(state) {
-      state.totalPrice = countTotalPrice(state);
+      state.totalPrice = countTotalPrice(state.cartGames);
       state.cartGames = updatePosition(state);
       state.totalPages = countTotalPages(
         state.cartGames.length,
@@ -119,13 +119,13 @@ const gameSlice = createSlice({
         position: 0,
       };
       state.cartGames.push(newGame);
-      state.totalPrice = countTotalPrice(state);
+      state.totalPrice = countTotalPrice(state.cartGames);
       state.totalQuantity = updateTotalQuantity(state);
       updateLocalStorage(state);
     },
     clearCart(state) {
       state.cartGames = [];
-      state.totalPrice = countTotalPrice(state);
+      state.totalPrice = countTotalPrice(state.cartGames);
       state.firstIndex = updateFirstIndex(state);
       state.lastIndex = updateLastIndex(state);
       state.totalQuantity = updateTotalQuantity(state);
@@ -134,7 +134,7 @@ const gameSlice = createSlice({
     },
     removeGame(state, action: PayloadAction<types.curGameID>) {
       state.cartGames = removeGameFromCart(state, action);
-      state.totalPrice = countTotalPrice(state);
+      state.totalPrice = countTotalPrice(state.cartGames);
       state.totalQuantity = updateTotalQuantity(state);
       updateLocalStorage(state);
     },
@@ -175,8 +175,8 @@ function updatePosition(state: types.TCartPageState) {
   });
 }
 
-function countTotalPrice(state: types.TCartPageState) {
-  return state.cartGames.reduce(
+function countTotalPrice(games: types.ICartGame[]) {
+  return games.reduce(
     (total: number, game: types.ICartGame) =>
       (total += game.game.price * game.quantity),
     0

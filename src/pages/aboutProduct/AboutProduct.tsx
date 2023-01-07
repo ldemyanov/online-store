@@ -50,6 +50,10 @@ function AboutProduct() {
     }
   }, [searchParams]);
 
+  useEffect(() => {
+    dispatch(gameActions.initialData());
+  }, []);
+
   function returnProducerPage() {
     return <ProducerPage games={producerGames} />;
   }

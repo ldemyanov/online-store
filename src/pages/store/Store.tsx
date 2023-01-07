@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CardContainer from '../../components/gameCardContainer/CardContainer';
 import CatSearchBlock from '../../components/catSearchBlock/CatSearchBlock';
 import Search from '../../components/search/Search';
@@ -7,8 +7,15 @@ import SortBlock from '../../components/sortBlock/SortBlock';
 import SortViewBlock from '../../components/sortViewBlock/SortViewBlock';
 import FilterProd from '../../components/filterProd/FilterProd';
 import './store.scss';
+import { gameActions } from '../../store/reducer/cartGamesReducer';
+import { useAppDispatch } from '../../store';
 
 function Store() {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(gameActions.initialData());
+  }, []);
+
   return (
     <div className="store">
       <Search />
