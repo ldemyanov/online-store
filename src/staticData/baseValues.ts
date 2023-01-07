@@ -1,6 +1,8 @@
-export const EMPTY_GAME = {
+import { TGame } from './baseTypes';
+
+export const EMPTY_GAME: TGame = {
   id: 0,
-  name: 'dummy',
+  name: 'Game Not Found',
   price: 0,
   inStock: 0,
   rating: 0,
@@ -37,9 +39,14 @@ export const LETTERS_REG_EXP = /^[A-Za-z ]*$/;
 export const EMAIL_REG_EXP =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-export const ALL_PROMOCODES = ['ZEUS', 'MAFIA', 'ENTROPY', 'SLAANESH'];
+export const ALL_PROMOCODES: string[] = [
+  'ZEUS',
+  'MAFIA',
+  'ENTROPY',
+  'SLAANESH',
+];
 
-export const ALL_DISCOUNTS = [5, 5, 10, 20];
+export const ALL_DISCOUNTS: number[] = [5, 5, 10, 20];
 
 export const PRODUCERS: string[] = [
   'GMT Games',
@@ -51,4 +58,4 @@ export const PRODUCERS: string[] = [
   'Hans im Gluck',
 ];
 
-export const PROMOCODES = ['ZEUS', 'SLAANESH', 'ENTROPY', 'MAFIA'];
+export const PROMOCODES: string[] = ['ZEUS', 'SLAANESH', 'ENTROPY', 'MAFIA'];

@@ -1,14 +1,14 @@
 import React, { useRef, useCallback, useEffect } from 'react';
-import SCCardContainer from '../../components/scCardsContainer/SCCardContainer';
-import './shoppingCart.scss';
 import { useAppSelector } from '../../store';
 import { useAppDispatch } from '../../store';
-import { useSearchParams } from 'react-router-dom';
 import { gameActions } from '../../store/reducer/cartGamesReducer';
-import PromoBlock from '../../components/promoBlock/PromoBlock';
-import PrchsModuleContainer from '../../components/prchsModuleContainer/PrchsModuleContainer';
-import toggleElementDisplay from '../../helperFunctions/displayToggler';
+import { useSearchParams } from 'react-router-dom';
+import './shoppingCart.scss';
+import SCCardContainer from '../../components/scCardsContainer/SCCardContainer';
 import * as types from './../../staticData/baseTypes';
+import toggleElementDisplay from '../../helperFunctions/displayToggler';
+import PrchsModuleContainer from '../../components/prchsModuleContainer/PrchsModuleContainer';
+import PromoBlock from '../../components/promoBlock/PromoBlock';
 
 function ShoppingCart() {
   const { cartGames } = useAppSelector((state) => state.cartGameReducer);
@@ -80,11 +80,13 @@ function ShoppingCart() {
         >
           <div className="pages-slider">
             <button
+              type="button"
               className="pages-slider__btn btn-prev"
               onClick={() => callbackGoToPrevPage()}
             ></button>
             <p className="pages-slider__page">{currentPage}</p>
             <button
+              type="button"
               className="pages-slider__btn btn-next"
               onClick={() => callbackGoToNextPage()}
             ></button>
@@ -131,6 +133,7 @@ function ShoppingCart() {
       <SCCardContainer />
       <div className="sc-totals">
         <button
+          type="button"
           className={
             'sc-totals__checkout ' + (cartGames.length > 0 ? '' : 'hidden')
           }

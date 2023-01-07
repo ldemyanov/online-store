@@ -1,10 +1,10 @@
 import React from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { appStore } from './store';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import AboutProduct from './pages/aboutProduct/AboutProduct';
 import ShoppingCart from './pages/shoppingCart/ShoppingCart';
 import Store from './pages/store/Store';
-import { appStore } from './store';
 import Wrapper from './components/wrapper/wrapper';
 import WrongDirectoryPage from './pages/404/404page';
 
