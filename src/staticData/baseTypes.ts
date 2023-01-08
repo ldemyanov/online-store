@@ -23,9 +23,11 @@ export type TGameCardProps = {
   prodParent?: boolean;
 };
 
-export type TGameCardsProp = {
-  games: TGame[];
-};
+export interface TGameProps<Y> {
+  games: Y;
+}
+
+export type TGameCardsProp = TGameProps<TGame[]>;
 
 export type WrapperProps = {
   children: React.ReactNode;
