@@ -1,74 +1,67 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TGame, GAMES } from './games';
+import { GAMES } from './games';
+import * as types from './../../staticData/baseTypes';
 
-type TRange = {
-  min: number;
-  max: number;
-};
+// type TRange = {
+//   min: number;
+//   max: number;
+// };
 
-export enum ESortParam {
-  rating = 'rating',
-  price = 'price',
-}
+// export enum ESortParam {
+//   rating = 'rating',
+//   price = 'price',
+// }
 
-export enum ESortTrend {
-  ascending = 'ascending',
-  descending = 'descending',
-}
+// export enum ESortTrend {
+//   ascending = 'ascending',
+//   descending = 'descending',
+// }
 
-export enum ECategory {
-  strategy = 'strategy',
-  cards = 'cards',
-  quiz = 'quiz',
-  economy = 'economy',
-  kids = 'kids',
-  role = 'role',
-}
+// export enum ECategory {
+//   strategy = 'strategy',
+//   cards = 'cards',
+//   quiz = 'quiz',
+//   economy = 'economy',
+//   kids = 'kids',
+//   role = 'role',
+// }
 
-export enum ELayout {
-  list = 'list',
-  cards = 'cards',
-}
+// export enum ELayout {
+//   list = 'list',
+//   cards = 'cards',
+// }
 
-export type TSort = {
-  param: ESortParam;
-  trend: ESortTrend;
-};
+// export type TSort = {
+//   param: ESortParam;
+//   trend: ESortTrend;
+// };
 
-type TPageStoreState = {
-  games: TGame[];
-  filterText: string;
-  filterPlayers: TRange;
-  filterCountInStock: TRange;
-  filterPrice: TRange;
-  sort: TSort;
-  categories: ECategory[];
-  producers: string[];
-  layout: ELayout;
-};
+// type TPageStoreState = {
+//   games: TGame[];
+//   filterText: string;
+//   filterPlayers: TRange;
+//   filterCountInStock: TRange;
+//   filterPrice: TRange;
+//   sort: TSort;
+//   categories: ECategory[];
+//   producers: string[];
+//   layout: ELayout;
+// };
 
-const initialState: TPageStoreState = {
+const initialState: types.TPageStoreState = {
   games: GAMES,
   filterText: '',
   filterPlayers: { min: 1, max: 9 },
   filterCountInStock: { min: 0, max: 220 },
   filterPrice: { min: 5, max: 350 },
-  sort: { param: ESortParam.rating, trend: ESortTrend.descending },
+  sort: { param: types.ESortParam.rating, trend: types.ESortTrend.descending },
   categories: [],
-  producers: [
-    'Hans im Gluck',
-    'Cephalofair Games',
-    'Stonemaier Games',
-    'Arclight Games',
-    'FryxGames',
-    'GMT Games',
-    'Hasbro',
-  ],
-  layout: ELayout.cards,
+  producers: [],
+  layout: types.ELayout.cards,
 };
 
 // To use only in reducers
-function filterGames(state: TPageStoreState): TGame[] {
+function filterGames(state: types.TPageStoreState): types.TGame[] {
   state.games = textFilter(GAMES, state.filterText);
   state.games = state.games.filter(
     (game) =>
@@ -86,10 +79,10 @@ function filterGames(state: TPageStoreState): TGame[] {
   return state.games;
 }
 
-function sortGames(games: TGame[], sort: TSort): TGame[] {
+function sortGames(games: types.TGame[], sort: types.TSort): types.TGame[] {
   const { param, trend } = sort;
   return games.sort((game1, game2) => {
-    if (trend === ESortTrend.ascending) {
+    if (trend === types.ESortTrend.ascending) {
       return game1[param] - game2[param];
     } else {
       return game2[param] - game1[param];
@@ -97,7 +90,7 @@ function sortGames(games: TGame[], sort: TSort): TGame[] {
   });
 }
 
-function textFilter(games: TGame[], text: string): TGame[] {
+function textFilter(games: types.TGame[], text: string): types.TGame[] {
   const textLowered: string = text.toLowerCase();
   return games.filter((game) => {
     return (
@@ -116,23 +109,23 @@ const gameSlice = createSlice({
   name: 'games',
   initialState,
   reducers: {
-    setNumOfPlayers(state, action: PayloadAction<TRange>) {
+    setNumOfPlayers(state, action: PayloadAction<types.TRange>) {
       state.filterPlayers = action.payload;
       state.games = filterGames(state);
     },
-    setCountInStock(state, action: PayloadAction<TRange>) {
+    setCountInStock(state, action: PayloadAction<types.TRange>) {
       state.filterCountInStock = action.payload;
       state.games = filterGames(state);
     },
-    setPrice(state, action: PayloadAction<TRange>) {
+    setPrice(state, action: PayloadAction<types.TRange>) {
       state.filterPrice = action.payload;
       state.games = filterGames(state);
     },
-    sort(state, action: PayloadAction<TSort>) {
+    sort(state, action: PayloadAction<types.TSort>) {
       state.sort = action.payload;
       state.games = sortGames(state.games, action.payload);
     },
-    toggleCategory(state, action: PayloadAction<ECategory>) {
+    toggleCategory(state, action: PayloadAction<types.ECategory>) {
       state.categories = state.categories.includes(action.payload)
         ? state.categories.filter((cat) => cat !== action.payload)
         : [...state.categories, action.payload];
@@ -148,11 +141,11 @@ const gameSlice = createSlice({
       state.filterText = action.payload;
       state.games = filterGames(state);
     },
-    setCategories(state, action: PayloadAction<ECategory[]>) {
+    setCategories(state, action: PayloadAction<types.ECategory[]>) {
       state.categories = action.payload;
       state.games = filterGames(state);
     },
-    setLayout(state, action: PayloadAction<ELayout>) {
+    setLayout(state, action: PayloadAction<types.ELayout>) {
       state.layout = action.payload;
     },
     setProd(state, action: PayloadAction<string[]>) {

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import { useAppDispatch } from '../../store';
 import { gameActions } from '../../store/reducer/gamesReducer';
+import { useSearchParams } from 'react-router-dom';
 import './Search.scss';
 
 function Search() {

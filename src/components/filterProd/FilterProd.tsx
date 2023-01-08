@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store';
-import './FilterProd.scss';
-import { PRODUCERS } from '../../store/reducer/games';
 import { gameActions } from '../../store/reducer/gamesReducer';
 import { useSearchParams } from 'react-router-dom';
+import './FilterProd.scss';
+import * as baseV from './../../staticData/baseValues';
 
 function FilterProd() {
   const dispatch = useAppDispatch();
@@ -59,7 +59,7 @@ function FilterProd() {
     <div className="flt-prod">
       <h3 className="flt-prod__title">Producers</h3>
       <ul className="flt-prod__list">
-        {PRODUCERS.map((name, index) => (
+        {baseV.PRODUCERS.map((name, index) => (
           <LiProd name={name} key={index} />
         ))}
       </ul>

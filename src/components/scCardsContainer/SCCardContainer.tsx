@@ -1,19 +1,19 @@
 import React from 'react';
-import './scCardContainer.scss';
 import { useAppSelector } from '../../store';
-import ShopCartCard from '../shopCartCard/ShopCartCard';
+import './scCardContainer.scss';
 import emptyChest from './../../static/empty-chest.png';
 import helmetIcon from './../../static/helmet.png';
+import ShopCartCard from '../shopCartCard/ShopCartCard';
 
 function ScCardContainer() {
   const { cartGames, firstIndex, lastIndex } = useAppSelector(
     (state) => state.cartGameReducer
   );
-
   let blockContent: JSX.Element[] | JSX.Element;
+
   if (cartGames.length > 0) {
     blockContent = cartGames
-      .filter((game, index) => index >= firstIndex && index <= lastIndex)
+      .filter((_, index) => index >= firstIndex && index <= lastIndex)
       .map((game) => (
         <ShopCartCard
           key={game.game.id}

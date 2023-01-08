@@ -1,41 +1,40 @@
 import React from 'react';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { gameActions } from '../../store/reducer/cartGamesReducer';
+import { Link } from 'react-router-dom';
 import './GameCard.scss';
 import tick from './../../static/tick.png';
 import cross from './../../static/cross.png';
 import RatingDisplay from '../ratingDisplay/RatingDisplay';
 import CategoriesDisplay from '../categoriesDisplay/CategoriesDisplay';
-import { TGame } from '../../store/reducer/games';
-import { useAppDispatch, useAppSelector } from '../../store';
-import { gameActions, curGameID } from '../../store/reducer/cartGamesReducer';
-import { Link } from 'react-router-dom';
+import * as types from './../../staticData/baseTypes';
 
-type TGameCardProps = {
-  game: TGame;
-};
-
-function GameCard({ game }: TGameCardProps) {
+function GameCard({ game, prodParent }: types.TGameCardProps) {
   const dispatch = useAppDispatch();
   const { cartGames } = useAppSelector((state) => state.cartGameReducer);
-  const addGameToCart = (newGame: TGame) => {
+  const addGameToCart = (newGame: types.TGame) => {
     dispatch(gameActions.addGameToCart(newGame));
   };
-  const removeGame = (id: curGameID) => {
+  const removeGame = (id: types.curGameID) => {
     dispatch(gameActions.removeGame(id));
   };
   const isGameInCart = (id: number) => {
     return cartGames.some((game) => game.game.id === id);
   };
+  const linkString = `/product?prodBy=${game.produced
+    .split(' ')
+    .join('-')}&id=${game.id}`;
 
   return (
     <div className="game-card">
-      <Link to={`/product?id=${game.id}`}>
+      <Link to={linkString} target={prodParent ? '_self' : '_blank'}>
         <img
           className="game-card__img"
           src={game.previewImg}
           alt="Image of a game"
         />
       </Link>
-      <Link to={`/product?id=${game.id}`}>
+      <Link to={linkString} target={prodParent ? '_self' : '_blank'}>
         <p className="game-card__name">{game.name}</p>
       </Link>
       <div className="game-dtls">
@@ -55,6 +54,7 @@ function GameCard({ game }: TGameCardProps) {
             </p>
           </div>
           <button
+            type="button"
             className={
               `game-dtls__add-btn ` +
               (isGameInCart(game.id) ? 'btn-alrd-added' : '')

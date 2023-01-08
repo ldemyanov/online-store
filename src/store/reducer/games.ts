@@ -1,28 +1,6 @@
-export type TGame = {
-  id: number;
-  name: string;
-  price: number;
-  inStock: number;
-  rating: number;
-  description: string;
-  numOfPlayers: number;
-  categories: string[];
-  images: string[];
-  previewImg: string;
-  produced: string;
-};
+import * as types from './../../staticData/baseTypes';
 
-export const PRODUCERS: string[] = [
-  'GMT Games',
-  'Hasbro',
-  'FryxGames',
-  'Arclight Games',
-  'Stonemaier Games',
-  'Cephalofair Games',
-  'Hans im Gluck',
-];
-
-export const GAMES: TGame[] = [
+export const GAMES: types.TGame[] = [
   {
     id: 312023001,
     name: 'Ancient Civilizations of the Inner Sea',

@@ -1,15 +1,11 @@
 import React from 'react';
+import { useAppDispatch } from '../../store';
+import { gameActions } from '../../store/reducer/cartGamesReducer';
 import './promoActivated.scss';
 import crossIcon from './../../static/cross-icon.png';
-import { gameActions, discountObj } from '../../store/reducer/cartGamesReducer';
-import { useAppDispatch } from '../../store';
+import * as types from './../../staticData/baseTypes';
 
-type TPromoCode = {
-  promo: discountObj;
-  index: number;
-};
-
-function PromoActivated({ promo, index }: TPromoCode) {
+function PromoActivated({ promo, index }: types.TPromoCode) {
   const dispatch = useAppDispatch();
   const removePromo = (index: number) => {
     dispatch(gameActions.removePromo(index));
@@ -20,6 +16,7 @@ function PromoActivated({ promo, index }: TPromoCode) {
       <p className="promo-code__name">{promo.code}</p>
       <p className="promo-code__value">{promo.discount} %</p>
       <button
+        type="button"
         className="promo-code__deactivate"
         onClick={() => removePromo(index)}
       >

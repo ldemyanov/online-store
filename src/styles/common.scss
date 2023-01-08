@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Inder&family=Julius+Sans+One&family=Kaisei+Tokumin:wght@400;500;700;800&display=swap');
+
+// font-family: 'Inder', sans-serif;
+// font-family: 'Julius Sans One', sans-serif;
+// font-family: 'Kaisei Tokumin', serif;
+
 * {
   box-sizing: border-box;
 }
@@ -7,19 +13,15 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  // max-width: 4000px;
   margin: auto;
   background: linear-gradient(257.8deg, #e5e5ff 5.53%, #b8b6c7 91.73%);
   background-position: center;
   background-size: cover;
-
-  // &::-webkit-scrollbar {
-  //   display: none;
-  // }
 }
 
 a {
   text-decoration: none;
+  color: inherit;
 }
 
 a:visited {
@@ -28,4 +30,12 @@ a:visited {
 
 #root {
   height: 100%;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.dissolved {
+  opacity: 0 !important;
 }

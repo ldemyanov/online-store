@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { gameActions } from '../../store/reducer/gamesReducer';
+import { useSearchParams } from 'react-router-dom';
 import './CardContainer.scss';
+import * as types from './../../staticData/baseTypes';
 import GameCard from '../gameCard/GameCard';
 import ListGameCard from '../listGameCard/ListGameCard';
-import { useAppDispatch, useAppSelector } from '../../store';
-import { ELayout, gameActions } from '../../store/reducer/gamesReducer';
-import { useSearchParams } from 'react-router-dom';
 
 function CardContainer() {
   const { games, layout } = useAppSelector((state) => state.gameReducer);
@@ -13,18 +14,17 @@ function CardContainer() {
 
   useEffect(() => {
     const spLayout = searchParams.get('layout') || '';
-    if (spLayout in ELayout) {
-      dispatch(gameActions.setLayout(spLayout as ELayout));
+    if (spLayout in types.ELayout) {
+      dispatch(gameActions.setLayout(spLayout as types.ELayout));
     }
   }, []);
 
-  console.log(games);
   return (
     <div className="card-container">
       {games.map((game) => {
-        if (layout === ELayout.cards)
+        if (layout === types.ELayout.cards)
           return <GameCard key={game.id} game={game} />;
-        else if (layout === ELayout.list)
+        else if (layout === types.ELayout.list)
           return <ListGameCard key={game.id} game={game} />;
       })}
     </div>

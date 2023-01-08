@@ -1,8 +1,8 @@
 import React from 'react';
+import { useNavigate, useMatch } from 'react-router-dom';
 import './header.scss';
 import wizard from './../../static/header-wizard.png';
 import HeaderCart from '../../components/headerCart/HeaderCart';
-import { useNavigate, useMatch } from 'react-router-dom';
 
 function Header() {
   const match = useMatch('/');
@@ -19,6 +19,7 @@ function Header() {
           </div>
           <p className="header__moto">WHERE ALL WORLDS INTERSECT...</p>
           <button
+            type="button"
             className="header__btn"
             onClick={() => {
               if (!match) navigate('/');

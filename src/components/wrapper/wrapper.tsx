@@ -1,14 +1,11 @@
 import React from 'react';
 import './wrapper.scss';
-import Footer from '../components/footer/Footer';
-import Header from '../components/header/header';
-import spiderWeb from './../static/bg-web.png';
+import spiderWeb from './../../static/bg-web.png';
+import * as types from './../../staticData/baseTypes';
+import Header from '../header/header';
+import Footer from '../footer/Footer';
 
-type WrapperProps = {
-  children: React.ReactNode;
-};
-
-function Wrapper({ children }: WrapperProps) {
+function Wrapper({ children }: types.WrapperProps) {
   return (
     <div className="wrapper">
       <img className="wrapper-web" src={spiderWeb} />

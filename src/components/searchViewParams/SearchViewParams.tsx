@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import './SearchViewParams.scss';
-import { ELayout, gameActions } from '../../store/reducer/gamesReducer';
-import { useAppSelector } from '../../store';
 import { useDispatch } from 'react-redux';
+import { useAppSelector } from '../../store';
+import { gameActions } from '../../store/reducer/gamesReducer';
 import { useSearchParams } from 'react-router-dom';
+import './SearchViewParams.scss';
+import * as types from './../../staticData/baseTypes';
 
 function SearchViewParams() {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ function SearchViewParams() {
   const [isBeingCopied, setIsBeingCopied] = useState(false);
   const [filtersReset, setFiltersReset] = useState(false);
 
-  const callbackSetLayout = (layout: ELayout) => {
+  const callbackSetLayout = (layout: types.ELayout) => {
     dispatch(gameActions.setLayout(layout));
     searchParams.set('layout', layout);
     setSearchParams(searchParams);
@@ -23,7 +24,6 @@ function SearchViewParams() {
     setIsBeingCopied(true);
     window.navigator.clipboard
       .writeText(window.location.href)
-      .then(() => console.log('Скопировано'))
       .catch((e) => console.error(e));
     setTimeout(() => setIsBeingCopied(false), 1500);
   };
@@ -43,27 +43,30 @@ function SearchViewParams() {
       <div className="search-view-btns">
         <p className="search-view-btns__word">View:</p>
         <button
+          type="button"
           className={
-            layout === ELayout.cards
+            layout === types.ELayout.cards
               ? 'search-view-btns__btn search-view-btns__btn_active'
               : 'search-view-btns__btn'
           }
-          onClick={() => callbackSetLayout(ELayout.cards)}
+          onClick={() => callbackSetLayout(types.ELayout.cards)}
         >
           Cards
         </button>
         <button
+          type="button"
           className={
-            layout === ELayout.list
+            layout === types.ELayout.list
               ? 'search-view-btns__btn search-view-btns__btn_active'
               : 'search-view-btns__btn'
           }
-          onClick={() => callbackSetLayout(ELayout.list)}
+          onClick={() => callbackSetLayout(types.ELayout.list)}
         >
           List
         </button>
       </div>
       <button
+        type="button"
         className={
           'search-view-params-block__btn link-btn ' +
           (isBeingCopied ? 'btn-activated' : '')
@@ -73,6 +76,7 @@ function SearchViewParams() {
         {isBeingCopied ? 'Copied' : 'Copy Current Search Link'}
       </button>
       <button
+        type="button"
         className={
           'search-view-params-block__btn reset-btn ' +
           (filtersReset ? 'btn-activated' : '')

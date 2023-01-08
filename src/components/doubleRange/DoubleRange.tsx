@@ -1,15 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './doubleRange.scss';
+import * as types from './../../staticData/baseTypes';
 
-type TDoubleRangeProps = {
-  min: number;
-  max: number;
-  left: number;
-  right: number;
-  onChange: (min: number, max: number) => void;
-};
-
-function DoubleRange({ min, max, left, right, onChange }: TDoubleRangeProps) {
+function DoubleRange({
+  min,
+  max,
+  left,
+  right,
+  onChange,
+}: types.TDoubleRangeProps) {
   const [minValue, setMin] = useState(left);
   const [maxValue, setMax] = useState(right);
   const filling = useRef(null);

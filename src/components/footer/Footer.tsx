@@ -22,7 +22,7 @@ function Footer() {
             target="_blank"
             rel="noreferrer"
           >
-            <img className="github-octopus" src={githubUserSvg} alt="" />
+            <img className="github-octopus" src={githubUserSvg} />
             <span className="footer__link-text">Leonid Demyanov</span>
           </a>
           <a
@@ -31,7 +31,7 @@ function Footer() {
             target="_blank"
             rel="noreferrer"
           >
-            <img className="github-octopus" src={githubUserSvg} alt="" />
+            <img className="github-octopus" src={githubUserSvg} />
             <span className="footer__link-text">Dmitriy Vnuchkov</span>
           </a>
         </div>

@@ -6,26 +6,25 @@ import catKids from './../../static/cat-kids.png';
 import catQuiz from './../../static/cat-quiz.png';
 import catStrategy from './../../static/cat-strategy.png';
 import catRolePlay from './../../static/role-play-icon.png';
+import * as baseV from '../../staticData/baseValues';
+//prettier-ignore
+const arrOfImages: string[] = [ catStrategy, catCards, catQuiz, catEconomy, catKids, catRolePlay ];
 
-function CategoriesProdPage(props: { categories: string[]; values: number[] }) {
-  //prettier-ignore
-  const arrOfImages: string[] = [ catStrategy, catCards, catQuiz, catEconomy, catKids, catRolePlay ];
-  //prettier-ignore
-  const arrOfCategories: string[] = [ 'strategy', 'cards', 'quiz', 'economy', 'kids', 'role' ];
-  //prettier-ignore
-  const arrOfCategoryNames: string[] = [ 'strategy', 'cards', 'quiz', 'economy', 'kids', 'role play' ];
+function CategoriesProdPage(props: { categories: string[] }) {
   const arrOfElements = props.categories.map(
     (category: string, index: number) => {
-      const indexOfCategory = arrOfCategories.indexOf(category);
+      const indexOfCategory = baseV.ARR_OF_CATEGORIES.indexOf(category);
       return (
-        <div className="pp-category" key={props.values[index]}>
+        <div className="pp-category" key={baseV.ARR_OF_CATEGORIES[index]}>
           <img
             className="pp-category__img"
             src={arrOfImages[indexOfCategory]}
           />
           <span className="pp-category__name">
-            {arrOfCategoryNames[indexOfCategory].charAt(0).toUpperCase() +
-              arrOfCategoryNames[indexOfCategory].slice(1)}
+            {baseV.ARR_OF_CATEGORY_NAMES[indexOfCategory]
+              .charAt(0)
+              .toUpperCase() +
+              baseV.ARR_OF_CATEGORY_NAMES[indexOfCategory].slice(1)}
           </span>
         </div>
       );

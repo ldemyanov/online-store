@@ -1,21 +1,13 @@
 import React, { useCallback, useEffect, useRef } from 'react';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { gameActions } from '../../store/reducer/gamesReducer';
+import { useSearchParams } from 'react-router-dom';
 import './SortViewBlock.scss';
 import inStockImg from './../../static/in-stock-param.png';
 import numOfPlayersImg from './../../static/num-of-players-param.png';
 import priceImg from './../../static/price-param.png';
+import * as types from './../../staticData/baseTypes';
 import DoubleRange from '../doubleRange/DoubleRange';
-import { useAppDispatch, useAppSelector } from '../../store';
-import { gameActions } from '../../store/reducer/gamesReducer';
-import { useSearchParams } from 'react-router-dom';
-
-enum ESearchParams {
-  minPrice = 'minPrice',
-  maxPrice = 'maxPrice',
-  minInStock = 'minInStock',
-  maxInStock = 'maxInStock',
-  minPlayers = 'minPlayers',
-  maxPlayers = 'maxPlayers',
-}
 
 function SortViewBlock() {
   const isFirstRenderRef = useRef(true);
@@ -38,12 +30,12 @@ function SortViewBlock() {
   }, []);
 
   useEffect(() => {
-    const minPrice = searchParams.get(ESearchParams.minPrice);
-    const maxPrice = searchParams.get(ESearchParams.maxPrice);
-    const minInStock = searchParams.get(ESearchParams.minInStock);
-    const maxInStock = searchParams.get(ESearchParams.maxInStock);
-    const minPlayers = searchParams.get(ESearchParams.minPlayers);
-    const maxPlayers = searchParams.get(ESearchParams.maxPlayers);
+    const minPrice = searchParams.get(types.ESearchParams.minPrice);
+    const maxPrice = searchParams.get(types.ESearchParams.maxPrice);
+    const minInStock = searchParams.get(types.ESearchParams.minInStock);
+    const maxInStock = searchParams.get(types.ESearchParams.maxInStock);
+    const minPlayers = searchParams.get(types.ESearchParams.minPlayers);
+    const maxPlayers = searchParams.get(types.ESearchParams.maxPlayers);
 
     if (minPrice && maxPrice) {
       const min = +minPrice;
@@ -66,12 +58,30 @@ function SortViewBlock() {
 
   useEffect(() => {
     if (!isFirstRenderRef.current) {
-      searchParams.set(ESearchParams.minPrice, filterPrice.min.toString());
-      searchParams.set(ESearchParams.maxPrice, filterPrice.max.toString());
-      searchParams.set(ESearchParams.minInStock, filterCountInStock.min.toString()); // eslint-disable-line
-      searchParams.set(ESearchParams.maxInStock, filterCountInStock.max.toString()); // eslint-disable-line
-      searchParams.set(ESearchParams.minPlayers, filterPlayers.min.toString());
-      searchParams.set(ESearchParams.maxPlayers, filterPlayers.max.toString());
+      searchParams.set(
+        types.ESearchParams.minPrice,
+        filterPrice.min.toString()
+      );
+      searchParams.set(
+        types.ESearchParams.maxPrice,
+        filterPrice.max.toString()
+      );
+      searchParams.set(
+        types.ESearchParams.minInStock,
+        filterCountInStock.min.toString()
+      ); // eslint-disable-line
+      searchParams.set(
+        types.ESearchParams.maxInStock,
+        filterCountInStock.max.toString()
+      ); // eslint-disable-line
+      searchParams.set(
+        types.ESearchParams.minPlayers,
+        filterPlayers.min.toString()
+      );
+      searchParams.set(
+        types.ESearchParams.maxPlayers,
+        filterPlayers.max.toString()
+      );
       setSearchParams(searchParams);
     }
     isFirstRenderRef.current = false;

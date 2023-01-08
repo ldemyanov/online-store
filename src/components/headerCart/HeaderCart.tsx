@@ -1,10 +1,10 @@
 import React from 'react';
+import { useAppSelector } from '../../store';
+import { useNavigate, useMatch } from 'react-router-dom';
 import './HeaderCart.scss';
 import cartIcon from './../../static/cart-icon.png';
 import toggleElementDisplay from '../../helperFunctions/displayToggler';
 import HeaderCardsContainer from '../headerCardsContainer/HeaderCardsContainer';
-import { useAppSelector } from '../../store';
-import { useNavigate, useMatch } from 'react-router-dom';
 
 function HeaderCart() {
   const match = useMatch('/cart');
@@ -51,6 +51,7 @@ function HeaderCart() {
         </p>
         <HeaderCardsContainer />
         <button
+          type="button"
           className="cart-content__btn"
           onClick={() => {
             if (!match) navigate('/cart');

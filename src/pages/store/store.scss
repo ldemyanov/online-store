@@ -24,18 +24,12 @@
   flex-grow: 1;
   min-width: 580px;
   min-height: 2100px;
-  // overflow-y: scroll;
-  // margin: 20px 0 10px 0;
-  // &::-webkit-scrollbar {
-  //   display: none;
-  // }
 }
 
 .store__right {
   margin-top: 20px;
   min-width: 400px;
   width: 400px;
-  // background: #c2778a20;
   display: flex;
   flex-direction: column;
   align-items: flex-end;

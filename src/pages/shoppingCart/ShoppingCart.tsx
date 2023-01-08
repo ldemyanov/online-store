@@ -1,19 +1,14 @@
-import React, { useRef, useCallback, useEffect } from 'react';
-import SCCardContainer from '../../components/scCardsContainer/SCCardContainer';
-import './shoppingCart.scss';
+import React, { useRef, useEffect } from 'react';
 import { useAppSelector } from '../../store';
 import { useAppDispatch } from '../../store';
-import { useSearchParams } from 'react-router-dom';
 import { gameActions } from '../../store/reducer/cartGamesReducer';
-import PromoBlock from '../../components/promoBlock/PromoBlock';
-import PrchsModuleContainer from '../../components/prchsModuleContainer/PrchsModuleContainer';
+import { useSearchParams } from 'react-router-dom';
+import './shoppingCart.scss';
+import SCCardContainer from '../../components/scCardsContainer/SCCardContainer';
+import * as types from './../../staticData/baseTypes';
 import toggleElementDisplay from '../../helperFunctions/displayToggler';
-
-// http://localhost:3000/cart?itemsPerPage=3&currentPage=6
-enum ECartViewParams {
-  itemsPerPage = 'itemsPerPage',
-  currentPage = 'currentPage',
-}
+import PrchsModuleContainer from '../../components/prchsModuleContainer/PrchsModuleContainer';
+import PromoBlock from '../../components/promoBlock/PromoBlock';
 
 function ShoppingCart() {
   const { cartGames } = useAppSelector((state) => state.cartGameReducer);
@@ -26,40 +21,38 @@ function ShoppingCart() {
     discountTotal,
     totalQuantity,
   } = useAppSelector((state) => state.cartGameReducer);
+
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const callbackSetItemsPerPage = useCallback((limit: number) => {
+  const setItemsPerPage = (limit: number) =>
     dispatch(gameActions.setItemsPerPage(limit));
-  }, []);
+  const goToNextPage = () => dispatch(gameActions.goToNextPage());
+  const goToPrevPage = () => dispatch(gameActions.goToPrevPage());
+  const goToPage = (curPage: number) => dispatch(gameActions.goToPage(curPage));
 
-  const callbackGoToNextPage = useCallback(() => {
-    dispatch(gameActions.goToNextPage());
-  }, []);
-
-  const callbackGoToPrevPage = useCallback(() => {
-    dispatch(gameActions.goToPrevPage());
+  useEffect(() => {
+    document.title = 'Tabletop Geek: Your Cart';
   }, []);
 
   useEffect(() => {
-    const itemsPerPage = searchParams.get(ECartViewParams.itemsPerPage);
-    const currentPage = searchParams.get(ECartViewParams.currentPage);
+    const itemsPerPage = searchParams.get(types.ECartViewParams.itemsPerPage);
+    const currentPage = searchParams.get(types.ECartViewParams.currentPage);
 
     if (itemsPerPage) {
       const limit = +itemsPerPage;
-      dispatch(gameActions.setItemsPerPage(limit));
+      setItemsPerPage(limit);
     }
 
     if (currentPage) {
       const curPage = +currentPage;
-      dispatch(gameActions.goToPage(curPage));
+      goToPage(curPage);
     }
   }, []);
 
   useEffect(() => {
     if (!isFirstRenderRef.current) {
       setSearchParams({
-        [ECartViewParams.itemsPerPage]: itemsPerPage.toString(),
-        [ECartViewParams.currentPage]: currentPage.toString(),
+        [types.ECartViewParams.itemsPerPage]: itemsPerPage.toString(),
+        [types.ECartViewParams.currentPage]: currentPage.toString(),
       });
     }
     isFirstRenderRef.current = false;
@@ -81,13 +74,15 @@ function ShoppingCart() {
         >
           <div className="pages-slider">
             <button
+              type="button"
               className="pages-slider__btn btn-prev"
-              onClick={() => callbackGoToPrevPage()}
+              onClick={() => goToPrevPage()}
             ></button>
             <p className="pages-slider__page">{currentPage}</p>
             <button
+              type="button"
               className="pages-slider__btn btn-next"
-              onClick={() => callbackGoToNextPage()}
+              onClick={() => goToNextPage()}
             ></button>
           </div>
           <div className="pagination-panel__options">
@@ -99,7 +94,7 @@ function ShoppingCart() {
               name="items"
               id="sc-items-page"
               value={itemsPerPage}
-              onChange={(val) => callbackSetItemsPerPage(+val.target.value)}
+              onChange={(val) => setItemsPerPage(+val.target.value)}
             >
               <option className="page-number__option" value="1">
                 1
@@ -132,6 +127,7 @@ function ShoppingCart() {
       <SCCardContainer />
       <div className="sc-totals">
         <button
+          type="button"
           className={
             'sc-totals__checkout ' + (cartGames.length > 0 ? '' : 'hidden')
           }

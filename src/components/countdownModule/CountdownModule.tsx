@@ -1,11 +1,8 @@
 import React from 'react';
 import './countdownModule.scss';
+import * as types from './../../staticData/baseTypes';
 
-type useStateState = {
-  seconds: number;
-};
-
-function CountdownModule({ seconds }: useStateState) {
+function CountdownModule({ seconds }: types.useStateState) {
   return (
     <div className="countdown-block hidden dissolved">
       <p className="countdown-block__msg">

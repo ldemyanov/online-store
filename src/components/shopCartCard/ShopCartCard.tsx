@@ -1,13 +1,13 @@
 import React from 'react';
-import CategoriesDisplay from '../categoriesDisplay/CategoriesDisplay';
-import RatingDisplay from '../ratingDisplay/RatingDisplay';
-import './shopCartCard.scss';
-import { ICartGame } from '../../store/reducer/cartGames';
 import { useAppDispatch } from '../../store';
 import { gameActions } from '../../store/reducer/cartGamesReducer';
 import { Link } from 'react-router-dom';
+import './shopCartCard.scss';
+import * as types from './../../staticData/baseTypes';
+import CategoriesDisplay from '../categoriesDisplay/CategoriesDisplay';
+import RatingDisplay from '../ratingDisplay/RatingDisplay';
 
-function ShopCartCard({ game, quantity, position }: ICartGame) {
+function ShopCartCard({ game, quantity, position }: types.ICartGame) {
   const dispatch = useAppDispatch();
   const id = game.id;
 
@@ -18,16 +18,20 @@ function ShopCartCard({ game, quantity, position }: ICartGame) {
     dispatch(gameActions.decQuantity({ id }));
   };
 
+  const linkString = `/product?prodBy=${game.produced
+    .split(' ')
+    .join('-')}&id=${game.id}`;
+
   return (
     <div className="sc-game-card">
       <p className="sc-game-card__position">{position}</p>
-      <Link to={`/product?id=${id}`}>
+      <Link to={linkString} target="_blank">
         <p className="sc-game-card__name">{game.name}</p>
       </Link>
       <p className="sc-game-card__produced"> by: {game.produced}</p>
       <div className="sc-game-card__content">
         <div className="sc-game-data">
-          <Link to={`/product?id=${id}`}>
+          <Link to={linkString} target="_blank">
             <div
               className="sc-game-data__img"
               style={{ backgroundImage: `url(${game.previewImg})` }}
@@ -49,6 +53,7 @@ function ShopCartCard({ game, quantity, position }: ICartGame) {
               <span className="sc-game-quantity__line">Quantity:</span>
               <div className="sc-game-quantity-panel">
                 <button
+                  type="button"
                   className="sc-game-quantity-panel__btn sc-quantity-btn-less"
                   onClick={() => decQuantity(id)}
                 >
@@ -56,6 +61,7 @@ function ShopCartCard({ game, quantity, position }: ICartGame) {
                 </button>
                 <span className="sc-game-quantity-panel__num">{quantity}</span>
                 <button
+                  type="button"
                   className="sc-game-quantity-panel__btn sc-quantity-btn-more"
                   onClick={() => incQuantity(id)}
                 >

@@ -1,30 +1,29 @@
 import React from 'react';
+import { gameActions } from '../../store/reducer/cartGamesReducer';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { Link } from 'react-router-dom';
 import './ListGameCard.scss';
-import { TGame } from '../../store/reducer/games';
+import * as types from './../../staticData/baseTypes';
 import RatingDisplay from '../ratingDisplay/RatingDisplay';
 import CategoriesDisplay from '../categoriesDisplay/CategoriesDisplay';
-import { useAppDispatch, useAppSelector } from '../../store';
-import { gameActions } from '../../store/reducer/cartGamesReducer';
-import { Link } from 'react-router-dom';
 
-type TGameCardProps = {
-  game: TGame;
-};
-
-function ListGameCard({ game }: TGameCardProps) {
+function ListGameCard({ game }: types.TGameCardProps) {
   const dispatch = useAppDispatch();
   const { cartGames } = useAppSelector((state) => state.cartGameReducer);
-  const addGameToCart = (newGame: TGame) => {
+  const addGameToCart = (newGame: types.TGame) => {
     dispatch(gameActions.addGameToCart(newGame));
   };
   const isGameInCart = (id: number) => {
     return cartGames.some((game) => game.game.id === id);
   };
+  const linkString = `/product?prodBy=${game.produced
+    .split(' ')
+    .join('-')}&id=${game.id}`;
 
   return (
     <div className="lg-card">
       <div className="lg-card__col">
-        <Link to={`/product?id=${game.id}`}>
+        <Link to={linkString} target="_blank">
           <img
             className="lg-card__image"
             src={game.previewImg}
@@ -34,7 +33,7 @@ function ListGameCard({ game }: TGameCardProps) {
       </div>
       <div className="lg-card__col">
         <div className="lg-card__label">
-          <Link to={`/product?id=${game.id}`}>
+          <Link to={linkString} target="_blank">
             <p className="lg-card__name">{game.name}</p>
           </Link>
           <RatingDisplay rating={game.rating} />
@@ -48,6 +47,7 @@ function ListGameCard({ game }: TGameCardProps) {
         <div className="lg-card__price">{game.price}</div>
         <div className="lg-card__stock">In stock: {game.inStock}</div>
         <button
+          type="button"
           className={
             `lg-card__add-btn ` +
             (isGameInCart(game.id) ? 'btn-alrd-added' : '')

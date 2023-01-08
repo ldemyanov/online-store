@@ -1,13 +1,10 @@
 import React from 'react';
 import './RatingDisplay.scss';
 import ratingIcon from './../../static/rating-icon.png';
+import * as types from './../../staticData/baseTypes';
 
-type TPropsRatingDisplay = {
-  rating: number;
-};
-
-function RatingDisplay({ ...props }: TPropsRatingDisplay) {
-  const ratingBlock = [1, 2, 3, 4, 5].map((num) => (
+function RatingDisplay({ ...props }: types.TPropsRatingDisplay) {
+  const ratingBlock = Array.from(Array(5).keys()).map((num) => (
     <img className="rc-rating__img" src={ratingIcon} key={num} />
   ));
   return <div className="rc-rating">{ratingBlock.slice(0, props.rating)}</div>;
