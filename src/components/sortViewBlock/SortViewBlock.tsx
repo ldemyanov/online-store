@@ -10,32 +10,50 @@ import * as types from './../../staticData/baseTypes';
 import DoubleRange from '../doubleRange/DoubleRange';
 
 function SortViewBlock() {
-  const isFirstRenderRef = useRef(true);
+  const isFirstRenderRef: React.MutableRefObject<boolean> = useRef(true);
   const dispatch = useAppDispatch();
   const { filterCountInStock, filterPlayers, filterPrice } = useAppSelector(
     (state) => state.gameReducer
   );
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const callbackSetNumOfPlayers = useCallback((min: number, max: number) => {
-    dispatch(gameActions.setNumOfPlayers({ min, max }));
-  }, []);
+  const callbackSetNumOfPlayers = useCallback(
+    (min: number, max: number): void => {
+      dispatch(gameActions.setNumOfPlayers({ min, max }));
+    },
+    []
+  );
 
-  const callbackSetCountInStock = useCallback((min: number, max: number) => {
-    dispatch(gameActions.setCountInStock({ min, max }));
-  }, []);
+  const callbackSetCountInStock = useCallback(
+    (min: number, max: number): void => {
+      dispatch(gameActions.setCountInStock({ min, max }));
+    },
+    []
+  );
 
-  const callbackSetPrice = useCallback((min: number, max: number) => {
+  const callbackSetPrice = useCallback((min: number, max: number): void => {
     dispatch(gameActions.setPrice({ min, max }));
   }, []);
 
-  useEffect(() => {
-    const minPrice = searchParams.get(types.ESearchParams.minPrice);
-    const maxPrice = searchParams.get(types.ESearchParams.maxPrice);
-    const minInStock = searchParams.get(types.ESearchParams.minInStock);
-    const maxInStock = searchParams.get(types.ESearchParams.maxInStock);
-    const minPlayers = searchParams.get(types.ESearchParams.minPlayers);
-    const maxPlayers = searchParams.get(types.ESearchParams.maxPlayers);
+  useEffect((): void => {
+    const minPrice: string | null = searchParams.get(
+      types.ESearchParams.minPrice
+    );
+    const maxPrice: string | null = searchParams.get(
+      types.ESearchParams.maxPrice
+    );
+    const minInStock: string | null = searchParams.get(
+      types.ESearchParams.minInStock
+    );
+    const maxInStock: string | null = searchParams.get(
+      types.ESearchParams.maxInStock
+    );
+    const minPlayers: string | null = searchParams.get(
+      types.ESearchParams.minPlayers
+    );
+    const maxPlayers: string | null = searchParams.get(
+      types.ESearchParams.maxPlayers
+    );
 
     if (minPrice && maxPrice) {
       const min = +minPrice;
@@ -56,7 +74,7 @@ function SortViewBlock() {
     }
   }, []);
 
-  useEffect(() => {
+  useEffect((): void => {
     if (!isFirstRenderRef.current) {
       searchParams.set(
         types.ESearchParams.minPrice,

@@ -8,10 +8,10 @@ import * as types from './../../staticData/baseTypes';
 function GameInCartCard({ game, quantity }: types.ICartGame) {
   const dispatch = useAppDispatch();
   const id = game.id;
-  const incQuantity = (id: number) => {
+  const incQuantity = (id: number): void => {
     dispatch(gameActions.incQuantity({ id }));
   };
-  const decQuantity = (id: number) => {
+  const decQuantity = (id: number): void => {
     dispatch(gameActions.decQuantity({ id }));
   };
   const linkString = `/product?prodBy=${game.produced

@@ -17,14 +17,14 @@ import RatingDisplay from '../../components/ratingDisplay/RatingDisplay';
 function AboutGameInfoBlock(thisGame: types.TGame) {
   const { cartGames } = useAppSelector((state) => state.cartGameReducer);
   const dispatch = useAppDispatch();
-  const addGameToCart = (newGame: types.TGame) => {
+  const addGameToCart = (newGame: types.TGame): void => {
     dispatch(gameActions.addGameToCart(newGame));
   };
-  const removeGame = (id: types.curGameID) => {
+  const removeGame = (id: types.curGameID): void => {
     dispatch(gameActions.removeGame(id));
   };
-  const isGameInCart = (id: number) => {
-    return cartGames.some((game) => game.game.id === id);
+  const isGameInCart = (id: number): boolean => {
+    return cartGames.some((game: types.ICartGame) => game.game.id === id);
   };
 
   return (

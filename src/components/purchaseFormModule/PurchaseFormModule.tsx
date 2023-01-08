@@ -8,14 +8,11 @@ import discover from './../../static/discover-card.png';
 import gold from './../../static/pile-of-gold.png';
 import toggleElementDisplay from '../../helperFunctions/displayToggler';
 import * as valFns from '../../helperFunctions/formValidator';
+import * as types from './../../staticData/baseTypes';
 
-type setCounter = {
-  setCounter: React.Dispatch<React.SetStateAction<number>>;
-};
-
-function PurchaseFormModule({ setCounter }: setCounter) {
+function PurchaseFormModule({ setCounter }: types.setCounter) {
   const dispatch = useAppDispatch();
-  const clearCart = () => {
+  const clearCart = (): void => {
     dispatch(gameActions.clearCart());
   };
 

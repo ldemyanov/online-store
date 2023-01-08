@@ -5,8 +5,8 @@ import arrowRight from './../../static/arrow-right-crumbs.png';
 import * as types from './../../staticData/baseTypes';
 
 function BreadCrumbs({ params }: types.crumbsParams) {
-  const nameOfTheProducer = params.producer;
-  const linkToProducerGameSet =
+  const nameOfTheProducer: string = params.producer;
+  const linkToProducerGameSet: string =
     `/product?` + `prodBy=${nameOfTheProducer.split(' ').join('-')}`;
   return (
     <div className="crumbs">

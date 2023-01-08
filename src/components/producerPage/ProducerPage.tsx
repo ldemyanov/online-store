@@ -7,7 +7,7 @@ import BreadCrumbs from '../breadCrumbs/BreadCrumbs';
 function ProducerPage({ games }: types.TGameCardsProp) {
   const producer = games.length > 0 ? games[0].produced : 'GMT Games';
 
-  useEffect(() => {
+  useEffect((): void => {
     document.title = `Tabletop Geek: ${producer}`;
   }, []);
 

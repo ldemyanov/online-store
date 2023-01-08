@@ -13,13 +13,13 @@ function SearchViewParams() {
   const [isBeingCopied, setIsBeingCopied] = useState(false);
   const [filtersReset, setFiltersReset] = useState(false);
 
-  const callbackSetLayout = (layout: types.ELayout) => {
+  const callbackSetLayout = (layout: types.ELayout): void => {
     dispatch(gameActions.setLayout(layout));
     searchParams.set('layout', layout);
     setSearchParams(searchParams);
   };
 
-  const copyLink = async () => {
+  const copyLink = async (): Promise<void> => {
     if (isBeingCopied) return;
     setIsBeingCopied(true);
     window.navigator.clipboard
@@ -28,7 +28,7 @@ function SearchViewParams() {
     setTimeout(() => setIsBeingCopied(false), 1500);
   };
 
-  const reset = () => {
+  const reset = (): void => {
     if (filtersReset) return;
     setFiltersReset(true);
     dispatch(gameActions.reset());

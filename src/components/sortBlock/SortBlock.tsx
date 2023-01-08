@@ -11,8 +11,8 @@ function SortBlock() {
   const { param, trend } = useAppSelector((state) => state.gameReducer.sort);
 
   useEffect(() => {
-    const oldParam = searchParams.get('param') || '';
-    const oldTrend = searchParams.get('trend') || '';
+    const oldParam: string = searchParams.get('param') || '';
+    const oldTrend: string = searchParams.get('trend') || '';
 
     if (oldParam in types.ESortParam && oldTrend in types.ESortTrend) {
       dispatch(

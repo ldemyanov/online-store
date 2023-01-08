@@ -10,10 +10,10 @@ import CategoriesDisplay from '../categoriesDisplay/CategoriesDisplay';
 function ListGameCard({ game }: types.TGameCardProps) {
   const dispatch = useAppDispatch();
   const { cartGames } = useAppSelector((state) => state.cartGameReducer);
-  const addGameToCart = (newGame: types.TGame) => {
+  const addGameToCart = (newGame: types.TGame): void => {
     dispatch(gameActions.addGameToCart(newGame));
   };
-  const isGameInCart = (id: number) => {
+  const isGameInCart = (id: number): boolean => {
     return cartGames.some((game) => game.game.id === id);
   };
   const linkString = `/product?prodBy=${game.produced

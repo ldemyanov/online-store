@@ -12,7 +12,7 @@ import * as baseV from './../../staticData/baseValues';
 function CategoriesDisplay(props: types.TPropsCategoriesDisplay) {
   const indexesOfExistingCategories: number[] = [];
 
-  baseV.ARR_OF_CATEGORIES.forEach((category, index) => {
+  baseV.ARR_OF_CATEGORIES.forEach((category: string, index: number): void => {
     if (props.categories.includes(category))
       indexesOfExistingCategories.push(index);
   });

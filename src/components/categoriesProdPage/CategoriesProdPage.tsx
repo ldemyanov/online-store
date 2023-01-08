@@ -11,9 +11,9 @@ import * as baseV from '../../staticData/baseValues';
 const arrOfImages: string[] = [ catStrategy, catCards, catQuiz, catEconomy, catKids, catRolePlay ];
 
 function CategoriesProdPage(props: { categories: string[] }) {
-  const arrOfElements = props.categories.map(
+  const arrOfElements: JSX.Element[] = props.categories.map(
     (category: string, index: number) => {
-      const indexOfCategory = baseV.ARR_OF_CATEGORIES.indexOf(category);
+      const indexOfCategory: number = baseV.ARR_OF_CATEGORIES.indexOf(category);
       return (
         <div className="pp-category" key={baseV.ARR_OF_CATEGORIES[index]}>
           <img

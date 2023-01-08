@@ -13,7 +13,7 @@ function PromoBlock() {
   const [buttonState, setButtonState] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const dispatch = useAppDispatch();
-  const addPromo = (promo: string) => {
+  const addPromo = (promo: string): void => {
     dispatch(gameActions.addPromo(promo));
   };
 
