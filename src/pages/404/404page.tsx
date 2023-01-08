@@ -4,7 +4,7 @@ import troll from './../../static/troll.png';
 import map from './../../static/map.png';
 
 function WrongDirectoryPage() {
-  useEffect(() => {
+  useEffect((): void => {
     document.title = 'Tabletop Geek: Page not found';
   }, []);
 

@@ -12,7 +12,7 @@ import PromoBlock from '../../components/promoBlock/PromoBlock';
 
 function ShoppingCart() {
   const { cartGames } = useAppSelector((state) => state.cartGameReducer);
-  const isFirstRenderRef = useRef(true);
+  const isFirstRenderRef: React.MutableRefObject<boolean> = useRef(true);
   const dispatch = useAppDispatch();
   const {
     totalPrice,
@@ -29,26 +29,30 @@ function ShoppingCart() {
   const goToPrevPage = () => dispatch(gameActions.goToPrevPage());
   const goToPage = (curPage: number) => dispatch(gameActions.goToPage(curPage));
 
-  useEffect(() => {
+  useEffect((): void => {
     document.title = 'Tabletop Geek: Your Cart';
   }, []);
 
-  useEffect(() => {
-    const itemsPerPage = searchParams.get(types.ECartViewParams.itemsPerPage);
-    const currentPage = searchParams.get(types.ECartViewParams.currentPage);
+  useEffect((): void => {
+    const itemsPerPage: string | null = searchParams.get(
+      types.ECartViewParams.itemsPerPage
+    );
+    const currentPage: string | null = searchParams.get(
+      types.ECartViewParams.currentPage
+    );
 
     if (itemsPerPage) {
-      const limit = +itemsPerPage;
+      const limit: number = +itemsPerPage;
       setItemsPerPage(limit);
     }
 
     if (currentPage) {
-      const curPage = +currentPage;
+      const curPage: number = +currentPage;
       goToPage(curPage);
     }
   }, []);
 
-  useEffect(() => {
+  useEffect((): void => {
     if (!isFirstRenderRef.current) {
       setSearchParams({
         [types.ECartViewParams.itemsPerPage]: itemsPerPage.toString(),
@@ -58,7 +62,7 @@ function ShoppingCart() {
     isFirstRenderRef.current = false;
   }, [itemsPerPage, currentPage]);
 
-  useEffect(() => {
+  useEffect((): void => {
     dispatch(gameActions.initialData());
   }, []);
 

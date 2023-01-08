@@ -12,8 +12,8 @@ function CardContainer() {
   const [searchParams] = useSearchParams();
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    const spLayout = searchParams.get('layout') || '';
+  useEffect((): void => {
+    const spLayout: string = searchParams.get('layout') || '';
     if (spLayout in types.ELayout) {
       dispatch(gameActions.setLayout(spLayout as types.ELayout));
     }

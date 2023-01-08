@@ -1,5 +1,5 @@
 export default function toggleElementDisplay(elementClass: string) {
-  const element = document.querySelector(elementClass);
+  const element: Element | null = document.querySelector(elementClass);
   if (!element) return;
   if (element.classList.contains('hidden')) {
     element.classList.remove('hidden');

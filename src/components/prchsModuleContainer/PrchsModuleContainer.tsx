@@ -21,7 +21,7 @@ function PrchsModuleContainer() {
     }, 1000);
   }
 
-  useEffect(() => {
+  useEffect((): void => {
     countToZero();
   }, [counter]);
 

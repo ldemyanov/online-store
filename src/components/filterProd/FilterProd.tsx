@@ -9,13 +9,13 @@ function FilterProd() {
   const dispatch = useAppDispatch();
   const { producers } = useAppSelector((state) => state.gameReducer);
   const [searchParams, setSearchParams] = useSearchParams();
-  const isFirstRenderRef = useRef(true);
+  const isFirstRenderRef: React.MutableRefObject<boolean> = useRef(true);
 
-  const callbackToggleProd = (name: string) => {
+  const callbackToggleProd = (name: string): void => {
     dispatch(gameActions.toggleProd(name));
   };
 
-  useEffect(() => {
+  useEffect((): void => {
     if (!isFirstRenderRef.current) {
       const spProducers = producers.join('-');
       if (spProducers) {
@@ -28,14 +28,16 @@ function FilterProd() {
     isFirstRenderRef.current = false;
   }, [producers]);
 
-  useEffect(() => {
-    const oldProducers = searchParams.get('producers')?.split('-');
+  useEffect((): void => {
+    const oldProducers: string[] | undefined = searchParams
+      .get('producers')
+      ?.split('-');
     if (oldProducers) {
       dispatch(gameActions.setProd(oldProducers));
     }
   }, []);
 
-  const LiProd = ({ name }: { name: string }) => (
+  const LiProd = ({ name }: { name: string }): JSX.Element => (
     <li
       className={
         producers.includes(name)

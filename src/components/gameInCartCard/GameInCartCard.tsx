@@ -8,10 +8,10 @@ import * as types from './../../staticData/baseTypes';
 function GameInCartCard({ game, quantity }: types.ICartGame) {
   const dispatch = useAppDispatch();
   const id = game.id;
-  const incQuantity = (id: number) => {
+  const incQuantity = (id: number): void => {
     dispatch(gameActions.incQuantity({ id }));
   };
-  const decQuantity = (id: number) => {
+  const decQuantity = (id: number): void => {
     dispatch(gameActions.decQuantity({ id }));
   };
   const linkString = `/product?prodBy=${game.produced
@@ -23,7 +23,7 @@ function GameInCartCard({ game, quantity }: types.ICartGame) {
       <Link to={linkString} target="_blank">
         <div
           className="hd-game-card__img"
-          style={{ backgroundImage: `url(${game.images[0]})` }}
+          style={{ backgroundImage: `url(${game.previewImg})` }}
         ></div>
       </Link>
       <div className="hd-game-card-dtls">

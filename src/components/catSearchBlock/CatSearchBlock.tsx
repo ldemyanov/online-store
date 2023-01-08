@@ -18,13 +18,13 @@ function CategorySearchBlock() {
   const dispatch = useDispatch();
   const isFirstRender = useRef(true);
 
-  const callbackToggleCategory = (cat: types.ECategory) => {
+  const callbackToggleCategory = (cat: types.ECategory): void => {
     dispatch(gameActions.toggleCategory(cat));
   };
 
-  useEffect(() => {
-    const strCategories = searchParams.get('category') || '';
-    const arrayCategories = strCategories
+  useEffect((): void => {
+    const strCategories: string = searchParams.get('category') || '';
+    const arrayCategories: string[] = strCategories
       .split('-')
       .filter((cat) => cat in types.ECategory);
 
@@ -33,7 +33,7 @@ function CategorySearchBlock() {
     }
   }, []);
 
-  useEffect(() => {
+  useEffect((): void => {
     if (!isFirstRender.current) {
       const str = categories.join('-');
       searchParams.set('category', str);

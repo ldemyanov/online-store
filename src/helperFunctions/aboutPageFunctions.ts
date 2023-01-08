@@ -1,11 +1,13 @@
-export function setBlockVerticalPosition() {
+export function setBlockVerticalPosition(): void {
   const verticalPosition: number = document.body.getBoundingClientRect().y;
   const imageBlock = document.querySelector('.pp-magnified-img') as HTMLElement;
-  const value = Math.abs(verticalPosition);
+  const value: number = Math.abs(verticalPosition);
   imageBlock.style.top = `${value}px`;
 }
 
-export function displayImg(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+export function displayImg(
+  e: React.MouseEvent<HTMLDivElement, MouseEvent>
+): void {
   if (!(e.target as Element).closest('.pp-img-panel__img')) return;
   const chosenImage = (e.target as Element).closest(
     '.pp-img-panel__img'

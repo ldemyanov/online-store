@@ -7,17 +7,18 @@ import './Search.scss';
 function Search() {
   const dispatch = useAppDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef: React.RefObject<HTMLInputElement> =
+    useRef<HTMLInputElement>(null);
 
   function changeText(e: React.ChangeEvent<HTMLInputElement>) {
-    const text = e.target.value.trim();
+    const text: string = e.target.value.trim();
     dispatch(gameActions.setTextFilter(text));
     searchParams.set('input', text);
     setSearchParams(searchParams);
   }
 
-  useEffect(() => {
-    const oldText = searchParams.get('input');
+  useEffect((): void => {
+    const oldText: string | null = searchParams.get('input');
     if (oldText) {
       dispatch(gameActions.setTextFilter(oldText));
       if (inputRef.current) {

@@ -20,26 +20,29 @@ function AboutProduct() {
   const [producerGames, setProducerGames] = useState(arrOfGames);
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
+  useEffect((): void => {
     document.title = `Tabletop Geek: ${thisGame.name}`;
   }, [thisGame]);
 
-  useEffect(() => {
-    const id = searchParams.get('id');
-    const prodBy = searchParams.get('prodBy');
+  useEffect((): void => {
+    const id: string | null = searchParams.get('id');
+    const prodBy: string | null = searchParams.get('prodBy');
     if (id) {
-      const displayedGame = GAMES.find((game) => game.id === +id) || EMPTY_GAME;
+      const displayedGame: types.TGame =
+        GAMES.find((game) => game.id === +id) || EMPTY_GAME;
       setIsGameDisplayed(true);
       setThisGame(displayedGame);
     } else setIsGameDisplayed(false);
     if (prodBy) {
-      const producer = prodBy.split('-').join(' ');
-      const games = GAMES.filter((game) => game.produced === producer);
+      const producer: string = prodBy.split('-').join(' ');
+      const games: types.TGame[] = GAMES.filter(
+        (game) => game.produced === producer
+      );
       setProducerGames(games);
     }
   }, [searchParams]);
 
-  useEffect(() => {
+  useEffect((): void => {
     dispatch(gameActions.initialData());
   }, []);
 

@@ -7,7 +7,7 @@ import * as types from './../../staticData/baseTypes';
 
 function PromoActivated({ promo, index }: types.TPromoCode) {
   const dispatch = useAppDispatch();
-  const removePromo = (index: number) => {
+  const removePromo = (index: number): void => {
     dispatch(gameActions.removePromo(index));
   };
 

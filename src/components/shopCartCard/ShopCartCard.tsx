@@ -9,12 +9,12 @@ import RatingDisplay from '../ratingDisplay/RatingDisplay';
 
 function ShopCartCard({ game, quantity, position }: types.ICartGame) {
   const dispatch = useAppDispatch();
-  const id = game.id;
+  const id: number = game.id;
 
-  const incQuantity = (id: number) => {
+  const incQuantity = (id: number): void => {
     dispatch(gameActions.incQuantity({ id }));
   };
-  const decQuantity = (id: number) => {
+  const decQuantity = (id: number): void => {
     dispatch(gameActions.decQuantity({ id }));
   };
 

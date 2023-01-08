@@ -12,13 +12,13 @@ import * as types from './../../staticData/baseTypes';
 function GameCard({ game, prodParent }: types.TGameCardProps) {
   const dispatch = useAppDispatch();
   const { cartGames } = useAppSelector((state) => state.cartGameReducer);
-  const addGameToCart = (newGame: types.TGame) => {
+  const addGameToCart = (newGame: types.TGame): void => {
     dispatch(gameActions.addGameToCart(newGame));
   };
-  const removeGame = (id: types.curGameID) => {
+  const removeGame = (id: types.curGameID): void => {
     dispatch(gameActions.removeGame(id));
   };
-  const isGameInCart = (id: number) => {
+  const isGameInCart = (id: number): boolean => {
     return cartGames.some((game) => game.game.id === id);
   };
   const linkString = `/product?prodBy=${game.produced
@@ -28,11 +28,10 @@ function GameCard({ game, prodParent }: types.TGameCardProps) {
   return (
     <div className="game-card">
       <Link to={linkString} target={prodParent ? '_self' : '_blank'}>
-        <img
+        <div
           className="game-card__img"
-          src={game.previewImg}
-          alt="Image of a game"
-        />
+          style={{ backgroundImage: `url(${game.previewImg})` }}
+        ></div>
       </Link>
       <Link to={linkString} target={prodParent ? '_self' : '_blank'}>
         <p className="game-card__name">{game.name}</p>

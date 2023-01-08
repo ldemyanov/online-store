@@ -155,3 +155,12 @@ export type TPromoCode = {
   promo: discountObj;
   index: number;
 };
+
+export type setCounter = {
+  setCounter: React.Dispatch<React.SetStateAction<number>>;
+};
+
+export type promoObject = {
+  code: string;
+  discount: number;
+};

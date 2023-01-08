@@ -11,29 +11,29 @@ function DoubleRange({
 }: types.TDoubleRangeProps) {
   const [minValue, setMin] = useState(left);
   const [maxValue, setMax] = useState(right);
-  const filling = useRef(null);
+  const filling: React.MutableRefObject<null> = useRef(null);
 
-  useEffect(() => {
+  useEffect((): void => {
     setMax(right);
     setMin(left);
   }, [left, right]);
 
-  useEffect(() => {
+  useEffect((): void => {
     onChange(minValue, maxValue);
     setFill();
   }, [minValue, maxValue]);
 
-  const onChangeMax = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = Math.max(Number(e.target.value), minValue + 1);
+  const onChangeMax = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const newValue: number = Math.max(Number(e.target.value), minValue + 1);
     setMax(newValue);
   };
 
-  const onChangeMin = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = Math.min(Number(e.target.value), maxValue - 1);
+  const onChangeMin = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const newValue: number = Math.min(Number(e.target.value), maxValue - 1);
     setMin(newValue);
   };
 
-  const setFill = () => {
+  const setFill = (): void => {
     if (filling.current) {
       const el: HTMLElement = filling.current;
       el.style.left = ((minValue - min) / (max - min)) * 100 - 1 + '%';
