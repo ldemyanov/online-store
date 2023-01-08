@@ -21,11 +21,13 @@ function PromoBlock() {
     <div className="promo">
       <p className="promo__offer">Enter promocode:</p>
       <div className="promo-controls">
+        <p className="promo-controls__promocodes">
+          promocodes are ZEUS, MAFIA, SLAANESH and ENTROPY
+        </p>
         <input
           className={'promo__input ' + isFocused + ' ' + isValid}
           type="text"
           maxLength={8}
-          title="possible promocodes are ZEUS, MAFIA, SLAANESH and ENTROPY"
           value={inputValue}
           onFocus={() => setFocusState('focused')}
           onBlur={() => setFocusState('out-of-focus')}

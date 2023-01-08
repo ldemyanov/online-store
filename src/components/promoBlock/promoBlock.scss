@@ -8,6 +8,8 @@
   margin: auto;
   box-sizing: border-box;
   z-index: 1;
+  position: relative;
+
   @media (max-width: 1200px) {
     flex-direction: column;
   }
@@ -31,9 +33,11 @@
     padding-left: 10px;
     font-family: 'Inder', sans-serif;
     font-size: 16px;
+
     &:focus {
       outline: none !important;
     }
+
     @media (max-width: 1200px) {
       padding-left: 8px;
       font-size: 14px;
@@ -44,6 +48,23 @@
   .promo-controls {
     display: flex;
     flex-direction: row;
+
+    &__promocodes {
+      position: absolute;
+      height: 30px;
+      width: 400px;
+      top: 30px;
+      left: 210px;
+      font-size: 14px;
+      z-index: -1;
+      color: #1616319e;
+
+      @media (max-width: 1200px) {
+        top: 45px;
+        left: -2px;
+        width: 400px;
+      }
+    }
   }
 
   .focused {
