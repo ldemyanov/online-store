@@ -24,11 +24,10 @@ function ListGameCard({ game }: types.TGameCardProps) {
     <div className="lg-card">
       <div className="lg-card__col">
         <Link to={linkString} target="_blank">
-          <img
+          <div
             className="lg-card__image"
-            src={game.previewImg}
-            alt="game image"
-          />
+            style={{ backgroundImage: `url(${game.previewImg})` }}
+          ></div>
         </Link>
       </div>
       <div className="lg-card__col">

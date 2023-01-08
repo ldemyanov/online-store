@@ -28,11 +28,10 @@ function GameCard({ game, prodParent }: types.TGameCardProps) {
   return (
     <div className="game-card">
       <Link to={linkString} target={prodParent ? '_self' : '_blank'}>
-        <img
+        <div
           className="game-card__img"
-          src={game.previewImg}
-          alt="Image of a game"
-        />
+          style={{ backgroundImage: `url(${game.previewImg})` }}
+        ></div>
       </Link>
       <Link to={linkString} target={prodParent ? '_self' : '_blank'}>
         <p className="game-card__name">{game.name}</p>

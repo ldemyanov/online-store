@@ -23,7 +23,7 @@ function GameInCartCard({ game, quantity }: types.ICartGame) {
       <Link to={linkString} target="_blank">
         <div
           className="hd-game-card__img"
-          style={{ backgroundImage: `url(${game.images[0]})` }}
+          style={{ backgroundImage: `url(${game.previewImg})` }}
         ></div>
       </Link>
       <div className="hd-game-card-dtls">
