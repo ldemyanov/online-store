@@ -13,6 +13,9 @@ function ListGameCard({ game }: types.TGameCardProps) {
   const addGameToCart = (newGame: types.TGame): void => {
     dispatch(gameActions.addGameToCart(newGame));
   };
+  const removeGame = (id: types.curGameID): void => {
+    dispatch(gameActions.removeGame(id));
+  };
   const isGameInCart = (id: number): boolean => {
     return cartGames.some((game) => game.game.id === id);
   };
@@ -51,7 +54,11 @@ function ListGameCard({ game }: types.TGameCardProps) {
             `lg-card__add-btn ` +
             (isGameInCart(game.id) ? 'btn-alrd-added' : '')
           }
-          onClick={() => addGameToCart(game)}
+          onClick={() =>
+            isGameInCart(game.id)
+              ? removeGame({ id: game.id })
+              : addGameToCart(game)
+          }
         >
           {isGameInCart(game.id) ? 'Game added' : 'Add to cart'}
         </button>

@@ -34,6 +34,7 @@ function Footer() {
             <img className="github-octopus" src={githubUserSvg} />
             <span className="footer__link-text">Dmitriy Vnuchkov</span>
           </a>
+          <p className="footer__date">Created in: 2022</p>
         </div>
       </div>
     </footer>
