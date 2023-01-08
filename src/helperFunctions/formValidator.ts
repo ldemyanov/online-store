@@ -2,14 +2,14 @@ import * as baseV from './../staticData/baseValues';
 
 export function nameInitialValidator(
   event: React.ChangeEvent<HTMLInputElement>
-) {
+): void {
   const name: string = filterNumbersLettersOnly(event, baseV.LETTERS_REG_EXP);
   event.target.value = name;
 }
 
 export function cardNumberInitialValidator(
   event: React.ChangeEvent<HTMLInputElement>
-) {
+): void {
   const number: string = filterNumbersLettersOnly(
     event,
     baseV.INTEGERS_REG_EXP
@@ -20,12 +20,12 @@ export function cardNumberInitialValidator(
   } else event.target.value = number;
 }
 
-function addSpaces(strng: string) {
+function addSpaces(strng: string): string {
   //prettier-ignore
   return ( strng.slice(0, 4) + ' ' + strng.slice(4, 8) + ' ' + strng.slice(8, 12) + ' ' + strng.slice(12, 16));
 }
 
-function highlightChosenCardSystem(num: string) {
+function highlightChosenCardSystem(num: string): void {
   document.querySelectorAll('.bank-system__sys-img').forEach((image) => {
     const imageElement = image as HTMLElement;
     if (num.length === 0) {
@@ -45,27 +45,27 @@ function highlightChosenCardSystem(num: string) {
 
 export function dateInitialValidator(
   event: React.ChangeEvent<HTMLInputElement>
-) {
-  const clearDate = filterNumbersLettersOnly(
+): void {
+  const clearDate: string = filterNumbersLettersOnly(
     event,
     baseV.INTEGERS_REG_EXP
   ).slice(0, 4);
-  const deletingMonth =
+  const deletingMonth: boolean =
     clearDate.length === 2 &&
     event.target.value.indexOf('/') === event.target.value.length - 1;
 
-  const month = deletingMonth
+  const month: string = deletingMonth
     ? clearDate.slice(0, 1)
     : (clearDate.length >= 2 && clearDate.slice(0, 2)) || clearDate;
-  const year = clearDate.length > 2 && clearDate.slice(2);
+  const year: string | false = clearDate.length > 2 && clearDate.slice(2);
   event.target.value =
     month.length === 2 ? `${month} / ${year ? year : ''}` : month;
 }
 
 export function cvvInitialValidator(
   event: React.ChangeEvent<HTMLInputElement>
-) {
-  const cvv = event.target.value;
+): void {
+  const cvv: string = event.target.value;
   if (!baseV.INTEGERS_REG_EXP.test(cvv) || cvv.length > 3)
     event.target.value = filterNumbersLettersOnly(
       event,
@@ -76,14 +76,14 @@ export function cvvInitialValidator(
 function filterNumbersLettersOnly(
   event: React.ChangeEvent<HTMLInputElement>,
   regExp: RegExp
-) {
+): string {
   return event.target.value
     .split('')
     .filter((char) => regExp.test(char))
     .join('');
 }
 
-export function validateForm() {
+export function validateForm(): boolean {
   const fullName = document.getElementById('customer-name') as HTMLInputElement;
   const ifNameValid = colorFieldDisplayMessage(fullName, isNameValid);
   const phoneNum = document.getElementById(
@@ -116,7 +116,7 @@ export function validateForm() {
 function colorFieldDisplayMessage(
   field: HTMLInputElement,
   validator: (strng: string) => boolean
-) {
+): boolean {
   const fieldType: string = field.id.split('-')[1];
   const thisFieldErrorMsg = document.querySelector(
     `.error-msg__${fieldType}`
@@ -133,7 +133,7 @@ function colorFieldDisplayMessage(
   }
 }
 
-function isNameValid(strng: string) {
+function isNameValid(strng: string): boolean {
   const nameParts: string[] = strng
     .trim()
     .split(' ')
@@ -144,7 +144,7 @@ function isNameValid(strng: string) {
   return true;
 }
 
-function isNumberValid(strng: string) {
+function isNumberValid(strng: string): boolean {
   const phoneNumber: string = strng.trim();
   if (phoneNumber.slice(0, 1) !== '+') return false;
   if (!baseV.INTEGERS_REG_EXP.test(phoneNumber.slice(1))) return false;
@@ -152,7 +152,7 @@ function isNumberValid(strng: string) {
   return true;
 }
 
-function isAddressValid(strng: string) {
+function isAddressValid(strng: string): boolean {
   const addressParts: string[] = strng
     .trim()
     .split(' ')
@@ -162,20 +162,20 @@ function isAddressValid(strng: string) {
   return true;
 }
 
-function isEmailValid(strng: string) {
+function isEmailValid(strng: string): boolean {
   if (!baseV.EMAIL_REG_EXP.test(strng)) return false;
   return true;
 }
 
-function isCardValid(strng: string) {
-  const cardNum = strng.trim().split(' ').join('');
+function isCardValid(strng: string): boolean {
+  const cardNum: string = strng.trim().split(' ').join('');
   if (!baseV.INTEGERS_REG_EXP.test(cardNum)) return false;
   if (cardNum.length !== 16) return false;
   return true;
 }
 
-function isDateValid(strng: string) {
-  const expiryDate = strng.split(' / ');
+function isDateValid(strng: string): boolean {
+  const expiryDate: string[] = strng.split(' / ');
   if (expiryDate.join('').length !== 4) return false;
   if (!baseV.INTEGERS_REG_EXP.test(expiryDate.join(''))) return false;
   if (+expiryDate[0] > 12) return false;
@@ -183,7 +183,7 @@ function isDateValid(strng: string) {
   return true;
 }
 
-function isCvvValid(strng: string) {
+function isCvvValid(strng: string): boolean {
   const cvvNumber = strng.trim();
   if (cvvNumber.length !== 3) return false;
   if (!baseV.INTEGERS_REG_EXP.test(cvvNumber)) return false;

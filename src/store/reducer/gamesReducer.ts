@@ -2,52 +2,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { GAMES } from './games';
 import * as types from './../../staticData/baseTypes';
 
-// type TRange = {
-//   min: number;
-//   max: number;
-// };
-
-// export enum ESortParam {
-//   rating = 'rating',
-//   price = 'price',
-// }
-
-// export enum ESortTrend {
-//   ascending = 'ascending',
-//   descending = 'descending',
-// }
-
-// export enum ECategory {
-//   strategy = 'strategy',
-//   cards = 'cards',
-//   quiz = 'quiz',
-//   economy = 'economy',
-//   kids = 'kids',
-//   role = 'role',
-// }
-
-// export enum ELayout {
-//   list = 'list',
-//   cards = 'cards',
-// }
-
-// export type TSort = {
-//   param: ESortParam;
-//   trend: ESortTrend;
-// };
-
-// type TPageStoreState = {
-//   games: TGame[];
-//   filterText: string;
-//   filterPlayers: TRange;
-//   filterCountInStock: TRange;
-//   filterPrice: TRange;
-//   sort: TSort;
-//   categories: ECategory[];
-//   producers: string[];
-//   layout: ELayout;
-// };
-
 const initialState: types.TPageStoreState = {
   games: GAMES,
   filterText: '',
@@ -109,48 +63,47 @@ const gameSlice = createSlice({
   name: 'games',
   initialState,
   reducers: {
-    setNumOfPlayers(state, action: PayloadAction<types.TRange>) {
+    setNumOfPlayers(state, action: PayloadAction<types.TRange>): void {
       state.filterPlayers = action.payload;
       state.games = filterGames(state);
     },
-    setCountInStock(state, action: PayloadAction<types.TRange>) {
+    setCountInStock(state, action: PayloadAction<types.TRange>): void {
       state.filterCountInStock = action.payload;
       state.games = filterGames(state);
     },
-    setPrice(state, action: PayloadAction<types.TRange>) {
+    setPrice(state, action: PayloadAction<types.TRange>): void {
       state.filterPrice = action.payload;
       state.games = filterGames(state);
     },
-    sort(state, action: PayloadAction<types.TSort>) {
+    sort(state, action: PayloadAction<types.TSort>): void {
       state.sort = action.payload;
       state.games = sortGames(state.games, action.payload);
     },
-    toggleCategory(state, action: PayloadAction<types.ECategory>) {
+    toggleCategory(state, action: PayloadAction<types.ECategory>): void {
       state.categories = state.categories.includes(action.payload)
         ? state.categories.filter((cat) => cat !== action.payload)
         : [...state.categories, action.payload];
       state.games = filterGames(state);
     },
-    toggleProd(state, action: PayloadAction<string>) {
+    toggleProd(state, action: PayloadAction<string>): void {
       state.producers = state.producers.includes(action.payload)
         ? state.producers.filter((producer) => producer !== action.payload)
         : [...state.producers, action.payload];
       state.games = filterGames(state);
     },
-    setTextFilter(state, action: PayloadAction<string>) {
+    setTextFilter(state, action: PayloadAction<string>): void {
       state.filterText = action.payload;
       state.games = filterGames(state);
     },
-    setCategories(state, action: PayloadAction<types.ECategory[]>) {
+    setCategories(state, action: PayloadAction<types.ECategory[]>): void {
       state.categories = action.payload;
       state.games = filterGames(state);
     },
-    setLayout(state, action: PayloadAction<types.ELayout>) {
+    setLayout(state, action: PayloadAction<types.ELayout>): void {
       state.layout = action.payload;
     },
-    setProd(state, action: PayloadAction<string[]>) {
+    setProd(state, action: PayloadAction<string[]>): void {
       state.producers = action.payload;
-      console.log(state.producers);
     },
     reset() {
       return initialState;

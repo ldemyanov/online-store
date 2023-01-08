@@ -12,11 +12,11 @@ import FilterProd from '../../components/filterProd/FilterProd';
 
 function Store() {
   const dispatch = useAppDispatch();
-  useEffect(() => {
+  useEffect((): void => {
     dispatch(gameActions.initialData());
   }, []);
 
-  useEffect(() => {
+  useEffect((): void => {
     document.title = 'Tabletop Geek: Store';
   }, []);
 
