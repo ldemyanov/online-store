@@ -178,7 +178,7 @@ function isDateValid(strng: string): boolean {
   const expiryDate: string[] = strng.split(' / ');
   if (expiryDate.join('').length !== 4) return false;
   if (!baseV.INTEGERS_REG_EXP.test(expiryDate.join(''))) return false;
-  if (+expiryDate[0] > 12) return false;
+  if (+expiryDate[0] <= 0 || +expiryDate[0] > 12) return false;
   if (+expiryDate[1] < 23) return false;
   return true;
 }
