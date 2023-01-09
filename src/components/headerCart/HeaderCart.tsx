@@ -24,6 +24,32 @@ function HeaderCart() {
           onClick={() => toggleElementDisplay('.cart-content')}
         />
       </div>
+      <div className="cart-basic-info">
+        <p className="cart-content__ttl-num">Total quantity: {totalQuantity}</p>
+        <p
+          className={
+            'cart-content__ttl-disc ' + (discountTotal === 0 ? 'hidden' : '')
+          }
+        >
+          Total discount: {discountTotal} %
+        </p>
+        <p className="cart-content__ttl-price">
+          Total price:{' '}
+          <span
+            className={
+              'cart-old-price ' + (totalQuantity === 0 ? 'hidden' : '')
+            }
+          >
+            {discountTotal > 0 ? Math.round(totalPrice * 100) / 100 : ''}
+          </span>{' '}
+          {discountTotal < 100
+            ? Math.round(
+                (totalPrice - (totalPrice * discountTotal) / 100) * 100
+              ) / 100
+            : 0}{' '}
+          $
+        </p>
+      </div>
       <div className="cart-content dissolved hidden">
         <p className="cart-content__ttl-num">Total quantity: {totalQuantity}</p>
         <p

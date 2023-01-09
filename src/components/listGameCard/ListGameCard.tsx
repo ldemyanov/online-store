@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { gameActions } from '../../store/reducer/cartGamesReducer';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { Link } from 'react-router-dom';
@@ -8,6 +8,8 @@ import RatingDisplay from '../ratingDisplay/RatingDisplay';
 import CategoriesDisplay from '../categoriesDisplay/CategoriesDisplay';
 
 function ListGameCard({ game }: types.TGameCardProps) {
+  const [mouseOverBtnContent, setMouseOverBtnContent] = useState('Game Added');
+  const [gameAdded, setGameAdded] = useState(false);
   const dispatch = useAppDispatch();
   const { cartGames } = useAppSelector((state) => state.cartGameReducer);
   const addGameToCart = (newGame: types.TGame): void => {
@@ -19,6 +21,11 @@ function ListGameCard({ game }: types.TGameCardProps) {
   const isGameInCart = (id: number): boolean => {
     return cartGames.some((game) => game.game.id === id);
   };
+
+  useEffect(() => {
+    setGameAdded(isGameInCart(game.id));
+  }, [cartGames]);
+
   const linkString = `/product?prodBy=${game.produced
     .split(' ')
     .join('-')}&id=${game.id}`;
@@ -54,13 +61,27 @@ function ListGameCard({ game }: types.TGameCardProps) {
             `lg-card__add-btn ` +
             (isGameInCart(game.id) ? 'btn-alrd-added' : '')
           }
-          onClick={() =>
-            isGameInCart(game.id)
-              ? removeGame({ id: game.id })
-              : addGameToCart(game)
-          }
+          onClick={() => {
+            if (gameAdded) {
+              removeGame({ id: game.id });
+              setGameAdded(false);
+            } else {
+              addGameToCart(game);
+              setGameAdded(true);
+            }
+          }}
+          onMouseOver={() => {
+            if (gameAdded) {
+              setMouseOverBtnContent('Remove it');
+            }
+          }}
+          onMouseLeave={() => {
+            if (gameAdded) {
+              setMouseOverBtnContent('Game Added');
+            }
+          }}
         >
-          {isGameInCart(game.id) ? 'Game added' : 'Add to cart'}
+          {gameAdded ? mouseOverBtnContent : 'Add to cart'}
         </button>
       </div>
     </div>
