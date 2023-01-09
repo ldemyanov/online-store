@@ -5,9 +5,9 @@ import * as types from './../../staticData/baseTypes';
 const initialState: types.TPageStoreState = {
   games: GAMES,
   filterText: '',
-  filterPlayers: { min: 1, max: 9 },
-  filterCountInStock: { min: 0, max: 202 },
-  filterPrice: { min: 5, max: 350 },
+  filterPlayers: { min: 2, max: 8 },
+  filterCountInStock: { min: 1, max: 201 },
+  filterPrice: { min: 8, max: 350 },
   sort: { param: types.ESortParam.rating, trend: types.ESortTrend.descending },
   categories: [],
   producers: [],
@@ -19,12 +19,12 @@ function filterGames(state: types.TPageStoreState): types.TGame[] {
   state.games = textFilter(GAMES, state.filterText);
   state.games = state.games.filter(
     (game) =>
-      game.numOfPlayers > state.filterPlayers.min &&
-      game.numOfPlayers < state.filterPlayers.max &&
-      game.inStock > state.filterCountInStock.min &&
-      game.inStock < state.filterCountInStock.max &&
-      game.price > state.filterPrice.min &&
-      game.price < state.filterPrice.max &&
+      game.numOfPlayers >= state.filterPlayers.min &&
+      game.numOfPlayers <= state.filterPlayers.max &&
+      game.inStock >= state.filterCountInStock.min &&
+      game.inStock <= state.filterCountInStock.max &&
+      game.price >= state.filterPrice.min &&
+      game.price <= state.filterPrice.max &&
       state.categories.every((cat) => game.categories.includes(cat)) &&
       (state.producers.length === 0 ||
         state.producers.find((prod) => prod === game.produced))
@@ -120,9 +120,9 @@ const gameSlice = createSlice({
 });
 
 function setDefaultRangeValues(state: types.TPageStoreState) {
-  state.filterPlayers = { min: 1, max: 9 };
-  state.filterCountInStock = { min: 0, max: 202 };
-  state.filterPrice = { min: 5, max: 350 };
+  state.filterPlayers = { min: 2, max: 8 };
+  state.filterCountInStock = { min: 1, max: 201 };
+  state.filterPrice = { min: 8, max: 350 };
 }
 
 function setRangeValues(
@@ -135,24 +135,24 @@ function setRangeValues(
   const minMaxPrice = state.games.map((game) => game.price);
   if (minMaxPlayers.length > 0) {
     state.filterPlayers = {
-      min: Math.round(Math.min(...minMaxPlayers)) - 1,
-      max: Math.round(Math.max(...minMaxPlayers)) + 1,
+      min: Math.floor(Math.min(...minMaxPlayers)),
+      max: Math.ceil(Math.max(...minMaxPlayers)),
     };
-  } else state.filterPlayers = { min: 1, max: 9 };
+  } else state.filterPlayers = { min: 2, max: 8 };
 
   if (minMaxInStock.length > 0) {
     state.filterCountInStock = {
-      min: Math.round(Math.min(...minMaxInStock)) - 1,
-      max: Math.round(Math.max(...minMaxInStock)) + 1,
+      min: Math.floor(Math.min(...minMaxInStock)),
+      max: Math.ceil(Math.max(...minMaxInStock)),
     };
-  } else state.filterCountInStock = { min: 0, max: 202 };
+  } else state.filterCountInStock = { min: 1, max: 201 };
 
   if (minMaxInStock.length > 0) {
     state.filterPrice = {
-      min: Math.round(Math.min(...minMaxPrice)) - 1,
-      max: Math.round(Math.max(...minMaxPrice)) + 1,
+      min: Math.floor(Math.min(...minMaxPrice)),
+      max: Math.ceil(Math.max(...minMaxPrice)),
     };
-  } else state.filterPrice = { min: 5, max: 350 };
+  } else state.filterPrice = { min: 8, max: 350 };
 }
 
 export const gameReducer = gameSlice.reducer;

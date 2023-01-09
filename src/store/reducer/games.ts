@@ -164,7 +164,7 @@ export const GAMES: types.TGame[] = [
   {
     id: 312023009,
     name: '3 Wishes',
-    price: 7.99,
+    price: 8,
     inStock: 81,
     rating: 2,
     description:
@@ -702,3 +702,5 @@ export const GAMES: types.TGame[] = [
     produced: 'GMT Games',
   },
 ];
+
+console.log(GAMES.length);
