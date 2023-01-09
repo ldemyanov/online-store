@@ -19,16 +19,23 @@ function CardContainer() {
     }
   }, []);
 
-  return (
-    <div className="card-container">
-      {games.map((game) => {
-        if (layout === types.ELayout.cards)
-          return <GameCard key={game.id} game={game} />;
-        else if (layout === types.ELayout.list)
-          return <ListGameCard key={game.id} game={game} />;
-      })}
-    </div>
-  );
+  let contentToRender: (JSX.Element | undefined)[] | JSX.Element;
+
+  if (games && games.length > 0) {
+    contentToRender = games.map((game) => {
+      if (layout === types.ELayout.cards)
+        return <GameCard key={game.id} game={game} />;
+      else if (layout === types.ELayout.list)
+        return <ListGameCard key={game.id} game={game} />;
+    });
+  } else
+    contentToRender = (
+      <div className="empty-store">
+        <p className="empty-store__message">No Games Found</p>
+      </div>
+    );
+
+  return <div className="card-container">{contentToRender}</div>;
 }
 
 export default CardContainer;

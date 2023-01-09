@@ -141,7 +141,7 @@ function SortViewBlock() {
             </div>
             <DoubleRange
               min={0}
-              max={220}
+              max={202}
               left={filterCountInStock.min}
               right={filterCountInStock.max}
               onChange={callbackSetCountInStock}

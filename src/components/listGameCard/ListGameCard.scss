@@ -1,7 +1,7 @@
 .lg-card {
   display: flex;
   box-sizing: border-box;
-  width: 100%;
+  width: 98%;
   height: 220px;
   background: #fffdfd;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
@@ -22,7 +22,7 @@
     aspect-ratio: 1;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.331);
     cursor: pointer;
-        background-size: cover;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 
@@ -117,6 +117,6 @@
   cursor: pointer;
 
   &:hover {
-    background-image: linear-gradient(to top, #025d07, #007806);
+    background-image: linear-gradient(to top, #5d0702, #a10101) !important;
   }
 }
