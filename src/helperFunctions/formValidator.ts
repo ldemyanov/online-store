@@ -171,6 +171,12 @@ function isCardValid(strng: string): boolean {
   const cardNum: string = strng.trim().split(' ').join('');
   if (!baseV.INTEGERS_REG_EXP.test(cardNum)) return false;
   if (cardNum.length !== 16) return false;
+  if (
+    !cardNum.startsWith('4') &&
+    !cardNum.startsWith('5') &&
+    !cardNum.startsWith('6')
+  )
+    return false;
   return true;
 }
 

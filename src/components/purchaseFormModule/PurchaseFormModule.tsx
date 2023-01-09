@@ -98,7 +98,7 @@ function PurchaseFormModule({ setCounter }: types.setCounter) {
             onChange={(e) => valFns.cardNumberInitialValidator(e)}
           />
           <span className="form-error-msg error-msg__card hidden">
-            Enter card number correctly
+            Use the cards that start with 4, 5 or 6
           </span>
         </div>
         <div className="bank-system">
