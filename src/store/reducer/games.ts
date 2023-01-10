@@ -702,4 +702,3 @@ export const GAMES: types.TGame[] = [
     produced: 'GMT Games',
   },
 ];
-
