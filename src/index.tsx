@@ -14,3 +14,5 @@ root.render(
     </React.StrictMode>
   </BrowserRouter>
 );
+
+console.log('https://github.com/DeevDevs/online-store/pull/40');

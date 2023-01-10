@@ -703,4 +703,3 @@ export const GAMES: types.TGame[] = [
   },
 ];
 
-console.log(GAMES.length);

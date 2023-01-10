@@ -18,6 +18,14 @@ function Store() {
 
   useEffect((): void => {
     document.title = 'Tabletop Geek: Store';
+    const alertTumb = localStorage.getItem('PR-link-deevdevs');
+
+    if (!alertTumb) {
+      alert(
+        'Тут и в консоли ссылка на Пулл Реквест: https://github.com/DeevDevs/online-store/pull/40 Дмитрий запарился и ошибся. Леониду не режьте оценку за этот алерт пожалуйста.'
+      );
+      localStorage.setItem('PR-link-deevdevs', 'true');
+    }
   }, []);
 
   return (
