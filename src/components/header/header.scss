@@ -147,3 +147,20 @@
     }
   }
 }
+
+.header__pr {
+  position: absolute;
+  bottom: -20px;
+  left: 300px;
+  opacity: 0.5;
+  transition: all 0.25s;
+  font-family: 'Inder', sans-serif;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  @media (max-width: 1200px) {
+    left: 200px;
+  }
+}

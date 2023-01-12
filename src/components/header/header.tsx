@@ -18,6 +18,16 @@ function Header() {
             <img className="header-logo__img" src={wizard} alt="wizard" />
           </div>
           <p className="header__moto">WHERE ALL WORLDS INTERSECT...</p>
+          <p className="header__pr">
+            Pull request:{' '}
+            <a
+              href="https://github.com/DeevDevs/online-store/pull/40"
+              target="_blank"
+              rel="noreferrer"
+            >
+              https://github.com/DeevDevs/online-store/pull/40
+            </a>
+          </p>
           <button
             type="button"
             className="header__btn"
