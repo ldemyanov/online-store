@@ -130,9 +130,9 @@ function setRangeValues(
   isDoubleRangeUsed = false
 ) {
   if (isDoubleRangeUsed) return;
-  const minMaxPlayers = state.games.map((game) => game.numOfPlayers);
-  const minMaxInStock = state.games.map((game) => game.inStock);
-  const minMaxPrice = state.games.map((game) => game.price);
+  const minMaxPlayers: number[] = state.games.map((game) => game.numOfPlayers);
+  const minMaxInStock: number[] = state.games.map((game) => game.inStock);
+  const minMaxPrice: number[] = state.games.map((game) => game.price);
   if (minMaxPlayers.length > 0) {
     state.filterPlayers = {
       min: Math.floor(Math.min(...minMaxPlayers)),
