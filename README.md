@@ -1,1 +1,3 @@
-# online-store
+online-store
+
+- проект на доработке, на ревью
